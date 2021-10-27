@@ -1,7 +1,10 @@
 # eActivity
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
+E Corp Group. 
+
+| Member   | Matric No. |
+| ------------- | ------------- |
+| ANAS ROUBI  | A19EC4047  |
+| SALEH MOHAMED  | A19EC4058  |
+| MAJD ALALI  | A19EC4038  |
+| SEIFELDIN TAHA | A19EC3030  |
+| SEIFELDIN TAHA | A19EC3030 |
