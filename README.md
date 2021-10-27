@@ -1,6 +1,6 @@
-# eActivity 
+# eActivity By E Corp. 
 > APPLICATION TO GATHER STUDENTS FROM DIFFERENT FACILITIES, TO CREATE, SHARE, VIEW, AND INTERACT WITH EVENTS FROM OUR UNIVERSITY. 🔥
-E Corp Group. 
+ 
 
 | Member   | Matric No. |
 | ------------- | ------------- |
