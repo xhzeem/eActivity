@@ -9,3 +9,8 @@
 | MAJD ALALI  | A19EC4038  |
 | SEIFELDIN TAHA | A19EC3030  |
 | SEIFELDIN TAHA | A19EC3030 |
+
+## TO-DO List 📃
+- [x] Proposel
+- [x] Assign roles
+- [ ] Objectives 
