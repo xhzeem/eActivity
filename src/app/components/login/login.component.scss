@@ -1,0 +1,40 @@
+.display-6 {
+  font-family: "Roboto";
+}
+.gradient-custom-4 {
+  background: rgba(44, 125, 101, 1);
+  background: -webkit-linear-gradient(
+    left,
+    rgba(44, 125, 101, 1),
+    rgba(75, 75, 166, 1)
+  );
+  background: -moz-linear-gradient(
+    left,
+    rgba(44, 125, 101, 1),
+    rgba(75, 75, 166, 1)
+  );
+  background: linear-gradient(
+    to right,
+    rgba(44, 125, 101, 1),
+    rgba(75, 75, 166, 1)
+  );
+  border: #485461;
+}
+input:focus {
+  border-color: rgba(44, 125, 101, 1);
+  border: -webkit-linear-gradient(
+    left,
+    rgba(44, 125, 101, 1),
+    rgba(75, 75, 166, 1)
+  );
+  border: -moz-linear-gradient(
+    left,
+    rgba(44, 125, 101, 1),
+    rgba(75, 75, 166, 1)
+  );
+  border: linear-gradient(
+    to right,
+    rgba(44, 125, 101, 1),
+    rgba(75, 75, 166, 1)
+  );
+}

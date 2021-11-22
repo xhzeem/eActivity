@@ -1,0 +1,68 @@
+$primary: #1a1375;
+$secondry: #476072;
+$primaryFont: "Montserrat";
+$secondryFont: "Poppins";
+$thirdFont: "Raleway";
+a {
+  text-decoration: none;
+}
+.nav {
+  font-family: $primaryFont;
+}
+button {
+  font-family: $thirdFont;
+}
+.btnPost {
+  --tw-bg-opacity: 1;
+  background-color: rgba(17, 24, 39, var(--tw-bg-opacity)) !important;
+  border: rgba(17, 24, 39, var(--tw-bg-opacity)) !important;
+}
+
+.btnLog {
+  border: 1px solid #ff4081;
+  color: #fff !important;
+}
+.username {
+  font-family: $primaryFont;
+}
+.card-text {
+  font-family: $secondryFont;
+}
+.nav-link {
+  color: rgba(239, 246, 255, var(--tw-text-opacity)) !important;
+}
+.nav-link:hover {
+  color: #ff4081 !important;
+}
+a:hover {
+  color: #ff4081 !important;
+}
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent; /* make scrollbar transparent */
+}
+.leftside,
+.rightside {
+  flex: 1;
+}
+.postBtn button {
+  background-color: #ff4081;
+  border-color: #ff4081;
+}
+.card-footer:hover {
+  cursor: pointer;
+}
+.card-footer li:hover {
+  color: rgba(37, 99, 235, var(--tw-border-opacity)) !important;
+}
+.card-footer li:first-child:hover {
+  color: rgba(239, 68, 68, var(--tw-border-opacity)) !important;
+}
+.left-nav li:hover {
+  background-color: rgb(255, 255, 255);
+  border-radius: 50px;
+  color: #212529 !important;
+}
+.left-nav a:hover {
+  color: #212529 !important;
+}

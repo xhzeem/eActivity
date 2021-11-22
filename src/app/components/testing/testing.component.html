@@ -1,0 +1,244 @@
+<div class="container-fluid">
+  <div class="feed-container z-0 pt-16 flex bg-gray-50">
+    <div class="leftside flex justify-center mt-3">
+      <div class="bg-transparent w-1/5 h-5/6 fixed rounded-3xl py-4 px-4">
+        <ul
+          class="
+            nav
+            left-nav
+            flex-column
+            font-semibod
+            capitalize
+            font-black
+            text-xl
+          "
+        >
+          <li class="nav-item w-max">
+            <a class="nav-link active" href="#">
+              <i class="bi bi-house-fill text-2xl mr-2"></i>Home</a
+            >
+          </li>
+          <li class="nav-item mt-2 w-max">
+            <a class="nav-link" href="#"
+              ><i class="bi bi-calendar3-event-fill text-2xl mr-2"></i>Events</a
+            >
+          </li>
+          <li class="nav-item mt-2 w-max">
+            <a class="nav-link" href="#"
+              ><i class="bi bi-newspaper text-2xl mr-2"></i>News</a
+            >
+          </li>
+          <li class="nav-item mt-2 w-max">
+            <a class="nav-link" href="#"
+              ><i class="bi bi-bookmark-fill text-2xl mr-2"></i>Bookmarks</a
+            >
+          </li>
+          <li class="nav-item mt-2 w-max">
+            <a class="nav-link" href="#"
+              ><i class="bi bi-send-fill text-2xl mr-2"></i>Contact Us</a
+            >
+          </li>
+          <li class="nav-item mt-2 w-max">
+            <a class="nav-link" href="#"
+              ><i class="bi bi-info-circle-fill text-2xl mr-2"></i>About Us</a
+            >
+          </li>
+          <li class="nav-item mt-2 w-max">
+            <a class="nav-link" href="#"
+              ><i class="bi bi-person-fill text-2xl mr-2"></i>Profile</a
+            >
+          </li>
+          <button class="btn btn-danger rounded-2xl w-mix mt-2 ml-3">
+            Create a Post
+          </button>
+        </ul>
+      </div>
+    </div>
+    <div class="feed mt-3 w-2/6">
+      <div
+        class="
+          fixed
+          z-10
+          top-0
+          w-2/6
+          rounded-none
+          card
+          border-l-1 border-r-1 border-b-1 border-t-0 border-gray-500
+        "
+      >
+        <a class="navbar-brand px-2 py-2" href="/">UTM-Social</a>
+      </div>
+      <div
+        class="
+          card
+          border-gray-200 border-1
+          shadow-sm
+          create-post
+          pl-3
+          pt-3
+          pb-3
+        "
+      >
+        <div class="post-top flex flex-row">
+          <img
+            src="{{ doggie }}"
+            class="rounded-full absolute w-16"
+            alt="..."
+          />
+
+          <div class="form-group rounded-full w-full font-medium">
+            <textarea
+              oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'
+              class="
+                text-lg
+                mt-2
+                ml-20
+                w-full
+                placeholder-gray-600
+                font-medium
+                bg-transparent
+                outline-none
+                resize-none
+              "
+              placeholder="What's on your mind, Majd?"
+            ></textarea>
+            <div class="border-b-2 border-black ml-20 mr-4"></div>
+          </div>
+        </div>
+        <div
+          class="
+            postBtn
+            d-grid
+            gap-2
+            d-md-flex
+            justify-content-md-end
+            mr-4
+            mt-3
+          "
+        >
+          <button
+            type="button"
+            class="
+              btn btn-dark
+              btnPost
+              w-24
+              rounded-full
+              text-white
+              font-semibold
+            "
+          >
+            Post
+          </button>
+        </div>
+      </div>
+
+      <div class="userPost card mt-4 border-gray-300 border-1 shadow-sm">
+        <div class="postHeader pl-3 pt-3 flex">
+          <img src="{{ doggie }}" class="rounded-full w-16" alt="..." />
+          <div class="nameH flex flex-col justify-center">
+            <span class="ml-3 text-black username font-bold text-xl"
+              >Majd Alali</span
+            >
+            <small class="ml-3 font-medium text-muted">10h</small>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <p class="lead font-normal text-black">
+            This is a wider card with supporting text below as a natural lead-in
+            to additional content. This content is a little bit longer.
+          </p>
+        </div>
+        <img
+          src="https://source.unsplash.com/600x600/?university"
+          class="card-img-bottom bg-cover"
+          alt="..."
+        />
+        <div class="card-footer flex flex-row text-lg">
+          <li class="nav-link"><i class="bi bi-heart-fill mr-2"></i>Like</li>
+          <li class="nav-link"><i class="bi bi-chat mr-2"></i>Comment</li>
+          <li class="nav-link share"><i class="bi bi-upload mr-2"></i>Share</li>
+        </div>
+      </div>
+      <div class="userPost card mt-4 border-gray-300 border-1">
+        <div class="postHeader pl-3 pt-3">
+          <img
+            src="{{ doggie }}"
+            class="rounded-full w-16 inline-block"
+            alt="..."
+          />
+          <span class="ml-3 text-black username font-bold text-xl"
+            >Majd Alali</span
+          >
+        </div>
+
+        <div class="card-body">
+          <p class="card-text text-lg font-thin text-black">
+            This is a wider card with supporting text below as a natural lead-in
+            to additional content. This content is a little bit longer. Lorem
+            ipsum dolor sit, amet consectetur adipisicing elit. Placeat,
+            molestiae! Quis adipisci deserunt ipsa beatae iure maxime culpa
+            officiis. Doloremque illum ipsum facilis quibusdam culpa at
+            assumenda, nihil officiis veniam, nulla neque fugiat! Quibusdam
+            ratione velit a, fugit rerum illo ullam commodi doloremque? Rem
+            alias reiciendis ad. Ratione molestias, maiores fugiat eligendi
+            cumque recusandae illum. Perferendis hic veniam voluptates,
+            pariatur, aperiam nemo iusto, numquam sunt modi ipsam earum
+            doloribus sapiente natus id. Numquam voluptas magnam aut!
+            Repudiandae ducimus quasi minima aliquid quas molestias consectetur,
+            commodi ea repellendus enim expedita voluptas illo odit, doloribus
+            suscipit quaerat molestiae obcaecati corporis quidem asperiores?
+          </p>
+        </div>
+        <div class="card-footer flex flex-row text-lg">
+          <li class="nav-link">
+            <i class="bi bi-heart-fill mr-2 text-red-900"></i>Liked
+          </li>
+          <li class="nav-link"><i class="bi bi-chat mr-2"></i>Comment</li>
+          <li class="nav-link share"><i class="bi bi-upload mr-2"></i>Share</li>
+        </div>
+      </div>
+      <div class="userPost card mt-4 border-gray-300 border-1">
+        <div class="postHeader pl-3 pt-3 pb-3">
+          <img
+            src="{{ doggie }}"
+            class="rounded-full w-16 inline-block"
+            alt="..."
+          />
+          <span class="ml-3 text-black username font-bold text-xl"
+            >Majd Alali</span
+          >
+        </div>
+        <img
+          src="https://source.unsplash.com/weekly?animal"
+          class="left-0"
+          alt="..."
+        />
+      </div>
+      <div class="alert text-muted alert-light mt-3 mb-3" role="alert">
+        OOPS! Your Reached The End.
+      </div>
+    </div>
+    <div class="rightside mt-3 flex justify-center">
+      <div
+        class="
+          card
+          border-gray-300
+          shadow-md
+          border-solid border-1
+          w-1/5
+          h-5/6
+          fixed
+          rounded-3xl
+          py-4
+          px-4
+          scale-150
+        "
+      >
+        <span class="ml-3 text-black font-bold font-sans text-2xl"
+          >Trending Today</span
+        >
+      </div>
+    </div>
+  </div>
+</div>

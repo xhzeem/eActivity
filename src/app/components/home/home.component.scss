@@ -1,0 +1,54 @@
+$primary: #1a1375;
+$secondry: #476072;
+$primaryFont: "Montserrat";
+$secondryFont: "Poppins";
+$thirdFont: "Raleway";
+
+.home-container {
+  position: absolute;
+  height: 100vh;
+  background: url("../../../assets/Imges/bg.svg");
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+h1 {
+  font-family: $primaryFont;
+  color: $primary;
+}
+span {
+  font-family: "Sora";
+  color: $primary;
+}
+p {
+  font-family: "Amiko";
+  color: $secondry;
+}
+.btnLog {
+  margin-left: 1rem;
+  border: 1px solid #ff4081;
+}
+.btn button {
+  border-radius: 2rem;
+}
+li {
+  list-style: none;
+  display: inline;
+  padding-left: 5rem;
+  font-family: $secondryFont;
+  color: $primary;
+}
+li:first-child {
+  padding-left: 0;
+  color: #fff;
+}
+.liMain {
+  background: $primary;
+  height: 2rem;
+}
+.block {
+  left: 7.5rem;
+}

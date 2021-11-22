@@ -1,1 +1,37 @@
-/* You can add global styles to this file, and also import other style files */
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Raleway:wght@600&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Poppins:wght@200@600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Amiko&family=Exo:ital,wght@0,400;0,500;1,300;1,400&family=Sora:wght@100;400&display=swap");
+
+$primary: #1a1375;
+$secondry: #476072;
+$primaryFont: "Montserrat";
+$secondryFont: "Poppins";
+$thirdFont: "Raleway";
+
+* {
+  margin: 0;
+  padding: 0;
+}
+html {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
