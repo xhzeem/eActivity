@@ -1,8 +1,306 @@
-<div class="bg-gray-800 max-w-screen-2xl h-full flex justify-center">
-  <div class="card bg-gray-400 w-4/12">
-    <div class="card-body">
-      <h1 class="display-1 text-2xl">Please</h1>
-      <h1 class="display-1">help</h1>
+<div class="oops bg-gray-50 bg-cover">
+  <div class="layout max-w-screen-xl h-full flex justify-evenly m-auto">
+    <div class="layout-left pt-2 pl-5">
+      <div class="leftHeaderpb-2 w-max pl-3">
+        <div class="yinYang fixed">
+          <a href="#"><i class="bi bi-yin-yang text-3xl m-0"></i></a>
+        </div>
+      </div>
+      <div class="leftNav fixed mt-16">
+        <ul class="navUl font-semibold text-xl">
+          <li class="nav-item flex">
+            <i class="bi bi-house"></i>
+            <a class="nav-link text-gray-900 active" href="#">Home</a>
+          </li>
+          <li class="nav-item flex">
+            <i class="bi bi-calendar3-event"></i>
+            <a class="nav-link text-gray-900 active" href="#">Events</a>
+          </li>
+          <li class="nav-item flex">
+            <i class="bi bi-newspaper"></i>
+            <a class="nav-link text-gray-900 active" href="#">News</a>
+          </li>
+          <li class="nav-item flex">
+            <i class="bi bi-bookmark"></i>
+            <a class="nav-link text-gray-900 active" href="#">Bookmarks</a>
+          </li>
+          <li class="nav-item flex">
+            <i class="bi bi-send"></i>
+            <a class="nav-link text-gray-900 active" href="#">Contact Us</a>
+          </li>
+          <li class="nav-item flex">
+            <i class="bi bi-info-circle"></i>
+            <a class="nav-link text-gray-900 active" href="#"> About Us</a>
+          </li>
+          <li class="nav-item flex">
+            <i class="bi bi-person"></i>
+            <a class="nav-link text-gray-900 active" href="#">Profile</a>
+          </li>
+          <button
+            type="button "
+            class="
+              btn btn-dark
+              rounded-3xl
+              text-white
+              font-semibold
+              text-lg
+              mt-3
+              h-12
+              w-9/12
+              bg-yellow-600
+              border-none
+            "
+          >
+            Post
+          </button>
+        </ul>
+      </div>
+    </div>
+    <div class="layout-center">
+      <div
+        class="
+          centerHeader
+          card
+          shadow-md
+          sticky-top
+          flex flex-row
+          justify-between
+          px-3
+          py-2
+        "
+      >
+        <a class="navbar-brand" href="/">UTM-Social</a>
+        <i class="bi bi-brightness-high text-2xl"></i>
+      </div>
+      <div class="centerPostCreator shadow-md card mt-10 p-3 pb-3 pr-5">
+        <div class="creatorUserAvatar absolute">
+          <img src="{{ doggie }}" class="rounded-full w-16" alt="..." />
+        </div>
+        <div class="creatorText ml-20 mt-4 border-b-2 border-gray-900">
+          <textarea
+            rows="2"
+            oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'
+            class="
+              text-lg
+              w-full
+              placeholder-gray-600
+              font-medium
+              bg-transparent
+              outline-none
+              resize-none
+            "
+            placeholder="What's on your mind, Majd?"
+          ></textarea>
+        </div>
+        <div class="creatorBottom mt-4">
+          <i class="bi bi-image ml-20 text-xl"></i>
+          <i class="bi bi-link-45deg ml-5 text-xl"></i>
+          <i class="bi bi-emoji-smile ml-5 text-xl"></i>
+          <button
+            type="button "
+            class="
+              btn btn-dark
+              rounded-3xl
+              text-white
+              font-semibold
+              text-lg
+              h-9
+              w-20
+              bg-yellow-600
+              border-none
+              float-right
+            "
+          >
+            Post
+          </button>
+        </div>
+      </div>
+      <div class="centerPost shadow-md card mt-10">
+        <div class="postHeader p-3 flex">
+          <img src="{{ doggie }}" class="rounded-full w-16" alt="..." />
+          <div class="nameH flex flex-col justify-center">
+            <span class="ml-3 text-black username font-bold text-xl"
+              >Majd Alali</span
+            >
+            <small class="ml-3 font-medium text-muted">10h</small>
+          </div>
+        </div>
+        <div class="postBody p-3">
+          <p class="lead font-normal text-black">
+            This is a wider card with supporting text below as a natural lead-in
+            to additional content. This content is a little bit longer.
+          </p>
+        </div>
+        <!-- <img
+          src="https://source.unsplash.com/600x600/?university"
+          class="card-img-bottom bg-cover"
+          alt="..."
+        /> -->
+        <div class="card-footer p-5 flex flex-row text-lg">
+          <li class="nav-link"><i class="bi bi-heart-fill mr-2"></i>Like</li>
+          <li class="nav-link ml-6"><i class="bi bi-chat mr-2"></i>Comment</li>
+          <li class="nav-link share ml-7">
+            <i class="bi bi-upload mr-2"></i>Share
+          </li>
+        </div>
+      </div>
+      <div class="centerPost shadow-md card mt-10">
+        <div class="postHeader p-3 flex">
+          <img src="{{ doggie }}" class="rounded-full w-16" alt="..." />
+          <div class="nameH flex flex-col justify-center">
+            <span class="ml-3 text-black username font-bold text-xl"
+              >Majd Alali</span
+            >
+            <small class="ml-3 font-medium text-muted">10h</small>
+          </div>
+        </div>
+        <div class="postBody p-3">
+          <p class="lead font-normal text-black">
+            This is a wider card with supporting text below as a natural lead-in
+            to additional content. This content is a little bit longer.
+          </p>
+        </div>
+        <!-- <img
+          src="https://source.unsplash.com/600x600/?university"
+          class="card-img-bottom bg-cover"
+          alt="..."
+        /> -->
+        <div class="card-footer p-5 flex flex-row text-lg">
+          <li class="nav-link"><i class="bi bi-heart-fill mr-2"></i>Like</li>
+          <li class="nav-link ml-6"><i class="bi bi-chat mr-2"></i>Comment</li>
+          <li class="nav-link share ml-7">
+            <i class="bi bi-upload mr-2"></i>Share
+          </li>
+        </div>
+      </div>
+      <div class="centerPost shadow-md card mt-10">
+        <div class="postHeader p-3 flex">
+          <img src="{{ doggie }}" class="rounded-full w-16" alt="..." />
+          <div class="nameH flex flex-col justify-center">
+            <span class="ml-3 text-black username font-bold text-xl"
+              >Majd Alali</span
+            >
+            <small class="ml-3 font-medium text-muted">10h</small>
+          </div>
+        </div>
+        <div class="postBody p-3">
+          <p class="lead font-normal text-black">
+            This is a wider card with supporting text below as a natural lead-in
+            to additional content. This content is a little bit longer.
+          </p>
+        </div>
+        <!-- <img
+          src="https://source.unsplash.com/600x600/?university"
+          class="card-img-bottom bg-cover"
+          alt="..."
+        /> -->
+        <div class="card-footer p-5 flex flex-row text-lg">
+          <li class="nav-link"><i class="bi bi-heart-fill mr-2"></i>Like</li>
+          <li class="nav-link ml-6"><i class="bi bi-chat mr-2"></i>Comment</li>
+          <li class="nav-link share ml-7">
+            <i class="bi bi-upload mr-2"></i>Share
+          </li>
+        </div>
+      </div>
+      <div class="centerPost shadow-md card mt-10">
+        <div class="postHeader p-3 flex">
+          <img src="{{ doggie }}" class="rounded-full w-16" alt="..." />
+          <div class="nameH flex flex-col justify-center">
+            <span class="ml-3 text-black username font-bold text-xl"
+              >Majd Alali</span
+            >
+            <small class="ml-3 font-medium text-muted">10h</small>
+          </div>
+        </div>
+        <div class="postBody p-3">
+          <p class="lead font-normal text-black">
+            This is a wider card with supporting text below as a natural lead-in
+            to additional content. This content is a little bit longer.
+          </p>
+        </div>
+        <!-- <img
+          src="https://source.unsplash.com/600x600/?university"
+          class="card-img-bottom bg-cover"
+          alt="..."
+        /> -->
+        <div class="card-footer p-5 flex flex-row text-lg">
+          <li class="nav-link"><i class="bi bi-heart-fill mr-2"></i>Like</li>
+          <li class="nav-link ml-6"><i class="bi bi-chat mr-2"></i>Comment</li>
+          <li class="nav-link share ml-7">
+            <i class="bi bi-upload mr-2"></i>Share
+          </li>
+        </div>
+      </div>
+      <div class="centerPost shadow-md card mt-10">
+        <div class="postHeader p-3 flex">
+          <img src="{{ doggie }}" class="rounded-full w-16" alt="..." />
+          <div class="nameH flex flex-col justify-center">
+            <span class="ml-3 text-black username font-bold text-xl"
+              >Majd Alali</span
+            >
+            <small class="ml-3 font-medium text-muted">10h</small>
+          </div>
+        </div>
+        <div class="postBody p-3">
+          <p class="lead font-normal text-black">
+            This is a wider card with supporting text below as a natural lead-in
+            to additional content. This content is a little bit longer.
+          </p>
+        </div>
+        <!-- <img
+          src="https://source.unsplash.com/600x600/?university"
+          class="card-img-bottom bg-cover"
+          alt="..."
+        /> -->
+        <div class="card-footer p-5 flex flex-row text-lg">
+          <li class="nav-link"><i class="bi bi-heart-fill mr-2"></i>Like</li>
+          <li class="nav-link ml-6"><i class="bi bi-chat mr-2"></i>Comment</li>
+          <li class="nav-link share ml-7">
+            <i class="bi bi-upload mr-2"></i>Share
+          </li>
+        </div>
+      </div>
+    </div>
+    <div class="layout-right pt-1">
+      <div class="right-fixed w-max m-auto fixed">
+        <div class="rightHeader w-9/12 m-auto rounded-full card px-3 py-1">
+          <a class="navbar-brand" href="/">Search</a>
+        </div>
+        <div
+          class="
+            treandingCard
+            card
+            border-gray-300
+            shadow-md
+            mt-12
+            p-3
+            rounded-2xl
+            w-9/12
+            m-auto
+          "
+        >
+          <span class="font-black text-lg">Trending Today</span>
+          <li class="nav-link">
+            <i class="bi bi-diamond-fill mr-2"></i>This user doesn’t know what
+            to do anymore.
+          </li>
+          <li class="nav-link">
+            <i class="bi bi-diamond-fill mr-2"></i>This user is confused about
+            life.
+          </li>
+          <li class="nav-link">
+            <i class="bi bi-diamond-fill mr-2"></i>This user is so stressed.
+          </li>
+          <li class="nav-link">
+            <i class="bi bi-diamond-fill mr-2"></i>This user wants to escape
+            reality.
+          </li>
+          <li class="nav-link">
+            <i class="bi bi-diamond-fill mr-2"></i>This user is mentally
+            exhausted.
+          </li>
+        </div>
+      </div>
     </div>
   </div>
 </div>

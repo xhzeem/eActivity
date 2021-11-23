@@ -1,0 +1,77 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+$primary: #1a1375;
+$secondry: #476072;
+$primaryFont: "Montserrat";
+$secondryFont: "Poppins";
+$thirdFont: "Raleway";
+//  Valirables
+
+// Code
+.layout-left {
+  width: 22%;
+}
+.layout-center {
+  width: 49%;
+}
+.layout-right {
+  width: 29%;
+}
+
+// Rest
+.navUl {
+  font-family: $primaryFont;
+}
+button {
+  font-family: $thirdFont;
+}
+.layout-left i {
+  margin-right: 1rem;
+  font-size: 1.5rem;
+}
+button {
+  font-family: $thirdFont;
+}
+.username {
+  font-family: $primaryFont;
+}
+.card-footer:hover {
+  cursor: pointer;
+}
+.card-footer li:hover {
+  color: rgba(37, 99, 235, var(--tw-border-opacity)) !important;
+}
+.card-footer li:first-child:hover {
+  color: rgba(239, 68, 68, var(--tw-border-opacity)) !important;
+}
+.nav-link {
+  color: black;
+}
+.navUl li {
+  padding: 0.75rem;
+  margin-top: 0.5rem !important;
+  width: max-content;
+}
+.navUl li:first-child {
+  margin-top: 0 !important;
+}
+.navUl li:hover {
+  background-color: rgb(255, 255, 255);
+  border-radius: 50px;
+}
+
+.leftHeader a:hover {
+  color: rgb(173, 58, 4);
+}
+.treandingCard {
+  font-family: $primaryFont;
+}
+.treandingCard li {
+  padding-top: 0.75rem;
+}
+.treandingCard li:hover {
+  cursor: pointer;
+  color: #1a1375 !important;
+}
