@@ -1,0 +1,113 @@
+<div class="layout m-auto max-w-screen-xl h-full">
+  <div class="layout-top shadow-md w-4/5 m-auto flex">
+    <div
+      class="
+        topLeft
+        rounded-none
+        card
+        w-4/12
+        flex flex-col
+        justify-center
+        text-center
+        py-5
+      "
+    >
+      <div class="avatar">
+        <img
+          src="{{ doggie }}"
+          class="rounded-full border-2 w-1/2 border-white block m-auto"
+          alt=""
+        />
+      </div>
+      <span class="userName pt-2 text-2xl font-semibold">Majd Alali</span>
+      <small class="userUserName text-muted">@Admin</small>
+    </div>
+    <div class="topRight rounded-none border-none card w-full">
+      <div class="topWallpaper bg-blue-600 h-4/5 overflow-hidden">
+        <div class="overlay bg-black w-full h-full bg-opacity-50 z-10"></div>
+      </div>
+
+      <div class="nav-bar h-1/5">
+        <nav class="navbar h-full bg-gray-50">
+          <div class="text-xl">
+            <small class="pr-1">20</small>
+            <small class="text-muted">Posts</small>
+          </div>
+          <div class="text-xl">
+            <small class="pr-1">15</small>
+            <small class="text-muted">Friends</small>
+          </div>
+          <div class="text-xl">
+            <small class="pr-1">100</small>
+            <small class="text-muted">Following</small>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+
+  <div class="layout-middle mt-4 w-4/5 m-auto flex gap-1">
+    <div class="middle-left h-full card rounded-none shadow w-1/4">
+      <nav class="nav flex-col text-xl p-4">
+        <li class="nav-item">
+          <i class="bi bi-person-circle"></i>
+          <a class="no-underline text-gray-900 active pl-3" href="#"
+            >Majd Alali</a
+          >
+        </li>
+        <li class="nav-item pt-3">
+          <i class="bi bi-envelope"></i>
+          <a class="no-underline text-gray-900 active pl-3 text-lg" href="#"
+            >m-syr@outlook.sa</a
+          >
+        </li>
+      </nav>
+      <div class="bio p-4">
+        <span class="text-xl font-semibold">Bio</span>
+        <p class="lead text-base font-normal">
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis, ut.
+        </p>
+      </div>
+      <div class="editSection p-4">
+        <button class="btn btn-danger w-full">Edit Profile</button>
+      </div>
+    </div>
+    <div class="middle-top w-8/12 m-auto">
+      <div class="centerPost mainPost shadow card">
+        <div class="postHeader p-3 flex">
+          <img src="{{ doggie }}" class="rounded-full w-16" alt="..." />
+          <div class="nameH flex flex-col justify-center">
+            <span class="ml-3 text-black username font-bold text-xl"
+              >Majd Alali</span
+            >
+            <small class="ml-3 font-medium text-muted"
+              >@Admin | {{ date | date: "MMM d, h:mm a " }}</small
+            >
+            <small class="ml-3 font-medium text-muted"></small>
+          </div>
+        </div>
+        <div class="postBody p-3">
+          <p class="lead font-normal text-black">
+            This is a wider card with supporting text below as a natural lead-in
+            to additional content. This content is a little bit longer.
+          </p>
+        </div>
+        <img
+          src="https://source.unsplash.com/600x600/?university"
+          class="card-img-bottom"
+          alt="..."
+        />
+
+        <!-- Footer -->
+        <div class="card-footer p-5 flex flex-row text-lg">
+          <li class="nav-link"><i class="bi bi-heart-fill mr-2"></i>Like</li>
+          <li class="nav-link ml-6"><i class="bi bi-chat mr-2"></i>Comment</li>
+          <li class="nav-link share ml-7">
+            <i class="bi bi-upload mr-2"></i>Share
+          </li>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="layout-bottom w-4/5 m-auto"></div>
+</div>

@@ -2,6 +2,23 @@
   margin: 0;
   padding: 0;
 }
+// .oops,
+// li,
+// a,
+// h1,
+// p,
+// ::placeholder,
+// small,
+// span {
+//   color: greenyellow !important;
+// }
+// .oops {
+//   background-color: rgba(17, 24, 39, var(--tw-bg-opacity)) !important;
+// }
+// .card {
+//   background-color: #252a41;
+// }
+
 $primary: #1a1375;
 $secondry: #476072;
 $primaryFont: "Montserrat";
@@ -74,4 +91,57 @@ button {
 .treandingCard li:hover {
   cursor: pointer;
   color: #1a1375 !important;
+}
+@media only screen and (max-width: 1200px) {
+  .layout {
+    margin-left: 5rem !important;
+    justify-content: start !important;
+  }
+  .layout-right .right-fixed {
+    margin: 0 !important;
+    width: 25% !important;
+  }
+  .centerPost,
+  .centerPostCreator {
+    margin-top: 0% !important;
+    border-top: 2px gray solid;
+    border-radius: 0;
+  }
+
+  .layout-center {
+    border: 0.1px solid gray;
+    border-top: none;
+    border-bottom: none;
+  }
+  .layout-left {
+    width: 8%;
+    padding-left: 1rem !important;
+  }
+  .layout-center {
+    width: 55%;
+  }
+  .leftNav {
+    margin-top: 2rem !important;
+  }
+  .leftNav i {
+    margin-right: 0 !important;
+  }
+  .layout-left a {
+    display: none;
+  }
+  .layout-left a:first-child {
+    display: block !important;
+  }
+  .layout-left button {
+    width: 45px !important;
+    height: 45px !important;
+  }
+  .layout-left .bi-type {
+    margin: 0;
+  }
+}
+@media only screen and (min-width: 1201px) {
+  .layout-left .bi-type {
+    display: none;
+  }
 }
