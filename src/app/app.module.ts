@@ -13,7 +13,6 @@ import { AboutusComponent } from './components/aboutus/aboutus.component';
 import { LoginComponent } from './components/login/login.component';
 import { Test2Component } from './components/test2/test2.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
-
 @NgModule({
   declarations: [
     AppComponent,

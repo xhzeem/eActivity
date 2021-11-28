@@ -1,13 +1,13 @@
 <div class="oops bg-gray-50 bg-cover">
   <div class="layout max-w-screen-xl h-full flex justify-evenly m-auto">
-    <div class="layout-left pt-2 pl-5">
-      <div class="leftHeader w-max pl-3">
+    <div class="layout-left bg-gray-100 pt-2 pl-0">
+      <div class="leftHeader pl-2 w-max">
         <div class="yinYang fixed">
-          <a href="#"><i class="bi bi-yin-yang text-2xl m-0"></i></a>
+          <a class="navbar-brand text-2xl active" href="/">UTM-Social</a>
         </div>
       </div>
-      <div class="leftNav fixed mt-16">
-        <ul class="navUl font-semibold text-xl">
+      <div class="leftNav fixed mt-20">
+        <ul class="navUl p-2 font-semibold text-xl">
           <li class="nav-item flex">
             <i class="bi bi-house"></i>
             <a class="nav-link text-gray-900 active" href="#">Home</a>
@@ -34,9 +34,9 @@
           </li>
           <li class="nav-item flex">
             <i class="bi bi-person"></i>
-            <a class="nav-link text-gray-900 active" href="#">Profile</a>
+            <a class="nav-link text-gray-900 active" href="/profile">Profile</a>
           </li>
-          <button
+          <!-- <button
             type="button "
             class="
               btn btn-dark
@@ -45,6 +45,7 @@
               font-semibold
               text-lg
               mt-3
+              mb-2
               h-12
               w-9/12
               bg-yellow-600
@@ -53,7 +54,7 @@
           >
             <i class="bi bi-type"></i>
             <a href="#">Post</a>
-          </button>
+          </button> -->
         </ul>
       </div>
     </div>
@@ -70,7 +71,7 @@
           py-2
         "
       >
-        <a class="navbar-brand" href="/">UTM-Social</a>
+        <a class="navbar-brand font-medium hover:text-black" href="/">Home</a>
         <i class="bi bi-brightness-high text-2xl"></i>
       </div>
       <div class="centerPostCreator shadow-md card mt-10 p-3 pb-3 pr-5">
@@ -127,7 +128,7 @@
           </div>
         </div>
         <div class="postBody p-3">
-          <p class="lead font-normal text-black">
+          <p class="lead font-normal text-base">
             This is a wider card with supporting text below as a natural lead-in
             to additional content. This content is a little bit longer.
           </p>
@@ -137,10 +138,58 @@
           class="card-img-bottom bg-cover"
           alt="..."
         /> -->
+        <!-- Button trigger modal -->
+        <button
+          type="button"
+          class="btn btn-primary"
+          data-toggle="modal"
+          data-target="#exampleModal"
+        >
+          Launch demo modal
+        </button>
+
+        <!-- Modal -->
+        <div
+          class="modal fade"
+          id="exampleModal"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">...</div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-dismiss="modal"
+                >
+                  Close
+                </button>
+                <button type="button" class="btn btn-primary">
+                  Save changes
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="card-footer p-5 flex flex-row text-lg">
           <li class="nav-link"><i class="bi bi-heart-fill mr-2"></i>Like</li>
           <li class="nav-link ml-6"><i class="bi bi-chat mr-2"></i>Comment</li>
-          <li class="nav-link share ml-7">
+          <li class="nav-link share ml-6">
             <i class="bi bi-upload mr-2"></i>Share
           </li>
         </div>
@@ -156,20 +205,20 @@
           </div>
         </div>
         <div class="postBody p-3">
-          <p class="lead font-normal text-black">
+          <p class="lead font-normal text-base">
             This is a wider card with supporting text below as a natural lead-in
             to additional content. This content is a little bit longer.
           </p>
         </div>
-        <!-- <img
+        <img
           src="https://source.unsplash.com/600x600/?university"
           class="card-img-bottom bg-cover"
           alt="..."
-        /> -->
+        />
         <div class="card-footer p-5 flex flex-row text-lg">
           <li class="nav-link"><i class="bi bi-heart-fill mr-2"></i>Like</li>
           <li class="nav-link ml-6"><i class="bi bi-chat mr-2"></i>Comment</li>
-          <li class="nav-link share ml-7">
+          <li class="nav-link share ml-6">
             <i class="bi bi-upload mr-2"></i>Share
           </li>
         </div>
@@ -184,17 +233,17 @@
             <small class="ml-3 font-medium text-muted">10h</small>
           </div>
         </div>
-        <div class="postBody p-3">
+        <!-- <div class="postBody p-3">
           <p class="lead font-normal text-black">
             This is a wider card with supporting text below as a natural lead-in
             to additional content. This content is a little bit longer.
           </p>
-        </div>
-        <!-- <img
+        </div> -->
+        <img
           src="https://source.unsplash.com/600x600/?university"
           class="card-img-bottom bg-cover"
           alt="..."
-        /> -->
+        />
         <div class="card-footer p-5 flex flex-row text-lg">
           <li class="nav-link"><i class="bi bi-heart-fill mr-2"></i>Like</li>
           <li class="nav-link ml-6"><i class="bi bi-chat mr-2"></i>Comment</li>
@@ -262,9 +311,9 @@
         </div>
       </div>
     </div>
-    <div class="layout-right pt-1">
-      <div class="right-fixed w-max m-auto fixed">
-        <div class="rightHeader w-9/12 m-auto rounded-full card px-3 py-1">
+    <div class="layout-right pt-1 pl-2">
+      <div class="right-fixed w-max fixed">
+        <div class="rightHeader w-full rounded-full card px-3 py-1">
           <a class="navbar-brand" href="/">Search</a>
         </div>
         <div
@@ -273,35 +322,55 @@
             card
             border-gray-300
             shadow-md
-            mt-12
-            p-3
+            mt-11
             rounded-2xl
-            w-9/12
-            m-auto
+            w-full
+            text-base
           "
         >
-          <span class="font-black text-lg">Trending Today</span>
-          <li class="nav-link">
-            <i class="bi bi-diamond-fill mr-2"></i>This user doesn’t know what
-            to do anymore.
+          <span class="font-black text-lg p-3">Trending Today</span>
+          <li class="nav-link mt-2">
+            <small class="text-muted font-bold">@Nour</small>
+            <h1 class="font-semibold text-base">
+              Coding Tournament next Friday
+            </h1>
+            <p class="lead text-sm font-medium">
+              Hi guys, next firday we have a coding...
+            </p>
           </li>
           <li class="nav-link">
-            <i class="bi bi-diamond-fill mr-2"></i>This user is confused about
-            life.
+            <small class="text-muted font-bold">@Admin</small>
+            <h1 class="font-semibold text-base">Guest House Week</h1>
+            <p class="lead text-sm font-medium">
+              Our guest for this week will be Dr...
+            </p>
           </li>
           <li class="nav-link">
-            <i class="bi bi-diamond-fill mr-2"></i>This user is so stressed.
-          </li>
-          <li class="nav-link">
-            <i class="bi bi-diamond-fill mr-2"></i>This user wants to escape
-            reality.
-          </li>
-          <li class="nav-link">
-            <i class="bi bi-diamond-fill mr-2"></i>This user is mentally
-            exhausted.
+            <small class="text-muted font-bold">@SoC</small>
+            <h1 class="font-semibold text-base">Q&N for upcoming graduates</h1>
+            <p class="lead text-sm font-medium">
+              New graduates you can ask you sinors...
+            </p>
           </li>
         </div>
       </div>
+    </div>
+    <div class="layout-bottom">
+      <nav
+        class="
+          navbar
+          navbottom
+          fixed-bottom
+          py-2
+          text-white
+          bg-gray-700
+          justify-evenly
+        "
+      >
+        <a class="nav-item" href="#"><i class="bi bi-house"></i></a>
+        <a class="nav-item" href="#"><i class="bi bi-calendar3-event"></i></a>
+        <a class="nav-item" href="#"><i class="bi bi-person"></i></a>
+      </nav>
     </div>
   </div>
 </div>
