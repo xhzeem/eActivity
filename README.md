@@ -1,5 +1,5 @@
 ## Quick Nav
-#### [Main](https://github.com/xhzeem/eActivity/tree/main) || [Sprint 2](https://github.com/xhzeem/eActivity/tree/Sprint-2) || [Sprint 3](https://github.com/xhzeem/eActivity/tree/Sprint-3) || [Sprint 4](https://github.com/xhzeem/eActivity/tree/Sprint-4)
+#### [Main](https://github.com/xhzeem/eActivity/tree/main) || [Sprint 2](https://github.com/xhzeem/eActivity/tree/sprint-2) || [Sprint 3](https://github.com/xhzeem/eActivity/tree/sprint-3) || [Sprint 4](https://github.com/xhzeem/eActivity/tree/sprint-4)
 ------------------------
 
 
