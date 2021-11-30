@@ -1,3 +1,7 @@
+## Quick Nav
+[Sprint 1](https://github.com/xhzeem/eActivity/tree/Sprint-1) || [Sprint 2](https://github.com/xhzeem/eActivity/tree/Sprint-2) || [Sprint 3](https://github.com/xhzeem/eActivity/tree/Sprint-3) || [Sprint 4](https://github.com/xhzeem/eActivity/tree/Sprint-4)
+------------------------
+
 # Utmsocial
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.2.
