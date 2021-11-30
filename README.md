@@ -1,3 +1,7 @@
+## Quick Nav
+[Main](https://github.com/xhzeem/eActivity/tree/main) || [Sprint 1](https://github.com/xhzeem/eActivity/tree/Sprint-1) || [Sprint 3](https://github.com/xhzeem/eActivity/tree/Sprint-3) || [Sprint 4](https://github.com/xhzeem/eActivity/tree/Sprint-4)
+------------------------
+
 # eActivity By E Corp. 
 > APPLICATION TO GATHER STUDENTS FROM DIFFERENT FACILITIES, TO CREATE, SHARE, VIEW, AND INTERACT WITH EVENTS FROM OUR UNIVERSITY (UTM). 🔥
  
