@@ -1,0 +1,40 @@
+<div class="navigation">
+  <div data-aos="fade-right" class="nav-left">
+    <nav>
+      <ul>
+        <li><a routerLink="/blog">Blog</a></li>
+        <li
+          routerLinkActive="is-active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <a routerLink="/">Home</a>
+        </li>
+        <li
+          routerLinkActive="is-active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <a routerLink="/contact">Contact</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div data-aos="zoom-in" class="nav-middle">
+    <img src="{{ navLogo }}" routerLink="/" alt="Logo" />
+  </div>
+  <div class="nav-right" data-aos="fade-left">
+    <ul>
+      <li>
+        <a href="#"><i class="fab fa-twitter fa-lg"></i></a>
+      </li>
+      <li>
+        <a href="#"><i class="fab fa-github fa-lg"></i></a>
+      </li>
+      <li>
+        <a href="#"><i class="fab fa-linkedin-in fa-lg"></i> </a>
+      </li>
+      <li>
+        <a href="#"><i class="fab fa-dribbble fa-lg"></i> </a>
+      </li>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+.nav-layout {
+  font-family: "Roboto";
+}
+.bi {
+  padding-right: 0.5rem;
+}
+.nav-pills li:hover {
+  background-color: rgb(17 24 39 / var(--tw-text-opacity));
+}
+ul li button {
+  width: 100%;
+  text-align: left;
+}
+.dropdown-item {
+  color: rgb(0 0 0 / var(--tw-text-opacity)) ;
+  &:hover {
+    cursor: pointer;
+    background-color: rgb(17 24 39 / var(--tw-text-opacity));
+  }
+}

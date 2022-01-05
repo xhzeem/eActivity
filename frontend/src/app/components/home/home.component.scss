@@ -1,0 +1,364 @@
+// .oops,
+// li,
+// a,
+// h1,
+// p,
+// ::placeholder,
+// small,
+// span {
+//   color: greenyellow !important;
+// }
+// .oops {
+//   background-color: rgba(17, 24, 39, var(--tw-bg-opacity)) !important;
+// }
+// .card {
+//   background-color: #252a41;
+// }
+
+$primary: #1a1375;
+$secondry: #476072;
+$primaryFont: "Montserrat";
+$secondryFont: "Poppins";
+$thirdFont: "Raleway";
+//  Valirables
+
+// Code
+.layout {
+  gap: 5%;
+}
+.layout-left {
+  width: 15%;
+}
+.layout-center {
+  width: 50%;
+}
+.layout-right {
+  width: 25%;
+}
+.card {
+  border-radius: 20px;
+}
+.centerHeader,
+.rightHeader {
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+}
+// Rest
+.navbar-brand {
+  color: black;
+  font-family: "Roboto";
+}
+.creatorText {
+  font-family: "Roboto";
+}
+.lead {
+  font-family: "Roboto";
+}
+.navUl a {
+  font-family: $primaryFont;
+}
+button {
+  font-family: $thirdFont;
+}
+.layout-left i {
+  // margin-right: 1rem;
+  font-size: 1.5rem;
+}
+button {
+  font-family: $thirdFont;
+}
+.username {
+  font-family: $primaryFont;
+  cursor: default;
+}
+// .card-footer {
+//   padding: 0 !important;
+// }
+.card-footer:hover {
+  cursor: pointer;
+}
+.card-footer li:hover {
+  color: rgba(37, 99, 235, var(--tw-border-opacity)) !important;
+}
+.card-footer li:first-child:hover {
+  color: rgba(239, 68, 68, var(--tw-border-opacity)) !important;
+}
+.nav-link {
+  color: black;
+}
+.navUl li {
+  padding: 0.75rem;
+  padding-left: 0 !important;
+  margin-top: 0.5rem !important;
+  width: max-content;
+}
+.navUl li:first-child {
+  margin-top: 0 !important;
+}
+.bi {
+  padding-top: 0.5rem;
+}
+
+.treandingCard {
+  font-family: $primaryFont;
+  padding-bottom: 0.75rem;
+}
+.treandingCard small {
+  font-family: $secondryFont;
+  font-size: 11px;
+}
+.treandingCard li {
+  padding: 0.5rem 0.75rem;
+}
+.treandingCard li:hover {
+  cursor: pointer;
+  background: rgba(31, 45, 58, 0.034);
+}
+.btn:disabled {
+  opacity: 0.85;
+}
+.routerToProfile {
+  cursor: pointer;
+}
+@media only screen and (max-width: 1200px) {
+  // lAYOUT
+  .layout {
+    gap: 0;
+    justify-content: space-between !important;
+  }
+  .layout-left {
+    // padding: 0 !important;
+    // margin: 0 !important;
+    // width: 8%;
+    // padding-left: 1rem !important;
+    width: 8%;
+    padding-top: 0 !important;
+    padding-left: 0 !important;
+  }
+  .layout-center {
+    width: 50% !important;
+  }
+  .layout-right {
+    width: 30%;
+  }
+
+  // layout Left
+  .leftHeader {
+    display: none;
+  }
+  .leftNav {
+    padding-left: 0 !important;
+    margin-top: 0 !important;
+    background: transparent !important;
+    border: none;
+    width: inherit;
+    box-shadow: none !important;
+  }
+
+  .layout-left a {
+    display: none;
+  }
+  .layout-left a:first-child {
+    display: block !important;
+  }
+  .layout-left button {
+    width: 45px !important;
+    height: 45px !important;
+  }
+  .layout-left .bi-type {
+    margin: 0;
+  }
+
+  .navUl {
+    padding: 0 !important;
+    margin: 0 auto !important;
+    width: fit-content;
+    display: flex;
+    height: 100vh;
+    flex-flow: column;
+    justify-content: space-around;
+  }
+
+  .navUl li {
+    margin: 0 auto !important;
+    padding-right: 0;
+  }
+  .navUl i {
+    margin: 0 auto;
+    font-size: 20px !important;
+  }
+  // Layout Center
+
+  .layout-center {
+    width: 55%;
+  }
+
+  .centerPost,
+  .centerPostCreator {
+    margin-top: 2rem !important;
+    border: none;
+  }
+
+  .layout-center {
+    border: none;
+  }
+  // Layout Right
+  .right-fixed {
+    max-width: 25% !important;
+  }
+  .rightHeader {
+    margin: 0 !important;
+    width: 100% !important;
+  }
+  .treandingCard {
+    margin: 0 !important;
+    margin-top: 2rem !important;
+    width: fit-content !important;
+    font-size: 0.875rem !important;
+    line-height: 1.25rem !important;
+  }
+}
+@media only screen and (min-width: 1201px) {
+  .layout-left {
+    background: transparent !important;
+  }
+}
+@media only screen and (max-width: 1000px) {
+  //   .layout {
+  // //
+  //   }
+  .layout-left {
+    max-width: 10% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  .layout-center {
+    width: 80% !important;
+  }
+  .layout-right {
+    display: none;
+    width: 0;
+  }
+  .layout-right-content {
+    display: none;
+    width: 0;
+  }
+  // layout Left
+  .leftNav {
+    position: fixed !important;
+    height: fit-content;
+    margin-top: 0 !important;
+    background: transparent !important;
+  }
+  .navUl li {
+    padding: 0px !important;
+  }
+
+  .navUl i {
+    font-size: 20px !important;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  // Layout Center
+  .centerPost,
+  .centerPostCreator {
+    margin-top: 2rem !important;
+    border: none;
+    border-radius: 0.25rem;
+  }
+  .layout-center {
+    border: none;
+  }
+}
+@media only screen and (max-width: 650px) {
+  .layout {
+    justify-content: start !important;
+    gap: 15px;
+  }
+
+  .navUl li {
+    padding: 0 0.5rem !important;
+  }
+  .navUl i {
+    font-size: 16px !important;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .layout-center {
+    padding-right: 0.25rem;
+    width: 90% !important;
+  }
+}
+@media only screen and (max-width: 480px) {
+  .leftNav {
+    position: fixed !important;
+    height: 100vh;
+  }
+  .navUl li {
+    padding: 0.2rem 0.5rem !important;
+    margin-top: 0 !important;
+  }
+  .navUl i {
+    font-size: 12px !important;
+  }
+
+  // Center
+  .centerHeader {
+    align-items: center;
+    padding: 0 0.75rem !important;
+  }
+  .centerHeader .navbar-brand,
+  i {
+    font-size: 15px !important;
+  }
+  .username {
+    font-size: 15px !important;
+  }
+  .centerPostCreator button {
+    font-size: 15px !important;
+    font-weight: 500 !important;
+    width: 3.75rem !important;
+    height: 1.75rem !important;
+  }
+  ::placeholder {
+    font-size: 15px !important;
+  }
+  .card-footer {
+    justify-content: space-between;
+  }
+  .card-footer .nav-link {
+    font-size: 13px !important;
+  }
+}
+@media only screen and (min-width: 391px) {
+  .layout-bottom {
+    display: none;
+  }
+}
+@media only screen and (max-width: 390px) {
+  .layout {
+    justify-content: center !important;
+    gap: 0;
+  }
+  .layout-left {
+    display: none;
+  }
+  .layout-center {
+    width: 100% !important;
+    padding: 0 0.25rem;
+  }
+  .centerHeader {
+    border: none;
+    // border-bottom: 1px solid rgba(0, 0, 0, 0.445);
+    --tw-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+      var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow) !important;
+  }
+  .layout-center .card {
+    border-radius: 0;
+  }
+  .layout-bottom i {
+    font-size: 20px !important;
+  }
+}

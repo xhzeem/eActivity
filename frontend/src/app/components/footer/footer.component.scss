@@ -1,0 +1,96 @@
+.footer {
+  background-color: #fff;
+  width: 100%;
+  min-height: 50vh;
+  position: absolute;
+  top: 100vh;
+}
+.footer-container {
+  text-transform: capitalize;
+  min-width: 80%;
+  position: absolute;
+  top: 4em;
+  left: 10%;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  font-family: "Maven Pro";
+  font-size: 16px;
+}
+.footer-content button {
+  width: 8rem;
+  font-size: 1em;
+  font-weight: bold;
+  text-transform: uppercase;
+  background-color: #e90052;
+  color: #fff;
+  border-color: #e90052;
+}
+.footer-content button:hover {
+  background-color: #141414;
+  border-color: #141414;
+}
+.footer-content span {
+  color: #000;
+  font-size: 1.5em;
+  font-family: "Nunito";
+  padding-bottom: 0.2em;
+}
+.footer-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.footer-middle {
+  display: grid;
+}
+.footer-middle a {
+  text-decoration: none;
+  color: #000;
+  padding-bottom: 1em;
+  font-weight: 600;
+}
+.footer-middle span {
+  color: #e90052;
+}
+.footer-midtwo {
+  display: grid;
+}
+.footer-midtwo span {
+  color: #e90052;
+}
+.footer-midtwo a {
+  text-decoration: none;
+  color: #000;
+  padding-bottom: 1em;
+  font-weight: 600;
+}
+
+.footer-right {
+  color: #000;
+  width: 20%;
+  font-family: "Nunito";
+  font-weight: 200;
+}
+.footer::after {
+  content: "";
+  width: 80%;
+  border-bottom: 2px solid #6c757d;
+  position: absolute;
+  bottom: 6em;
+  left: 10%;
+}
+.footer-claim {
+  font-family: "Maven Pro";
+  position: absolute;
+  left: 50%;
+  bottom: 2em;
+  transform: translateX(-50%);
+}
+.footer-middle a:hover,
+.footer-midtwo a:hover {
+  color: #e90052;
+}

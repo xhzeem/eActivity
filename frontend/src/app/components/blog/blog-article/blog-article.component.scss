@@ -1,0 +1,54 @@
+section {
+  background: rgb(212, 222, 254);
+  background: linear-gradient(
+    128deg,
+    rgba(212, 222, 254, 1) 14%,
+    rgba(244, 246, 251, 1) 52%,
+    rgba(230, 245, 255, 1) 100%
+  );
+}
+.navbar {
+  background-color: rgb(255 255 255/0.6);
+}
+.navbar-brand {
+  font-family: "Montserrat";
+  font-weight: 600;
+}
+.nav-link {
+  font-weight: 400;
+  color: #000;
+  font-family: "Roboto";
+}
+.nav-link:hover {
+  color: #0ea5e9;
+}
+.display-6 {
+  font-size: 36px;
+  font-weight: 800;
+  font-family: "Inter";
+}
+.articleDate {
+  font-size: 14px;
+  font-weight: 400;
+  font-family: "Inter";
+  color: #334155;
+}
+.lead {
+  font-size: 16px;
+  font-weight: 400;
+  font-family: "Inter";
+  color: #334155;
+}
+.articleAuthor {
+  font-size: 14px;
+  font-weight: 500;
+  font-family: "Inter";
+  text-transform: capitalize;
+  color: #0f172a;
+}
+.Username:hover {
+  cursor: pointer;
+}
+img {
+  border-radius: 10px;
+}

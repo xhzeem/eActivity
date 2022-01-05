@@ -1,0 +1,96 @@
+<div class="nav">
+  <mat-toolbar>
+    <mat-toolbar-row>
+      <mat-icon>edit</mat-icon>
+      <h1 class="title">Edit Profile</h1>
+      <span class="example-spacer"></span>
+      <span><a class="logreg" routerLink="/">Home</a></span>
+      <span><a class="logreg" routerLink="/blog">Blog</a></span>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</div>
+
+<div class="form-container max-w-screen-xl m-auto flex flex-col">
+  <div class="card flex flex-col items-stretch" style="width: 30%">
+    <img
+      class="rounded-full h-28 w-28 m-auto"
+      *ngIf="form.get('avatar')!.value"
+      src="http://localhost:3000/api/user/profile-avatar/{{
+        form.get('avatar')!.value
+      }}"
+    />
+    <button mat-button color="warn" (click)="onClick()">
+      <mat-icon>cloud_upload</mat-icon>
+    </button>
+    <ul class="mb-0">
+      <li>
+        <mat-progress-bar [value]="file.progress"></mat-progress-bar>
+      </li>
+    </ul>
+    <input
+      type="file"
+      #fileUpload
+      id="fileUpload"
+      name="fileUpload"
+      accept="image/*"
+      style="display: none"
+    />
+  </div>
+
+  <form
+    style="width: 30%"
+    class="mt-10 flex flex-col"
+    [formGroup]="form"
+    (ngSubmit)="update()"
+  >
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">Name</span>
+      </div>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Username"
+        aria-label="Username"
+        aria-describedby="basic-addon1"
+        formControlName="name"
+      />
+    </div>
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">@</span>
+      </div>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Username"
+        aria-label="Username"
+        aria-describedby="basic-addon1"
+        formControlName="username"
+      />
+    </div>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">Bio</span>
+      </div>
+      <textarea
+        type="text"
+        class="form-control"
+        placeholder="Bio"
+        aria-label="Bio"
+        aria-describedby="basic-addon1"
+        formControlName="bio"
+      >
+      </textarea>
+    </div>
+    <button
+      mat-flat-button
+      color="primary"
+      [disabled]="!form.valid"
+      type="submit"
+    >
+      Update Profile
+    </button>
+  </form>
+</div>
