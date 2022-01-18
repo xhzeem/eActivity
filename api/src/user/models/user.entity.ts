@@ -1,5 +1,6 @@
 import { BlogEntryEntity } from 'src/blog/model/blog-entry.entity';
 import { EventEntryEntity } from 'src/events/model/event-entry.entity';
+import { UserRole } from './user.interface';
 import {
   BeforeInsert,
   Column,
@@ -7,7 +8,6 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { UserRole } from './user.interface';
 
 @Entity()
 export class UserEntity {
