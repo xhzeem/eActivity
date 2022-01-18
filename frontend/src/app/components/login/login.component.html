@@ -1,0 +1,83 @@
+<div class="page-outline"></div>
+<div class="page-content">
+  <div>
+    <mat-toolbar color="primary">
+      <mat-toolbar-row>
+        <mat-icon>login</mat-icon>
+        <span class="admin">Login</span>
+        <span class="example-spacer"></span>
+        <button mat-icon-button class="example-icon">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </mat-toolbar-row>
+    </mat-toolbar>
+
+    <div class="middle-container">
+      <div class="sides-container">
+        <h2>Login</h2>
+        <div class="Uppper-side">
+          <div class="container-form">
+            <form
+              autocomplete="off"
+              [formGroup]="loginForm"
+              (ngSubmit)="onSubmit()"
+            >
+              <mat-form-field>
+                <input
+                  autocomplete="email"
+                  matInput
+                  placeholder="Email"
+                  formControlName="email"
+                />
+
+                <mat-error *ngIf="loginForm.controls.email.errors"
+                  >Email is required</mat-error
+                >
+              </mat-form-field>
+              <br />
+              <mat-form-field>
+                <input
+                  matInput
+                  type="password"
+                  placeholder="Password"
+                  formControlName="password"
+                  [type]="hide ? 'password' : 'text'"
+                />
+                <mat-icon
+                  class="visib"
+                  color="white"
+                  matSuffix
+                  (click)="hide = !hide"
+                  >{{ hide ? "visibility_off" : "visibility" }}</mat-icon
+                >
+                <mat-error *ngIf="loginForm.controls.password.errors"
+                  >Password is required</mat-error
+                >
+              </mat-form-field>
+              <br />
+              <button
+                mat-flat-button
+                color="primary"
+                [disabled]="!loginForm.valid"
+                type="submit"
+              >
+                Login
+              </button>
+            </form>
+          </div>
+        </div>
+        <div class="lower-side">
+          <small class="text-muted">OR</small>
+          <button
+            routerLink="/register"
+            mat-flat-button
+            class="btnlog"
+            color="warn"
+          >
+            <a>Register New Account</a>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

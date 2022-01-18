@@ -1,0 +1,129 @@
+<div class="page-outline"></div>
+<div class="page-content">
+  <div class="nav">
+    <mat-toolbar color="primary">
+      <mat-toolbar-row>
+        <mat-icon>how_to_reg</mat-icon>
+        <span class="admin">Registeration</span>
+        <span class="example-spacer"></span>
+        <button mat-icon-button class="example-icon">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </mat-toolbar-row>
+    </mat-toolbar>
+
+    <div class="sides-container">
+      <div class="left-side">
+        <div class="left-content">
+          <span>welcome to our website</span>
+          <p>Already Registered?</p>
+          <button
+            routerLink="/login"
+            mat-flat-button
+            class="btnlog"
+            color="accent"
+          >
+            <a>Login</a>
+          </button>
+        </div>
+      </div>
+      <div class="right-side">
+        <form
+          autocomplete="off"
+          [formGroup]="registerForm"
+          (ngSubmit)="onSubmit()"
+        >
+          <div class="right-container">
+            <h2>Registeration</h2>
+            <mat-form-field>
+              <input matInput placeholder="Full Name" formControlName="name" />
+              <mat-error *ngIf="name.errors && name.touched"
+                >Please enter a valid name</mat-error
+              >
+            </mat-form-field>
+            <br />
+            <mat-form-field>
+              <input
+                matInput
+                placeholder="Username"
+                formControlName="username"
+              />
+              <mat-error *ngIf="username.errors && username.touched"
+                >Please enter a valid username</mat-error
+              >
+            </mat-form-field>
+            <br />
+            <mat-form-field>
+              <input
+                autocomplete="email"
+                matInput
+                placeholder="Email"
+                formControlName="email"
+              />
+              <mat-error *ngIf="email.errors && email.touched"
+                >Please enter a valid email</mat-error
+              >
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="fill">
+              <mat-label>Account Role</mat-label>
+              <mat-select formControlName="role" matNativeControl required>
+                <mat-option value="user" >User</mat-option>
+                <mat-option value="club" >Club</mat-option>
+
+              </mat-select>
+            </mat-form-field>
+            <br />
+            <mat-form-field>
+              <input
+                matInput
+                type="password"
+                placeholder="Password"
+                formControlName="password"
+                [type]="hide ? 'password' : 'text'"
+              />
+              <mat-icon
+                class="visib"
+                color="white"
+                matSuffix
+                (click)="hide = !hide"
+                >{{ hide ? "visibility_off" : "visibility" }}</mat-icon
+              >
+              <mat-error *ngIf="password.errors && password.touched">
+                Please enter a valid password
+              </mat-error>
+            </mat-form-field>
+            <br />
+            <mat-hint class="text-muted" *ngIf="password.errors"
+              >Password must contain:
+              <li>
+                <i class="fas fa-exclamation-circle"></i>At lest 1 lower
+                character
+              </li>
+              <li>
+                <i class="fas fa-exclamation-circle"></i>At lest 1 upper
+                character
+              </li>
+              <li>
+                <i class="fas fa-exclamation-circle"></i>At lest 1 digit
+                character
+              </li>
+              <li>
+                <i class="fas fa-exclamation-circle"></i>At lest 8 characters
+              </li></mat-hint
+            >
+            <button
+              mat-flat-button
+              color="primary"
+              [disabled]="!registerForm.valid"
+              type="submit"
+              class="btn"
+            >
+              Register
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

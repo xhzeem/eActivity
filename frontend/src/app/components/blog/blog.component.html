@@ -1,0 +1,72 @@
+<section class="w-screen h-screen fixed">
+  <div class="container-layout overflow-scroll w-screen h-screen">
+    <div class="layout max-w-screen-xl h-full m-auto">
+      <div class="layout-top fixed-top nav w-full">
+        <nav class="navbar px-[10%] w-full navbar-light">
+          <div class="container-fluid">
+            <a class="navbar-brand text-2xl">UTM eActivity</a>
+            <form class="d-flex">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" routerLink="/">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" routerLink="/feed">Feed</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" routerLink="/contact"
+                  >Contact us</a
+                >
+              </li>
+            </form>
+          </div>
+        </nav>
+      </div>
+      <div
+        class="
+          layout-upper
+          mt-20
+          h-1/5
+          flex flex-col
+          items-center
+          justify-center
+        "
+      >
+        <h1 class="display-6 font-medium">eActivity Upcoming</h1>
+        <p class="lead">All the latest news, straight from the team.</p>
+      </div>
+      <div class="layout-middle m-auto">
+        <article
+          *ngFor="let blogEntry of (dataSource | async)?.items"
+          class="container w-9/12 pt-4"
+        >
+          <div class="article-layout flex p-2">
+            <div class="article-date w-[10%]">
+              <span class="articleDate text-muted">{{
+                blogEntry.creationDate | date
+              }}</span>
+            </div>
+            <div class="article-body w-[90%] px-4">
+              <h1
+                routerLink="/article/{{ blogEntry.slug }}"
+                class="articleTitle mb-0"
+              >
+                {{ blogEntry.articleTitle }}
+              </h1>
+              <small class="authorName text-muted"
+                ><i class="bi bi-person-lines-fill pr-2"></i
+                >{{ blogEntry.author?.name }}</small
+              >
+              <p class="lead pt-2">{{ blogEntry.articleDescription }}</p>
+              <button
+                routerLink="/article/{{ blogEntry.slug }}"
+                class="rounded-full readMore btn btn-info"
+              >
+                Read More<i class="bi bi-chevron-right"></i>
+              </button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>

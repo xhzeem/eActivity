@@ -1,0 +1,72 @@
+// .main {
+//   background-color: #d9afd9;
+//   background-image: linear-gradient(124deg, #d9afd9 10%, #97d9e1 68%);
+// }
+
+.navbar {
+  background-color: rgb(255 255 255/0.6);
+}
+.navbar-brand {
+  font-family: "Montserrat";
+  font-weight: 600;
+}
+.nav-link {
+  font-weight: 400;
+  color: #000;
+  font-family: "Roboto";
+}
+.nav-link:hover {
+  color: #0ea5e9;
+}
+.display-6 {
+  font-size: 24px;
+  font-weight: 800;
+  font-family: "Inter";
+  color: #334155;
+}
+.articleDate {
+  font-size: 16px;
+  font-weight: 400;
+  font-family: "Inter";
+  color: rgb(236, 230, 230);
+}
+.lead {
+  font-size: 16px;
+  font-weight: 400;
+  font-family: "Inter";
+  color: #334155;
+}
+.articleAuthor {
+  font-size: 16px;
+  font-weight: 500;
+  font-family: "Inter";
+  text-transform: capitalize;
+  color: #fff;
+}
+.Username:hover {
+  cursor: pointer;
+}
+img {
+  border-radius: 10px;
+}
+.divider::before {
+  content: "";
+  display: block;
+  margin-left: 24px;
+  width: 1px;
+  height: 48px;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.582);
+}
+.menu-content a {
+  font-family: "Inter";
+}
+.btn-info {
+  background-color: #17a2b8;
+  border-color: #17a2b8;
+  color: #fff;
+}
+.btn-info:hover {
+  background-color: #18c3dd;
+  border-color: #18c3dd;
+}

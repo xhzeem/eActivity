@@ -1,0 +1,202 @@
+<div class="container-fluid main h-full">
+  <div class="layout max-w-screen-xl h-full m-auto">
+    <div class="layout-top fixed-top nav w-full">
+      <nav class="navbar px-[10%] w-full navbar-light">
+        <div class="container-fluid">
+          <a class="navbar-brand text-2xl">UTM eActivity</a>
+          <form class="d-flex">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Feed</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#"
+                >Contact us</a
+              >
+            </li>
+          </form>
+        </div>
+      </nav>
+    </div>
+    <div *ngIf="user$ | async as user ">
+      <div class="middle pt-24" *ngIf="user.role !== 'user'">
+        <div
+         class="card rounded-x p-2 flex flex-row justify-center items-center bg-[#1a1a1b] mx-6"
+        >
+          <img
+            routerLink="/user/{{ user.id }}"
+            src="http://localhost:3000/api/user/profile-avatar/{{ user.avatar }}"
+            class="w-20 rounded-full userImage h-20"
+            alt=""
+          />
+          <div
+            data-bs-toggle="modal"
+            data-bs-target="#creatorEvent"
+            
+            class="placeholderPost card rounded-xl bg-[#272729] text-[#757575] w-[80%] h-20 ml-6 justify-center pl-8"
+          >
+            <span class="text-xl">Create Event</span>
+          </div>
+          <div class="icons text-[#818384] text-4xl ml-6">
+            <i
+              data-bs-toggle="modal"
+              data-bs-target="#creatorEvent"
+              class="bi bi-images"
+            ></i>
+            <i
+              data-bs-toggle="modal"
+              data-bs-target="#creatorEvent"
+              class="bi bi-link ml-4"
+            ></i>
+          </div>
+        </div>
+        <!-- MODAL  -->
+        <div
+          class="modal fade"
+          id="creatorEvent"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog max-w-[1000px]">
+            <div class="modal-content">
+              <div class="modal-body font-semibold">
+                <img
+                  class="m-auto"
+                  *ngIf="form.get('eventImage')!.value"
+                  src="http://localhost:3000/api/event/image/{{
+                    form.get('eventImage')!.value
+                  }}"
+                />
+                <button
+                  class="btn btn-dark flex justify-center items-center font-semibold w-full"
+                  (click)="onClick()"
+                >
+                  <mat-icon>cloud_upload</mat-icon>
+                  <small class="pl-2 font-semibold"> Upload Image</small>
+                </button>
+                <ul class="mb-0">
+                  <li>
+                    <mat-progress-bar [value]="file.progress"></mat-progress-bar>
+                  </li>
+                </ul>
+                <input
+                  type="file"
+                  #fileUpload
+                  id="fileUpload"
+                  name="fileUpload"
+                  accept="image/*"
+                  style="display: none"
+                />
+                <form autocomplete="off" [formGroup]="form">
+                  <mat-form-field class="w-full mt-4" appearance="fill">
+                    <mat-label>Title</mat-label>
+                    <input
+                      matInput
+                      placeholder="Title"
+                      formControlName="eventTitle"
+                    />
+                  </mat-form-field>
+                  <quill-editor
+                    [modules]="config"
+                    rows="10"
+                    class="content-editor"
+                    formControlName="eventBody"
+                    [placeholder]="''"
+                  >
+                  </quill-editor>
+                  <mat-form-field class="mt-4 w-full" appearance="fill">
+                    <mat-label>Description</mat-label>
+                    <input
+                      matInput
+                      placeholder="Add a Quick Description to Your Event"
+                      formControlName="eventDescription"
+                    />
+                  </mat-form-field>
+                  <mat-form-field>
+                    <input
+                      matInput
+                      [matDatepicker]="picker"
+                      placeholder="Choose a date"
+                      formControlName="dueDate"
+                    />
+                    <mat-datepicker-toggle
+                      matSuffix
+                      [for]="picker"
+                    ></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>
+  
+                  <button
+                    class="btn btn-info font-semibold w-full"
+                    [disabled]="!form.valid"
+                    type="submit"
+                    (click)="post()"
+                  >
+                    Create Event
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row pt-24 m-0 w-full">
+      <div
+        class="eventLayout cardEvent"
+        *ngFor="let eventEntry of dataSource | async"
+      >
+        <div
+          class="wrapper"
+          [ngStyle]="{
+            background:
+              'url(' +
+              'http://localhost:3000/api/event/image/' +
+              eventEntry.eventImage +
+              ')center / cover no-repeat'
+          }"
+        >
+          <div class="header">
+            <div class="date flex flex-col">
+              <span>Created on {{ eventEntry.creationDate | date }}</span>
+              <span *ngIf="eventEntry.dueDate !== null"
+                >Scheduled for {{ eventEntry.dueDate | date }}</span
+              >
+            </div>
+            <ul class="menu-content" *ngIf="user$ | async as user">
+              <li *ngIf="eventEntry.author?.id == user.id">
+                <a href="#" class="bi bi-trash"></a>
+              </li>
+              <li>
+                <a href="#" class="bi bi-heart"
+                  ><span>{{ eventEntry.eventLikes }}</span></a
+                >
+              </li>
+              <li>
+                <a href="#" class="bi bi-chat-dots"><span>3</span></a>
+              </li>
+            </ul>
+          </div>
+          <div class="data">
+            <div class="content">
+              <span class="author">{{ eventEntry.author?.name }}</span>
+              <h1 class="title">
+                <a routerLink="/events/{{ eventEntry.id }}">{{
+                  eventEntry.eventTitle
+                }}</a>
+              </h1>
+              <p class="text">{{ eventEntry.eventDescription }}</p>
+              <a routerLink="/events/{{ eventEntry.id }}" class="button"
+                >Read more</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
