@@ -4,7 +4,7 @@
 :host app-nav[specificityattr] ::ng-deep img {
   display: none;
 }
-li {
+ li {
   list-style-type: none;
   font-family: "Nunito";
   text-transform: uppercase;
@@ -17,50 +17,6 @@ i {
   color: rgb(250, 128, 114);
   padding-right: 0.5em;
 }
-
-// .main-container {
-//   height: 100vh;
-//   width: 100%;
-//   position: absolute;
-//   top: 0;
-//   background-color: #212325;
-//   background-position: center;
-//   background-repeat: no-repeat;
-//   background-size: cover;
-// }
-// .blur {
-//   background-color: #ffffff11;
-//   backdrop-filter: blur(30px);
-//   height: 100vh;
-//   display: flex;
-//   justify-content: space-around;
-//   align-items: center;
-// }
-
-// .contact-form {
-//   min-height: 70%;
-//   position: relative;
-//   width: 60%;
-//   backdrop-filter: blur(16px) saturate(180%);
-//   -webkit-backdrop-filter: blur(16px) saturate(180%);
-//   background-color: rgba(255, 255, 255, 0.75);
-//   border-radius: 12px;
-//   border: 1px solid rgba(209, 213, 219, 0.3);
-//   display: flex;
-//   flex-direction: column;
-// }
-
-// .contact-left {
-//   background: rgb(8, 8, 8);
-//   width: 99%;
-//   border-radius: 12px;
-//   height: 50%;
-//   margin: 0.5%;
-//   color: white;
-//   font-family: "Raleway";
-//   font-weight: 500;
-//   font-size: 1.5em;
-// }
 
 .socials {
   display: flex;
@@ -110,10 +66,25 @@ i {
 //   font-size: 1.1rem;
 //   height: 2.5em;
 // }
+.navbar {
+  background-color: rgba(255, 255, 255, 0.856);
+}
+.navbar-brand {
+  font-family: "Montserrat";
+  font-weight: 600;
+}
+.nav-link {
+  font-weight: 400;
+  color: #000;
+  font-family: "Roboto";
+}
+.nav-link:hover {
+  color: #0ea5e9;
+}
 .page-outline {
   position: absolute;
   min-height: 100vh;
-  background: url("../../../assets/imgs/moon.jpg");
+  background-image: linear-gradient( 109.6deg,  rgba(218,185,252,1) 11.2%, rgba(125,89,252,1) 91.1% );
   background-position: center;
   background-size: cover;
   width: 100%;
