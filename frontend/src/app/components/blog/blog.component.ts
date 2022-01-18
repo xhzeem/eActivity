@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
+import { Router } from '@angular/router';
 import * as AOS from 'aos';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
@@ -18,7 +19,9 @@ export class BlogComponent implements OnInit {
 
   constructor(
     private blogService: BlogService,
-    public authService: AuthenticationService
+    public authService: AuthenticationService,
+    private router: Router,
+
   ) {}
 
   ngOnInit(): void {
@@ -27,5 +30,9 @@ export class BlogComponent implements OnInit {
   status = false;
   changeHeart() {
     this.status = !this.status;
+  }
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/']);
   }
 }

@@ -3,6 +3,10 @@ $secondry: #476072;
 $primaryFont: "Montserrat";
 $secondryFont: "Poppins";
 $thirdFont: "Raleway";
+.main {
+  background-image: linear-gradient( 109.6deg,  rgba(218,185,252,1) 11.2%, rgba(125,89,252,1) 91.1% );
+
+}
 .right-top {
   height: 30%;
 }
@@ -34,4 +38,19 @@ $thirdFont: "Raleway";
 .lead {
   font-family: "Roboto";
   font-size: 16px;
+}
+.navbar {
+  background-color: rgb(255 255 255/0.6);
+}
+.navbar-brand {
+  font-family: "Montserrat";
+  font-weight: 600;
+}
+.nav-link {
+  font-weight: 400;
+  color: #000;
+  font-family: "Roboto";
+}
+.nav-link:hover {
+  color: #0ea5e9;
 }

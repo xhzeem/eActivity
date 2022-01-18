@@ -1,4 +1,4 @@
-<div class="container-fluid main h-full">
+<div class="container-fluid main min-h-screen">
   <div class="layout max-w-screen-xl h-full m-auto">
     <div class="layout-top fixed-top nav w-full">
       <nav class="navbar px-[10%] w-full navbar-light">
@@ -6,15 +6,26 @@
           <a class="navbar-brand text-2xl">UTM eActivity</a>
           <form class="d-flex">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
+              <a class="nav-link active" aria-current="page" routerLink="/landing">Home</a>
+            </li>
+            <!-- <li class="nav-item">
+              <a class="nav-link active" aria-current="page" routerLink="#">Feed</a>
+            </li> -->
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" routerLink="/blog">Blog</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Feed</a>
+              <a class="nav-link active" aria-current="page" routerLink="/Info">Info</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#"
-                >Contact us</a
+            <li *ngIf="authService.display()" class="nav-item">
+              <a class="nav-link active" aria-current="page" routerLink="/Profile"
+                >Profile</a
               >
+            </li>
+            <li *ngIf="authService.display()" class="nav-item">
+              <button (click)="logout()" class="btn btn-danger w-full ">
+                Log out
+              </button>
             </li>
           </form>
         </div>
@@ -168,8 +179,8 @@
               >
             </div>
             <ul class="menu-content" *ngIf="user$ | async as user">
-              <li *ngIf="eventEntry.author?.id == user.id">
-                <a href="#" class="bi bi-trash"></a>
+              <li (click)="deletePost(eventEntry.id)"  *ngIf="eventEntry.author?.id == user.id">
+                <a  href="#" class="bi bi-trash"></a>
               </li>
               <li>
                 <a href="#" class="bi bi-heart"

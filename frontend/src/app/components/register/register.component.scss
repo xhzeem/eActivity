@@ -11,10 +11,25 @@ nav {
 h2 {
   text-transform: uppercase;
 }
+.navbar {
+  background-color: rgba(255, 255, 255, 0.856);
+}
+.navbar-brand {
+  font-family: "Montserrat";
+  font-weight: 600;
+}
+.nav-link {
+  font-weight: 400;
+  color: #000;
+  font-family: "Roboto";
+}
+.nav-link:hover {
+  color: #0ea5e9;
+}
 .page-outline {
   position: absolute;
   min-height: 100vh;
-  background: url("../../../assets/imgs/moon.jpg");
+  background-image: linear-gradient( 109.6deg,  rgba(218,185,252,1) 11.2%, rgba(125,89,252,1) 91.1% );
   background-position: center;
   background-size: cover;
   width: 100%;
@@ -111,6 +126,7 @@ a {
   -webkit-box-shadow: -10px 10px 19px -10px rgba(0, 0, 0, 0.76);
   -moz-box-shadow: -10px 10px 19px -10px rgba(0, 0, 0, 0.76);
 }
+
 .right-container {
   font-size: 20px;
   display: flex;

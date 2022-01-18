@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from 'src/app/service/authentication.service';
 
 @Component({
   selector: 'app-landing',
@@ -9,7 +10,10 @@ export class LandingComponent implements OnInit {
   logo = '../../../assets/img/logo.svg';
   hero = '../../../assets/img/hero.png';
 
-  constructor() {}
+  constructor(
+    public authService: AuthenticationService,
+
+  ) {}
 
   ngOnInit(): void {}
 }

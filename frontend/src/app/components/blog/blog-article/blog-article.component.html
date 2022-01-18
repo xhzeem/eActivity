@@ -1,5 +1,5 @@
 <section class="w-screen h-screen fixed">
-  <div class="container-layout overflow-scroll w-screen h-screen">
+  <div class="container-layout overflow-y-scroll w-screen h-screen">
     <div class="layout max-w-screen-xl h-full m-auto">
       <div class="layout-top fixed-top nav w-full">
         <nav class="navbar px-[10%] w-full navbar-light">
@@ -52,7 +52,7 @@
           <h1 class="display-6 font-medium text-center">
             {{ blogEntry.articleTitle }}
           </h1>
-          <span class="articleDate mt-3 text-muted">{{
+          <span class="articleDate mt-3 text-light">{{
             blogEntry.creationDate | date
           }}</span>
           <div class="author mt-3 flex items-center">
@@ -89,7 +89,7 @@
         </div>
         <div class="layout-bottom pt-10 px-2 w-[70%] m-auto">
           <p
-            class="lead text-justify"
+            class="lead text-justify text-light"
             [innerHTML]="blogEntry.articleBody | purify"
           ></p>
         </div>

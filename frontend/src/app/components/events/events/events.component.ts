@@ -132,4 +132,12 @@ export class EventsComponent implements OnInit {
         }
       });
   }
+  deletePost(id: number | undefined) {
+    this.eventService.deleteOne(id).subscribe();
+    window.location.reload();
+  }
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/']);
+  }
 }

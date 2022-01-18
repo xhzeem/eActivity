@@ -1,16 +1,37 @@
 <div class="page-outline"></div>
 <div class="page-content">
   <div class="nav">
-    <mat-toolbar color="primary">
-      <mat-toolbar-row>
-        <mat-icon>how_to_reg</mat-icon>
-        <span class="admin">Registeration</span>
-        <span class="example-spacer"></span>
-        <button mat-icon-button class="example-icon">
-          <mat-icon>menu</mat-icon>
-        </button>
-      </mat-toolbar-row>
-    </mat-toolbar>
+    <div class="layout-top fixed-top nav w-full">
+      <nav class="navbar px-[10%] w-full navbar-light">
+        <div class="container-fluid">
+          <a class="navbar-brand text-2xl">UTM eActivity</a>
+          <form class="d-flex">
+            <li class="nav-item m-0 capitalize">
+              <a class="nav-link active" aria-current="page" routerLink="/landing">Home</a>
+            </li>
+            <!-- <li class="nav-item">
+              <a class="nav-link active" aria-current="page" routerLink="#">Feed</a>
+            </li> -->
+            <li class="nav-item m-0 capitalize">
+              <a class="nav-link active" aria-current="page" routerLink="/info">About</a>
+            </li>
+            <li class="nav-item m-0 capitalize">
+              <a class="nav-link active" aria-current="page" routerLink="/blog">Blog</a>
+            </li>
+            <!-- <li *ngIf="authService.display()" class="nav-item">
+              <a class="nav-link active" aria-current="page" routerLink="/profile"
+                >Profile</a
+              >
+            </li>
+            <li *ngIf="authService.display()" class="nav-item">
+              <button (click)="logout()" class="btn btn-danger w-full">
+                Log out
+              </button>
+            </li> -->
+          </form>
+        </div>
+      </nav>
+    </div>
 
     <div class="sides-container">
       <div class="left-side">
@@ -78,6 +99,7 @@
               <input
                 matInput
                 type="password"
+                autof="off"
                 placeholder="Password"
                 formControlName="password"
                 [type]="hide ? 'password' : 'text'"

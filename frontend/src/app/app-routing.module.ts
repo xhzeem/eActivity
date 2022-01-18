@@ -24,14 +24,16 @@ const routes: Routes = [
     path: '',
     component: LandingComponent,
   },
-  {
-    path: 'feed',
-    component: HomeComponent,
-    canActivate: [AuthGuard],
-  },
+  // {
+  //   path: 'feed',
+  //   component: HomeComponent,
+  //   canActivate: [AuthGuard],
+  // },
   {
     path: 'events',
     component: EventsComponent,
+    canActivate: [AuthGuard],
+
   },
   {
     path: 'events/:id',

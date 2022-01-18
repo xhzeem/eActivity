@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { EventEntry } from 'src/app/model/event-entry.interface';
 import { User } from 'src/app/model/user.interface';
-import { JWT_NAME } from 'src/app/service/authentication.service';
+import { AuthenticationService, JWT_NAME } from 'src/app/service/authentication.service';
 import { EventService } from 'src/app/service/event/event.service';
 import { UserService } from 'src/app/service/user-service/user.service';
 
@@ -18,7 +18,9 @@ export class EventPageComponent implements OnInit {
     private eventService: EventService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private userService: UserService
+    private userService: UserService,
+    public authService: AuthenticationService,
+
   ) {}
   token: any = localStorage.getItem(JWT_NAME);
   userId = this.parseJwt(this.token).user.id;
@@ -55,10 +57,12 @@ export class EventPageComponent implements OnInit {
   );
   ngOnInit(): void {}
   
-  like(likesNum: any) {
-    likesNum = +1;
+  deletePost(id: number | undefined) {
+    this.eventService.deleteOne(id).subscribe();
+    this.router.navigate(['/events'])
   }
-  unlike(likesNum: number) {
-    likesNum = -1;
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/']);
   }
 }
