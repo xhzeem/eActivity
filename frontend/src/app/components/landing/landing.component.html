@@ -4,7 +4,7 @@
       <div class="navbar">
         <ul class="nav gap-10 text-blue-50">
           <li class="nav-item">
-            <a class="nav-link" routerLink="/blog">Blog</a>
+            <a class="nav-link" routerLink="/info">About</a>
           </li>
           <li class="nav-item">
             <a class="navbar-brand text-2xl text-stone-50 m-0" href="/"
@@ -28,13 +28,15 @@
           Your way to keep in touch with the world!
         </p>
         <button
+        *ngIf="!authService.display()"
           routerLink="/register"
           class="btn btn-danger hover:bg-rose-500 bg-rose-700 border-rose-700"
         >
           Register
         </button>
-        <small>or</small>
-        <button
+        <small *ngIf="!authService.display()">or</small>
+        <button 
+          *ngIf="!authService.display()"
           routerLink="/login"
           class="btn btn-info text-white hover:bg-cyan-600 bg-cyan-800 border-cyan-800"
         >
