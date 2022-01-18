@@ -1,0 +1,100 @@
+<section class="w-screen h-screen fixed">
+  <div class="container-layout overflow-scroll w-screen h-screen">
+    <div class="layout max-w-screen-xl h-full m-auto">
+      <div class="layout-top fixed-top nav w-full">
+        <nav class="navbar px-[10%] w-full navbar-light">
+          <div class="container-fluid">
+            <a class="navbar-brand text-2xl">UTM eActivity</a>
+            <form class="d-flex">
+              <li class="nav-item">
+                <a
+                  class="nav-link active"
+                  aria-current="page"
+                  routerLink="/feed"
+                  >Home</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link active"
+                  aria-current="page"
+                  routerLink="/blog"
+                  >News</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link active"
+                  aria-current="page"
+                  routerLink="/contact"
+                  >Contact us</a
+                >
+              </li>
+            </form>
+          </div>
+        </nav>
+      </div>
+      <article
+        *ngIf="blogEntry$ | async as blogEntry"
+        class="article-layout mt-32"
+      >
+        <div
+          class="
+            layout-upper
+            h-1/5
+            w-[70%]
+            m-auto
+            flex flex-col
+            items-center
+            justify-center
+          "
+        >
+          <h1 class="display-6 font-medium text-center">
+            {{ blogEntry.articleTitle }}
+          </h1>
+          <span class="articleDate mt-3 text-muted">{{
+            blogEntry.creationDate | date
+          }}</span>
+          <div class="author mt-3 flex items-center">
+            <img
+              routerLink="/user/{{ blogEntry.author?.id }}"
+              src="http://localhost:3000/api/user/profile-avatar/{{
+                blogEntry.author?.avatar
+              }}"
+              class="w-10 h-10 rounded-full cursor-pointer"
+              draggable="false"
+              alt=""
+            />
+            <div class="authorName pl-2 flex flex-col">
+              <span class="articleAuthor">{{ blogEntry.author?.name }}</span>
+              <span
+                routerLink="/user/{{ blogEntry.author?.id }}"
+                class="articleAuthor Username"
+                >@<a class="text-[#1365fd] no-underline">{{
+                  blogEntry.author?.username
+                }}</a></span
+              >
+            </div>
+          </div>
+        </div>
+        <div class="layout-middle w-[70%] pt-5 px-2 m-auto">
+          <img
+            *ngIf="blogEntry.headerImage !== null"
+            src="http://localhost:3000/api/blog/image/{{
+              blogEntry.headerImage
+            }}"
+            alt=""
+            class="imageHeader m-auto"
+          />
+        </div>
+        <div class="layout-bottom pt-10 px-2 w-[70%] m-auto">
+          <p
+            class="lead text-justify"
+            [innerHTML]="blogEntry.articleBody | purify"
+          ></p>
+        </div>
+        <div class="divider pt-10"></div>
+      </article>
+    </div>
+  </div>
+</section>

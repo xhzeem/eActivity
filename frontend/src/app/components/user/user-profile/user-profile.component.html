@@ -1,0 +1,124 @@
+<div *ngIf="user$ | async as user" class="layout m-auto max-w-screen-xl h-full">
+  <div class="layout-top shadow-md w-4/5 m-auto flex">
+    <div
+      class="topLeft rounded-none card w-4/12 flex flex-col justify-center text-center py-5"
+    >
+      <div class="avatar">
+        <img
+          src="http://localhost:3000/api/user/profile-avatar/{{ user.avatar }}"
+          class="rounded-full border-2 w-28 h-28 border-white block m-auto"
+          alt=""
+        />
+      </div>
+      <span class="userName pt-2 text-2xl font-semibold">{{ user.name }}</span>
+      <small class="userUserName text-muted">@{{ user.username }}</small>
+    </div>
+    <div class="topRight rounded-none border-none card w-full">
+      <div class="topWallpaper bg-blue-600 h-4/5 overflow-hidden">
+        <div class="overlay bg-black w-full h-full bg-opacity-50 z-10"></div>
+      </div>
+
+      <div class="nav-bar h-1/5">
+        <nav class="navbar h-full px-2 bg-gray-50">
+          <div class="text-xl">
+            <small class="pr-1">20</small>
+            <small class="text-muted">Posts</small>
+          </div>
+          <div class="text-xl">
+            <small><i class="pr-1 bi bi-shield text-danger"></i></small>
+            <small class="text-black uppercase">{{ user.role }}</small>
+          </div>
+          <div class="text-xl">
+            <small class="pr-1">-</small>
+            <small class="text-muted">Hidden</small>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+
+  <div class="layout-middle w-4/5 m-auto flex gap-1">
+    <div class="middle-left h-full mt-4 card rounded-none shadow w-1/4">
+      <nav class="nav flex-col text-xl p-4">
+        <li class="nav-item">
+          <i class="bi bi-person-circle"></i>
+          <a class="no-underline text-gray-900 active pl-3" href="#">{{
+            user.name
+          }}</a>
+        </li>
+        <li class="nav-item pt-3">
+          <i class="bi bi-envelope"></i>
+          <a class="no-underline text-gray-900 active pl-3 text-lg" href="#">{{
+            user.email
+          }}</a>
+        </li>
+      </nav>
+      <div *ngIf="user.bio !== null" class="bio p-4">
+        <span class="text-xl font-semibold">Bio</span>
+        <p class="lead text-base font-normal">
+          {{ user.bio }}
+        </p>
+      </div>
+      <div *ngIf="editable()" class="editSection p-4">
+        <button routerLink="/update-profile" class="btn btn-danger w-full">
+          Edit Profile
+        </button>
+        <button (click)="logout()" class="btn btn-danger w-full mt-2">
+          Log out
+        </button>
+      </div>
+    </div>
+    <div class="middle-top w-8/12 m-auto">
+      <div class="binderDiv" *ngFor="let postEntry of dataSource | async">
+        <div
+          *ngIf="postEntry.author?.id == user.id"
+          class="centerPost mt-4 mainPost shadow card"
+        >
+          <div class="postHeader p-3 flex">
+            <img
+              src="http://localhost:3000/api/user/profile-avatar/{{
+                postEntry.author?.avatar
+              }}"
+              class="rounded-full w-16 h-16"
+              alt="..."
+            />
+            <div class="nameH flex flex-col justify-center">
+              <span class="ml-3 text-black username font-bold text-xl">{{
+                postEntry.author?.name
+              }}</span>
+              <small class="ml-3 font-medium text-muted"
+                >@{{ postEntry.author?.username }}</small
+              >
+              <small class="ml-3 font-medium text-muted">{{
+                postEntry.creationDate
+              }}</small>
+            </div>
+          </div>
+          <div class="postBody pl-3 pb-3">
+            <p class="lead font-normal text-black">{{ postEntry.postBody }}</p>
+          </div>
+          <img
+            *ngIf="postEntry.postImage !== null"
+            src="http://localhost:3000/api/post/image/{{ postEntry.postImage }}"
+            class="card-img-bottom bg-cover"
+            alt="..."
+          />
+
+          <!-- Footer -->
+          <!-- <div class="card-footer p-2 flex flex-row text-lg">
+            <li class="nav-link text-black">
+              <i class="bi bi-heart-fill mr-2"></i>{{ postEntry.postLikes }}
+            </li>
+            <li class="nav-link text-black">
+              <i class="bi bi-chat mr-2"></i>Comment
+            </li>
+            <li class="nav-link text-black share">
+              <i class="bi bi-upload mr-2"></i>Share
+            </li>
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="layout-bottom w-4/5 m-auto"></div>
+</div>

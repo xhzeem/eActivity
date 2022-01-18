@@ -1,0 +1,73 @@
+<div class="form-container max-w-screen-xl m-auto flex flex-col pb-24">
+  <div class="card flex flex-col items-stretch w-[80%]">
+    <img
+      class="m-auto"
+      *ngIf="form.get('headerImage')!.value"
+      src="http://localhost:3000/api/blog/image/{{
+        form.get('headerImage')!.value
+      }}"
+    />
+    <button
+      class="btn btn-dark flex justify-center items-center font-semibold w-full"
+      (click)="onClick()"
+    >
+      <mat-icon>cloud_upload</mat-icon>
+      <small class="pl-2 font-semibold"> Upload Image</small>
+    </button>
+    <ul class="mb-0">
+      <li>
+        <mat-progress-bar [value]="file.progress"></mat-progress-bar>
+      </li>
+    </ul>
+    <input
+      type="file"
+      #fileUpload
+      id="fileUpload"
+      name="fileUpload"
+      accept="image/*"
+      style="display: none"
+    />
+  </div>
+  <form [formGroup]="form" autocomplete="off" action="" class="w-[80%] mt-10">
+    <div class="inputs-container flex flex-col">
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Title</mat-label>
+        <input matInput placeholder="Title" formControlName="articleTitle" />
+      </mat-form-field>
+      <div class="example-full-width" appearance="fill">
+        <mat-label>Body</mat-label>
+        <!-- <textarea
+          rows="10"
+          matInput
+          placeholder="Article Body"
+          formControlName="articleBody"
+        ></textarea> -->
+        <quill-editor
+          [modules]="config"
+          rows="10"
+          class="content-editor"
+          formControlName="articleBody"
+          [placeholder]="''"
+        >
+        </quill-editor>
+      </div>
+      <mat-form-field class="example-full-width mt-3" appearance="fill">
+        <mat-label>Description</mat-label>
+        <input
+          matInput
+          placeholder="Article Description"
+          formControlName="articleDescription"
+        />
+      </mat-form-field>
+    </div>
+
+    <button
+      class="btn btn-info font-semibold w-full"
+      [disabled]="!form.valid"
+      type="submit"
+      (click)="post()"
+    >
+      Create Article
+    </button>
+  </form>
+</div>

@@ -1,0 +1,105 @@
+<div class="container-fluid main h-full">
+  <div class="layout max-w-screen-xl h-full m-auto ">
+    <div class="layout-top fixed-top nav w-full">
+      <nav class="navbar px-[10%] w-full navbar-light">
+        <div class="container-fluid">
+          <a class="navbar-brand text-2xl">UTM eActivity</a>
+          <form class="d-flex">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Feed</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#"
+                >Contact us</a
+              >
+            </li>
+          </form>
+        </div>
+      </nav>
+    </div>
+    <div class="layout-middle pt-24" *ngIf="eventEntry$ | async as eventEntry">
+      <div
+        class="event-layout p-4 card w-[67%] bg-[#1a1a1b] flex flex-row items-center justify-center m-auto"
+      >
+        <img
+          routerLink="/user/{{ eventEntry.author?.id }}"
+          src="http://localhost:3000/api/user/profile-avatar/{{
+            eventEntry.author?.avatar
+          }}"
+          class="w-20 h-20 rounded-full cursor-pointer"
+          draggable="false"
+          alt=""
+        />
+        <div class="authorName pl-4 flex flex-col">
+          <span class="articleAuthor">{{ eventEntry.author?.name }}</span>
+          <span
+            routerLink="/user/{{ eventEntry.author?.id }}"
+            class="articleAuthor Username"
+            >@<a class="text-white hover:text-[#1365fd] no-underline">{{
+              eventEntry.author?.username
+            }}</a></span
+          >
+        </div>
+        <div class="divider"></div>
+        <div class="event-info flex flex-col pl-4">
+          <span class="articleDate"
+            >Created on {{ eventEntry.creationDate | date }}</span
+          >
+          <span class="articleDate" *ngIf="eventEntry.dueDate !== null"
+            >Scheduled for {{ eventEntry.dueDate | date }}</span
+          >
+        </div>
+        <div class="divider"></div>
+        <ul class="menu-content flex flex-row items-center pl-4 mb-0">
+          <li>
+            <a (click)="like(eventEntry.eventLikes)" class="bi bi-heart text-white hover:text-rose-800"
+              ><span class="pl-2">{{ eventEntry.eventLikes }}</span></a
+            >
+          </li>
+          <li class="pl-2">
+            <a href="#" class="bi bi-chat-dots text-white no-underline"
+              ><span class="pl-2">3</span></a
+            >
+          </li>
+        </ul>
+        <div class="divider"></div>
+        <div class="" *ngIf="user$ | async as user">
+          <div  *ngIf="eventEntry.author?.id == user.id" class="buttons pl-4">
+            <button class="btn btn-info h-[10%]">Edit</button>
+            <button class="btn btn-danger h-[10%] ml-2">Delete</button>
+          </div>
+        </div>
+      </div>
+      <div class="divid pt-12"></div>
+      <article class="article-layout m-auto w-[70%] ">
+        <div class="layout-middle px-4">
+          <img
+            src="http://localhost:3000/api/event/image/{{
+              eventEntry.eventImage
+            }}"
+            alt=""
+            class="imageHeader m-auto"
+          />
+        </div>
+
+        <div class="layout-bottom  pt-10 pb-4 px-4">
+          <h1 class="display-6 ">
+            {{ eventEntry.eventTitle }}
+          </h1>
+          <p
+            class="lead  mt-4 "
+            [innerHTML]="eventEntry.eventBody | purify"
+          ></p>
+        </div>
+      </article>
+     <div class="commentsDisqus m-auto w-[70%] px-4">
+      <disqus identifier="'{{eventEntry.id}}'">
+      </disqus>
+     </div>
+      <div class="dividee pt-20"></div>
+    </div>
+  </div>
+</div>
