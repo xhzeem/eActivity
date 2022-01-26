@@ -1,4 +1,4 @@
-<div class="oops bg-gray-50 bg-cover">
+<div class="oops bg-gray-50 min-h-screen">
   <div class="layout max-w-screen-xl h-full flex justify-evenly m-auto">
     <div class="layout-left bg-gray-100 pt-2 pl-2">
       <div class="leftHeader pl-2 w-max">
@@ -131,7 +131,7 @@
         </div>
       </div>
       <div
-        *ngFor="let postEntry of dataSource | async"
+        *ngFor="let postEntry of (dataSource | async)?.items"
         class="centerPost mainPost shadow-md card mt-10"
       >
         <div class="postHeader p-3 flex">
@@ -151,7 +151,9 @@
                 >
               </li>
               <li class="cursor-pointer">
-                <a routerLink="/update-post" class="dropdown-item text-[16px] font-['Roboto'] pt-2"
+                <a
+                  routerLink="/update-post/{{ postEntry.id }}"
+                  class="dropdown-item text-[16px] font-['Roboto'] pt-2"
                   ><i class="bi bi-pencil pr-1"></i>Edit
                   <span class="badge bg-danger">Soon</span></a
                 >

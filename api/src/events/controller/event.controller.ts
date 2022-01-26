@@ -11,6 +11,7 @@ import {
   UseInterceptors,
   UploadedFile,
   Res,
+  Query,
 } from '@nestjs/common';
 import { Observable, of } from 'rxjs';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-guard';
@@ -49,16 +50,25 @@ export class EventController {
     return this.eventService.create(user, eventEntry);
   }
 
-  @Get()
-  findBlogEntries(): Observable<EventEntry[]> {
-    return this.eventService.findAll();
+  // @Get()
+  // findEventEntries(): Observable<EventEntry[]> {
+  //   return this.eventService.findAll();
+  // }
+  @Get('')
+  index(@Query('page') page: number = 1, @Query('limit') limit: number = 10) {
+    limit = limit > 100 ? 100 : limit;
+
+    return this.eventService.paginateAll({
+      limit: Number(limit),
+      page: Number(page),
+      route: 'http://localhost:3000/api/event',
+    });
   }
   @Get(':id')
   findOne(@Param('id') id: number): Observable<EventEntry> {
     return this.eventService.findOne(id);
   }
   //TODO ADD THIS DOWN, UserIsAuthorGuard
-  @UseGuards(JwtAuthGuard)
   @Put(':id')
   updateOne(
     @Param('id') id: number,

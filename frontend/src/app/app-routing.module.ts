@@ -18,6 +18,7 @@ import { AboutComponent } from './components/about/about.component';
 import { EventsComponent } from './components/events/events/events.component';
 import { EventPageComponent } from './components/events/event-page/event-page.component';
 import { EditPostComponent } from './components/home/edit-post/edit-post.component';
+import { EditEventComponent } from './components/events/edit-event/edit-event.component';
 
 const routes: Routes = [
   {
@@ -32,6 +33,10 @@ const routes: Routes = [
   {
     path: 'events',
     component: EventsComponent,
+<<<<<<< Updated upstream
+=======
+    canActivate: [AuthGuard],
+>>>>>>> Stashed changes
   },
   {
     path: 'events/:id',
@@ -73,6 +78,10 @@ const routes: Routes = [
     component: LoginComponent,
   },
   {
+    path: 'api/user',
+    redirectTo: '/users',
+  },
+  {
     path: 'register',
     component: RegisterComponent,
   },
@@ -87,17 +96,22 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'update-post',
+    path: 'update-post/:id',
     component: EditPostComponent,
+  },
+  {
+    path: 'update-event/:id',
+    component: EditEventComponent,
   },
   {
     path: 'user/:id',
     component: UserProfileComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'profile',
     component: UserProfileComponent,
-    canActivate: [UserIsUserGuard],
+    canActivate: [AuthGuard, UserIsUserGuard],
   },
   { path: '**', redirectTo: '/' },
 ];

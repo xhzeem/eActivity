@@ -77,6 +77,10 @@ export class UserController {
   findOne(@Param() params): Observable<User> {
     return this.userService.findOne(params.id);
   }
+  // @Get()
+  // findEventEntries(): Observable<User[]> {
+  //   return this.userService.findAll();
+  // }
 
   // PAGINATION
   @Get()

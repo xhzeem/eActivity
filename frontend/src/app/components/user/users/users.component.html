@@ -5,12 +5,11 @@
       <h1 class="title">Users</h1>
 
       <span class="example-spacer"></span>
-
     </mat-toolbar-row>
   </mat-toolbar>
 </div>
 
-<div  *ngIf="dataSource">
+<div *ngIf="dataSource">
   <mat-table matSort [dataSource]="dataSource.items">
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
@@ -35,7 +34,7 @@
     </ng-container>
 
     <ng-container matColumnDef="email">
-      <mat-header-cell  *matHeaderCellDef mat-sort-header>Email</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Email</mat-header-cell>
       <mat-cell *matCellDef="let row">{{ row.email }}</mat-cell>
     </ng-container>
 
@@ -53,4 +52,5 @@
     showFirstLastButtons
   >
   </mat-paginator>
+  <h1>total users: {{ dataSource.meta.totalItems }}</h1>
 </div>

@@ -41,8 +41,13 @@ let EventController = class EventController {
         const user = req.user;
         return this.eventService.create(user, eventEntry);
     }
-    findBlogEntries() {
-        return this.eventService.findAll();
+    index(page = 1, limit = 10) {
+        limit = limit > 100 ? 100 : limit;
+        return this.eventService.paginateAll({
+            limit: Number(limit),
+            page: Number(page),
+            route: 'http://localhost:3000/api/event',
+        });
     }
     findOne(id) {
         return this.eventService.findOne(id);
@@ -70,11 +75,13 @@ __decorate([
     __metadata("design:returntype", rxjs_1.Observable)
 ], EventController.prototype, "create", null);
 __decorate([
-    common_1.Get(),
+    common_1.Get(''),
+    __param(0, common_1.Query('page')),
+    __param(1, common_1.Query('limit')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", rxjs_1.Observable)
-], EventController.prototype, "findBlogEntries", null);
+    __metadata("design:paramtypes", [Number, Number]),
+    __metadata("design:returntype", void 0)
+], EventController.prototype, "index", null);
 __decorate([
     common_1.Get(':id'),
     __param(0, common_1.Param('id')),
@@ -83,7 +90,6 @@ __decorate([
     __metadata("design:returntype", rxjs_1.Observable)
 ], EventController.prototype, "findOne", null);
 __decorate([
-    common_1.UseGuards(jwt_guard_1.JwtAuthGuard),
     common_1.Put(':id'),
     __param(0, common_1.Param('id')),
     __param(1, common_1.Body()),

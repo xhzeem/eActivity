@@ -16,7 +16,13 @@ import {
 import { User } from 'src/app/model/user.interface';
 import { JWT_NAME } from 'src/app/service/authentication.service';
 import { UserIsUserGuard } from 'src/app/guards/user-is-user.guard';
-
+import {
+  PostEntriesPageable,
+  PostEntry,
+} from 'src/app/model/post-entry.interface';
+import { PostService } from 'src/app/service/post/post.service';
+import { EventService } from 'src/app/service/event/event.service';
+import { EventEntriesPageable } from 'src/app/model/event-entry.interface';
 
 @Component({
   selector: 'app-overview',
@@ -26,6 +32,9 @@ import { UserIsUserGuard } from 'src/app/guards/user-is-user.guard';
 export class OverviewComponent implements OnInit {
   filterValue!: string;
   dataSource!: UserData;
+  dataSourcePosts!: PostEntriesPageable;
+  dataSourceEvents!: EventEntriesPageable;
+  dataSourceBlogs!: BlogEntriesPageable;
   pageEvent!: PageEvent;
   displayedColumns: string[] = ['id', 'name', 'username', 'email', 'role'];
   dataSourceBlog: Observable<BlogEntriesPageable> = this.blogService.indexAll(
@@ -39,7 +48,9 @@ export class OverviewComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private blogService: BlogService,
-    public authService: AuthenticationService,
+    private postService: PostService,
+    private eventService: EventService,
+    private authService: AuthenticationService,
     private userIsUserGuard: UserIsUserGuard
   ) {}
 
@@ -53,11 +64,47 @@ export class OverviewComponent implements OnInit {
 
   ngOnInit(): void {
     this.initDataSource();
+    this.initDataSourcePost();
+    this.initDataSourceEvents();
+    this.initDataSourceBlogs();
   }
   initDataSource() {
     this.userService
       .findAll(1, 10)
       .pipe(map((userData: UserData) => (this.dataSource = userData)))
+      .subscribe();
+  }
+  initDataSourceBlogs() {
+    this.blogService
+      .indexAll(1, 10)
+      .pipe(
+        map(
+          (blogEntriesPageable: BlogEntriesPageable) =>
+            (this.dataSourceBlogs = blogEntriesPageable)
+        )
+      )
+      .subscribe();
+  }
+  initDataSourcePost() {
+    this.postService
+      .indexAll(1, 10)
+      .pipe(
+        map(
+          (postEntriesPageable: PostEntriesPageable) =>
+            (this.dataSourcePosts = postEntriesPageable)
+        )
+      )
+      .subscribe();
+  }
+  initDataSourceEvents() {
+    this.eventService
+      .indexAll(1, 10)
+      .pipe(
+        map(
+          (eventEntriesPageable: EventEntriesPageable) =>
+            (this.dataSourceEvents = eventEntriesPageable)
+        )
+      )
       .subscribe();
   }
   onPaginateChange(event: PageEvent) {
@@ -94,7 +141,7 @@ export class OverviewComponent implements OnInit {
   }
 
   logout() {
-    this.authService.logout()
-    this.router.navigate(['/'])
+    this.authService.logout();
+    this.router.navigate(['/']);
   }
 }

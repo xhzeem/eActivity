@@ -1,4 +1,5 @@
 import { UserEntity } from 'src/user/models/user.entity';
+import { User } from 'src/user/models/user.interface';
 import {
   BeforeUpdate,
   Column,
@@ -21,6 +22,9 @@ export class EventEntryEntity {
   @Column({ nullable: true })
   dueDate: string;
 
+  @Column({ nullable: true, default: '[]' })
+  eventEnrolles: string;
+
   @Column('date', { default: () => 'CURRENT_DATE::text::date' })
   creationDate: Date;
 
@@ -34,6 +38,12 @@ export class EventEntryEntity {
 
   @Column({ default: 0 })
   eventLikes: number;
+
+  @Column({ nullable: true })
+  eventPrice: number;
+
+  @Column({ nullable: true })
+  eventSeats: number;
 
   @Column({ nullable: true, default: 'default.png' })
   eventImage: string;

@@ -10,14 +10,17 @@ export interface LoginForm {
   password: string;
 }
 
-export const JWT_NAME = 'blog-token';
+export const JWT_NAME = 'User-token';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthenticationService {
+  user!: User;
   constructor(private http: HttpClient, private jwtHelper: JwtHelperService) {}
-
+  // get token(): any {
+  //   return localStorage.getItem(JWT_NAME);
+  // }
   login(loginForm: LoginForm) {
     return this.http
       .post<any>('/api/user/login', {
@@ -31,7 +34,11 @@ export class AuthenticationService {
         })
       );
   }
-
+  // private getUser(token: string): User {
+  //   return JSON.parse(
+  //     atob(token.split('.')[1].replace(/-/g, '+').replace(/_/g, '/'))
+  //   ) as User;
+  // }
   register(user: User) {
     return this.http.post<any>('./api/user/', user).pipe(map((user) => user));
   }
@@ -81,7 +88,7 @@ export class AuthenticationService {
     );
   }
 
-  logout(){
+  logout() {
     return localStorage.removeItem(JWT_NAME);
   }
 }

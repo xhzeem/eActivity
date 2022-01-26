@@ -6,50 +6,56 @@
           <a class="navbar-brand text-2xl">UTM eActivity</a>
           <form class="d-flex">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" routerLink="/landing">Home</a>
+              <a
+                class="nav-link active"
+                aria-current="page"
+                routerLink="/landing"
+                >Home</a
+              >
             </li>
-            <!-- <li class="nav-item">
-              <a class="nav-link active" aria-current="page" routerLink="#">Feed</a>
-            </li> -->
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" routerLink="/blog">Blog</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" routerLink="/Info">Info</a>
+              <a class="nav-link active" aria-current="page" routerLink="/blog"
+                >Blog</a
+              >
             </li>
             <li *ngIf="authService.display()" class="nav-item">
-              <a class="nav-link active" aria-current="page" routerLink="/Profile"
+              <a
+                class="nav-link active"
+                aria-current="page"
+                routerLink="/profile"
                 >Profile</a
               >
             </li>
             <li *ngIf="authService.display()" class="nav-item">
-              <button (click)="logout()" class="btn btn-danger w-full ">
-                Log out
+              <button (click)="logout()" class="btn w-full">
+                <i class="fas fa-power-off text-danger"></i>
               </button>
             </li>
           </form>
         </div>
       </nav>
     </div>
-    <div *ngIf="user$ | async as user ">
+    <div *ngIf="user$ | async as user">
       <div class="middle pt-24" *ngIf="user.role !== 'user'">
         <div
-         class="card rounded-x p-2 flex flex-row justify-center items-center bg-[#1a1a1b] mx-6"
+          class="card rounded-x p-2 flex flex-row justify-center items-center bg-[#1a1a1b] mx-6"
         >
           <img
             routerLink="/user/{{ user.id }}"
-            src="http://localhost:3000/api/user/profile-avatar/{{ user.avatar }}"
+            src="http://localhost:3000/api/user/profile-avatar/{{
+              user.avatar
+            }}"
             class="w-20 rounded-full userImage h-20"
             alt=""
           />
           <div
             data-bs-toggle="modal"
             data-bs-target="#creatorEvent"
-            
-            class="placeholderPost card rounded-xl bg-[#272729] text-[#757575] w-[80%] h-20 ml-6 justify-center pl-8"
+            class="placeholderPost card rounded-xl bg-[#272729] text-[#757575] w-[90%] h-20 ml-6 justify-center pl-8"
           >
             <span class="text-xl">Create Event</span>
           </div>
+          <!--
           <div class="icons text-[#818384] text-4xl ml-6">
             <i
               data-bs-toggle="modal"
@@ -62,6 +68,7 @@
               class="bi bi-link ml-4"
             ></i>
           </div>
+          -->
         </div>
         <!-- MODAL  -->
         <div
@@ -90,7 +97,9 @@
                 </button>
                 <ul class="mb-0">
                   <li>
-                    <mat-progress-bar [value]="file.progress"></mat-progress-bar>
+                    <mat-progress-bar
+                      [value]="file.progress"
+                    ></mat-progress-bar>
                   </li>
                 </ul>
                 <input
@@ -126,6 +135,34 @@
                       formControlName="eventDescription"
                     />
                   </mat-form-field>
+                  <mat-form-field class="mt-4 w-full" appearance="fill">
+                    <mat-label>Price</mat-label>
+                    <input
+                      matInput
+                      placeholder="Add Price to Your Event"
+                      formControlName="eventPrice"
+                    />
+                    <mat-error class="capitalize"
+                      >Please enter a number only or leave empty</mat-error
+                    >
+                    <mat-hint class="p-0"
+                      >If The Event Is For <strong>Free</strong>, Please Leave
+                      The Input Empty.</mat-hint
+                    >
+                  </mat-form-field>
+                  <!-- <mat-form-field
+                    ng-model="all"
+                    class="mt-4 w-full"
+                    appearance="fill"
+                  >
+                    <mat-label>Seats</mat-label>
+                    <input
+                      matInput
+                      placeholder="Add Number of Seats Available"
+                      formControlName="eventSeats"
+                    />
+                    <mat-error>Please enter a number</mat-error>
+                  </mat-form-field> -->
                   <mat-form-field>
                     <input
                       matInput
@@ -139,9 +176,11 @@
                     ></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
                   </mat-form-field>
-  
+
                   <button
-                    class="btn btn-info font-semibold w-full"
+                    mat-flat-button
+                    color="primary"
+                    class="w-full"
                     [disabled]="!form.valid"
                     type="submit"
                     (click)="post()"
@@ -155,11 +194,13 @@
         </div>
       </div>
     </div>
-
+    <!-- <div *ngIf="dataSourceTwo" >
+      <h1 class="display-1">number of events: {{dataSourceTwo.meta.totalItems}}</h1>
+      </div> -->
     <div class="row pt-24 m-0 w-full">
       <div
         class="eventLayout cardEvent"
-        *ngFor="let eventEntry of dataSource | async"
+        *ngFor="let eventEntry of (dataSource | async)?.items"
       >
         <div
           class="wrapper"
@@ -179,16 +220,22 @@
               >
             </div>
             <ul class="menu-content" *ngIf="user$ | async as user">
-              <li (click)="deletePost(eventEntry.id)"  *ngIf="eventEntry.author?.id == user.id">
-                <a  href="#" class="bi bi-trash"></a>
+              <li
+                (click)="deletePost(eventEntry.id)"
+                *ngIf="eventEntry.author?.id == user.id || user.role == 'admin'"
+              >
+                <a href="#" class="bi bi-trash"></a>
               </li>
-              <li>
-                <a href="#" class="bi bi-heart"
-                  ><span>{{ eventEntry.eventLikes }}</span></a
+
+              <!-- <li>
+                <a href="#" class="fa fa-ticket-alt"
+                  ><span>{{ eventEntry.eventSeats }}</span></a
                 >
-              </li>
-              <li>
-                <a href="#" class="bi bi-chat-dots"><span>3</span></a>
+              </li> -->
+
+              <li class="pl-2 text-white">
+                <i class="fas fa-users"></i>
+                {{ countArray(eventEntry.eventEnrolles) }}
               </li>
             </ul>
           </div>

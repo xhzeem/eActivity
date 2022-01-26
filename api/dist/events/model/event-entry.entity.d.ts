@@ -5,10 +5,13 @@ export declare class EventEntryEntity {
     eventBody: string;
     eventDescription: string;
     dueDate: string;
+    eventEnrolles: string;
     creationDate: Date;
     updatedDate: Date;
     updateTimestamp(): void;
     eventLikes: number;
+    eventPrice: number;
+    eventSeats: number;
     eventImage: string;
     author: UserEntity;
 }

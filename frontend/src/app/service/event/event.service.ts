@@ -21,9 +21,9 @@ export class EventService {
     return this.http.get<EventEntriesPageable>('/api/event', { params });
   }
 
-  findAll(): Observable<EventEntry[]> {
-    return this.http.get<EventEntry[]>('/api/event');
-  }
+  // findAll(): Observable<EventEntry[]> {
+  //   return this.http.get<EventEntry[]>('/api/event');
+  // }
   post(eventEntry: EventEntry): Observable<EventEntry> {
     return this.http.post<EventEntry>('/api/event', eventEntry);
   }
@@ -40,5 +40,8 @@ export class EventService {
       reportProgress: true,
       observe: 'events',
     });
+  }
+  updateOne(event: any): Observable<EventEntry> {
+    return this.http.put('api/event/' + event.id, event);
   }
 }

@@ -57,6 +57,11 @@ let UserService = class UserService {
             return result;
         }));
     }
+    findUser(email) {
+        return rxjs_1.from(this.userRepository.findOne({ email })).pipe(operators_1.map((user) => {
+            return user;
+        }));
+    }
     findAll() {
         return rxjs_1.from(this.userRepository.find()).pipe(operators_1.map((users) => {
             users.forEach(function (v) {
@@ -93,18 +98,35 @@ let UserService = class UserService {
                     .pipe(operators_1.map((jwt) => jwt));
             }
             else {
-                return 'Wrong Credentials';
+                throw new common_1.HttpException({
+                    status: common_1.HttpStatus.INTERNAL_SERVER_ERROR,
+                    error: 'Email, Or Password is Wrong',
+                }, common_1.HttpStatus.INTERNAL_SERVER_ERROR);
             }
         }));
     }
     validateUser(email, password) {
-        return rxjs_1.from(this.userRepository.findOne({ email }, { select: ['id', 'name', 'bio', 'username', 'email', 'password', 'role', 'avatar'] })).pipe(operators_1.switchMap((user) => this.authService.comparePasswords(password, user.password).pipe(operators_1.map((match) => {
+        return rxjs_1.from(this.userRepository.findOne({ email }, {
+            select: [
+                'id',
+                'name',
+                'bio',
+                'username',
+                'email',
+                'password',
+                'role',
+                'avatar',
+            ],
+        })).pipe(operators_1.switchMap((user) => this.authService.comparePasswords(password, user.password).pipe(operators_1.map((match) => {
             if (match) {
                 const { password } = user, result = __rest(user, ["password"]);
                 return result;
             }
             else {
-                throw Error;
+                throw new common_1.HttpException({
+                    status: common_1.HttpStatus.INTERNAL_SERVER_ERROR,
+                    error: 'Credentials incorrect',
+                }, common_1.HttpStatus.INTERNAL_SERVER_ERROR);
             }
         }))));
     }

@@ -23,6 +23,11 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { QuillModule } from 'ngx-quill';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { DisqusModule } from 'ngx-disqus';
+import {MatSelectModule} from '@angular/material/select';
 
 // components
 import { AppComponent } from './app.component';
@@ -46,11 +51,8 @@ import { AboutComponent } from './components/about/about.component';
 import { PurifyPipe } from './pipes/purify.pipe';
 import { EventsComponent } from './components/events/events/events.component';
 import { EventPageComponent } from './components/events/event-page/event-page.component';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
-import { DisqusModule } from 'ngx-disqus';
 import { EditPostComponent } from './components/home/edit-post/edit-post.component';
-import {MatSelectModule} from '@angular/material/select';
+import { EditEventComponent } from './components/events/edit-event/edit-event.component';
 
 export function playerFactory() {
   return player;
@@ -79,6 +81,7 @@ export function playerFactory() {
     EventsComponent,
     EventPageComponent,
     EditPostComponent,
+    EditEventComponent,
   ],
   imports: [
     BrowserModule,
@@ -106,7 +109,8 @@ export function playerFactory() {
     MatDatepickerModule,
     MatNativeDateModule,
     DisqusModule.forRoot('utmeactivity'),
-    MatSelectModule
+    MatSelectModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     AuthenticationService,

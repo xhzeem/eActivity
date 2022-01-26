@@ -40,7 +40,6 @@ export const storage = {
   }),
 };
 
-// controller
 @Controller('blog')
 export class BlogController {
   constructor(private blogService: BlogService) {}

@@ -1,4 +1,4 @@
-<div class="page-outline"></div>
+<!-- <div class="page-outline"></div>
 <div class="page-content">
   <div>
     <mat-toolbar color="primary">
@@ -55,16 +55,30 @@
                 >
               </mat-form-field>
               <br />
-              <button
-                mat-flat-button
-                color="primary"
-                [disabled]="!loginForm.valid"
-                type="submit"
-              >
-                Login
-              </button>
+              <a (click)="fetchingData()">
+                <button
+                  mat-flat-button
+                  color="primary"
+                  [disabled]="!loginForm.valid"
+                  type="submit"
+                  class="{{
+                    isLoading && error == null
+                      ? 'bg-gray-200 text-dark'
+                      : 'primary'
+                  }}"
+                >
+                  {{ isLoading && error == null ? "Logging..." : "Login" }}
+                </button>
+              </a>
             </form>
           </div>
+        </div>
+        <div
+          class="error pt-2 {{
+            error == sucess ? 'text-green-600' : 'text-red-800'
+          }}"
+        >
+          <span>{{ error }}</span>
         </div>
         <div class="lower-side">
           <small class="text-muted">OR</small>
@@ -78,6 +92,85 @@
           </button>
         </div>
       </div>
+    </div>
+  </div>
+</div> -->
+<div class="limiter">
+  <div class="container-login100">
+    <div class="wrap-login100">
+      <form class="login100-form validate-form">
+        <span class="login100-form-title p-b-26"> Welcome </span>
+        <span class="login100-form-title p-b-48">
+          <i class="bi bi-stars"></i>
+        </span>
+        <form
+          autocomplete="off"
+          [formGroup]="loginForm"
+          (ngSubmit)="onSubmit()"
+        >
+          <div
+            class="wrap-input100 validate-input"
+            data-validate="Valid email is: a@b.c"
+          >
+            <input
+              class="input100 {{ myInput.value !== '' ? 'has-val' : ' ' }}"
+              type="text"
+              formControlName="email"
+              #myInput
+              matInput
+              name="email"
+            />
+            <span class="focus-input100" data-placeholder="Email"></span>
+          </div>
+
+          <div class="wrap-input100 validate-input">
+            <span class="btn-show-pass">
+              <i
+                (click)="hide = !hide"
+                class="bi bi-{{ hide ? 'eye-slash-fill' : 'eye-fill' }}"
+              ></i>
+            </span>
+            <input
+              class="input100  {{ pass.value !== '' ? 'has-val' : ' ' }}"
+              [type]="hide ? 'password' : 'text'"
+              #pass
+              matInput
+              formControlName="password"
+              id="password"
+              name="pass"
+            />
+            <span class="focus-input100" data-placeholder="Password"></span>
+            <mat-error
+              class="mb-[25px]"
+              *ngIf="loginForm.controls.password.errors"
+              >Password is required</mat-error
+            >
+          </div>
+
+          <div class="container-login100-form-btn">
+            <div class="wrap-login100-form-btn">
+              <div class="login100-form-bgbtn"></div>
+              <button type="submit" class="login100-form-btn">Login</button>
+            </div>
+          </div>
+        </form>
+        <mat-error class="mb-[25px]" *ngIf="loginForm.controls.email.errors"
+          >Email is required</mat-error
+        >
+
+        <div
+          class="error pt-2 {{
+            error == sucess ? 'text-green-600' : 'text-rose-800'
+          }}"
+        >
+          <span>{{ error }}</span>
+        </div>
+        <div class="text-center p-t-115">
+          <span class="txt1"> Don’t have an account? </span>
+
+          <a class="txt2" href="#"> Sign Up </a>
+        </div>
+      </form>
     </div>
   </div>
 </div>

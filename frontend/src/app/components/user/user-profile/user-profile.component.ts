@@ -23,6 +23,8 @@ import { PostService } from 'src/app/service/post/post.service';
 export class UserProfileComponent implements OnInit {
   doggie = '../../../assets/img/dog.jfif';
   date = new Date();
+  profileId: any = location.href.split('user/')[1];
+  userId: number = Number(this.profileId);
   constructor(
     private activatedRoute: ActivatedRoute,
     private userService: UserService,
@@ -39,7 +41,33 @@ export class UserProfileComponent implements OnInit {
   user$: Observable<User> = this.userId$.pipe(
     switchMap((userId: number) => this.userService.findOne(userId))
   );
-  dataSource: Observable<PostEntry[]> = this.postService.findAll();
+
+  token: any = localStorage.getItem(JWT_NAME);
+  userIdentifier = this.parseJwt(this.token).user.id;
+  userPost$: Observable<User> = this.userId$.pipe(
+    switchMap((userId: number) => this.userService.findOne(this.userIdentifier))
+  );
+  parseJwt(token: any) {
+    if (this.token !== null) {
+      const base64Url = token.split('.')[1];
+      const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+      const jsonPayload = decodeURIComponent(
+        atob(base64)
+          .split('')
+          .map(function (c) {
+            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+          })
+          .join('')
+      );
+      return JSON.parse(jsonPayload);
+    }
+  }
+
+  // dataSource: Observable<PostEntry[]> = this.postService.findAll();
+  dataSource: Observable<PostEntriesPageable> = this.postService.indexAll(
+    1,
+    10
+  );
 
   ngOnInit(): void {}
 
@@ -59,4 +87,8 @@ export class UserProfileComponent implements OnInit {
     this.router.navigate(['/']);
   }
   editPorfile: boolean = true;
+  deletePost(id: number | undefined) {
+    this.postService.deleteOne(id).subscribe();
+    window.location.reload();
+  }
 }

@@ -2,7 +2,11 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { EventEntry } from 'src/app/model/event-entry.interface';
+import {
+  EventEntriesPageable,
+  EventEntry,
+  Meta,
+} from 'src/app/model/event-entry.interface';
 import {
   AuthenticationService,
   JWT_NAME,
@@ -27,10 +31,26 @@ export interface File {
 export class EventsComponent implements OnInit {
   img = 'http://localhost:3000/api/event/image/';
   doggie = '../../../assets/img/dog.jfif';
-  dataSource: Observable<EventEntry[]> = this.eventService.findAll();
+  dataSourceTwo!: EventEntriesPageable;
+  dataSource: Observable<EventEntriesPageable> = this.eventService.indexAll(
+    1,
+    10
+  );
+
   token: any = localStorage.getItem(JWT_NAME);
   userId = this.parseJwt(this.token).user.id;
 
+  initDataSource() {
+    this.eventService
+      .indexAll(1, 10)
+      .pipe(
+        map(
+          (eventEntriesPageable: EventEntriesPageable) =>
+            (this.dataSourceTwo = eventEntriesPageable)
+        )
+      )
+      .subscribe();
+  }
   constructor(
     private eventService: EventService,
     public authService: AuthenticationService,
@@ -73,20 +93,32 @@ export class EventsComponent implements OnInit {
     progress: 0,
   };
   form!: FormGroup;
-
+  isDisabled: boolean = false;
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       id: [{ value: null, disabled: true }],
       eventTitle: [null, [Validators.required, Validators.maxLength(120)]],
       eventBody: [null, [Validators.required, Validators.maxLength(2000)]],
-      eventDescription: [null, [Validators.required, Validators.maxLength(175)]],
+      eventDescription: [
+        null,
+        [Validators.required, Validators.maxLength(175)],
+      ],
       dueDate: [null, [Validators.required]],
+      eventPrice: [null, [Validators.pattern('^[0-9]*$')]],
+      eventSeats: [
+        { value: null, disabled: true },
+        [Validators.required, Validators.pattern('^[0-9]*$')],
+      ],
       eventImage: [null, [Validators.required]],
     });
+    this.initDataSource();
+  }
+  countArray(cA: any): number {
+    return JSON.parse(cA).length;
   }
   post() {
     this.eventService.post(this.form.getRawValue()).subscribe();
-    this.router.navigate(['/events']);
+    window.location.reload();
   }
 
   onClick() {

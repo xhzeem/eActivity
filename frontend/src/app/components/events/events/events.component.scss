@@ -16,6 +16,13 @@
 }
 .nav-link:hover {
   color: #0ea5e9;
+
+}
+::ng-deep .cdk-overlay-container{
+  z-index: 1200 !important;
+}
+.mat-form-field-appearance-fill .mat-form-field-subscript-wrapper {
+ padding:0;
 }
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
 // Variables

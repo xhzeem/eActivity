@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppController = void 0;
 const common_1 = require("@nestjs/common");
 const app_service_1 = require("./app.service");
+const jwt_guard_1 = require("./auth/guards/jwt-guard");
 let AppController = class AppController {
     constructor(appService) {
         this.appService = appService;
@@ -21,6 +22,7 @@ let AppController = class AppController {
     }
 };
 __decorate([
+    common_1.UseGuards(jwt_guard_1.JwtAuthGuard),
     common_1.Get(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),

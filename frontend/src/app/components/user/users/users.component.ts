@@ -6,6 +6,8 @@ import {
 import { map } from 'rxjs/operators';
 import { PageEvent } from '@angular/material/paginator';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { User } from 'src/app/model/user.interface';
 
 @Component({
   selector: 'app-users',

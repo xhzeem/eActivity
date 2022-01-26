@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <div *ngIf="user$ | async as user" class="layout m-auto max-w-screen-xl h-full">
   <div class="layout-top shadow-md w-4/5 m-auto flex">
     <div
@@ -75,6 +76,148 @@
           class="centerPost mt-4 mainPost shadow card"
         >
           <div class="postHeader p-3 flex">
+=======
+<div class="main bg-gray-50 min-h-screen">
+  <div class="layout-top fixed-top nav w-full">
+    <nav class="navbar px-[10%] w-full navbar-secondary">
+      <div class="container-fluid">
+        <a class="navbar-brand text-2xl">UTM eActivity</a>
+        <form class="d-flex">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/landing"
+              >Home</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/blog"
+              >Blog</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/events"
+              >Events</a
+            >
+          </li>
+          <li *ngIf="authService.display()" class="nav-item">
+            <button (click)="logout()" class="btn w-full">
+              <i class="fas fa-power-off text-danger"></i>
+            </button>
+          </li>
+        </form>
+      </div>
+    </nav>
+  </div>
+  <div
+    *ngIf="user$ | async as user"
+    class="layout pt-[58px] m-auto max-w-screen-xl h-full"
+  >
+    <div class="layout-top shadow-md w-4/5 m-auto flex">
+      <div
+        class="topLeft rounded-none card w-4/12 flex flex-col justify-center text-center py-5"
+      >
+        <div class="avatar">
+          <img
+            src="http://localhost:3000/api/user/profile-avatar/{{
+              user.avatar
+            }}"
+            class="rounded-full border-2 w-28 h-28 border-white block m-auto"
+            alt=""
+          />
+        </div>
+        <span class="userName pt-2 text-2xl font-semibold">{{
+          user.name
+        }}</span>
+        <small class="userUserName text-muted">@{{ user.username }}</small>
+      </div>
+      <div class="topRight rounded-none border-none card w-full">
+        <div class="topWallpaper bg-blue-600 h-4/5 overflow-hidden">
+          <div class="overlay bg-black w-full h-full bg-opacity-50 z-10"></div>
+        </div>
+
+        <div class="nav-bar h-1/5">
+          <nav class="navbar h-full px-2 bg-gray-50">
+            <div class="text-xl">
+              <!-- <small class="pr-1">20</small>
+              <small class="text-muted">Posts</small> -->
+            </div>
+            <div class="text-xl">
+              <small><i class="pr-1 bi bi-shield text-danger"></i></small>
+              <small class="text-black userRole uppercase">{{
+                user.role
+              }}</small>
+            </div>
+            <div class="text-xl">
+              <!-- <small class="pr-1">-</small>
+              <small class="text-muted">Hidden</small> -->
+            </div>
+          </nav>
+        </div>
+      </div>
+    </div>
+
+    <div class="layout-middle w-4/5 m-auto flex gap-1">
+      <div class="middle-left h-full mt-4 card rounded-none shadow w-1/4">
+        <nav class="nav flex-col text-xl px-4 pt-4 pb-0">
+          <li class="nav-item">
+            <i class="bi bi-person-circle"></i>
+            <a class="no-underline user text-gray-900 active pl-3">{{
+              user.name
+            }}</a>
+          </li>
+          <li class="nav-item pt-2">
+            <i class="bi bi-envelope"></i>
+            <a
+              class="no-underline email text-ellipsis text-gray-900 active pl-3 text-lg"
+              ><span class="uppercase">{{ user.email | slice: 0:1 }}</span
+              >{{ user.email | slice: 1:100 }}</a
+            >
+          </li>
+        </nav>
+        <div *ngIf="user.bio !== null" class="bio px-4 pt-2 pb-4">
+          <span class="text-xl bioW font-semibold">Bio</span>
+          <p
+            [innerHTML]="user.bio | purify"
+            class="lead pt-2 text-base font-normal"
+          ></p>
+        </div>
+        <div *ngIf="authService.display()">
+          <div *ngIf="editable()" class="editSection p-4">
+            <button routerLink="/update-profile" class="btn btn-danger w-full">
+              Edit Profile
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="middle-top w-8/12 m-auto">
+        <!-- <div class="binderDiv" *ngFor="let postEntry of dataSource | async">
+          <div
+            *ngIf="postEntry.author?.id == user.id"
+            class="centerPost mt-4 mainPost rounded-[20px] border-none shadow-none card"
+          >
+            <div class="postHeader p-3 flex">
+              <img
+                src="http://localhost:3000/api/user/profile-avatar/{{
+                  postEntry.author?.avatar
+                }}"
+                class="rounded-full w-16 h-16"
+                alt="..."
+              />
+              <div class="nameH flex flex-col justify-center">
+                <span class="ml-3 text-black username  text-xl">{{
+                  postEntry.author?.name
+                }}</span>
+                <small class="ml-3 font-medium text-muted"
+                  >@{{ postEntry.author?.username }}</small
+                >
+                <small class="ml-3 font-medium text-muted">{{
+                  postEntry.creationDate | date
+                }}</small>
+              </div>
+            </div>
+            <div class="postBody pl-3 pb-3">
+              <p class="lead font-normal text-black">{{ postEntry.postBody }}</p>
+            </div>
+>>>>>>> Stashed changes
             <img
               src="http://localhost:3000/api/user/profile-avatar/{{
                 postEntry.author?.avatar
@@ -82,6 +225,7 @@
               class="rounded-full w-16 h-16"
               alt="..."
             />
+<<<<<<< Updated upstream
             <div class="nameH flex flex-col justify-center">
               <span class="ml-3 text-black username font-bold text-xl">{{
                 postEntry.author?.name
@@ -92,6 +236,106 @@
               <small class="ml-3 font-medium text-muted">{{
                 postEntry.creationDate
               }}</small>
+=======
+  
+            <div class="card-footer p-2 flex flex-row text-lg">
+              <li class="nav-link text-black">
+                <i class="bi bi-heart-fill mr-2"></i>{{ postEntry.postLikes }}
+              </li>
+              <li class="nav-link text-black">
+                <i class="bi bi-chat mr-2"></i>Comment
+              </li>
+              <li class="nav-link text-black share">
+                <i class="bi bi-upload mr-2"></i>Share
+              </li>
+            </div>
+          </div>
+        </div> -->
+        <div *ngIf="userPost$ | async as userPost">
+          <div *ngFor="let postEntry of (dataSource | async)?.items">
+            <div
+              *ngIf="postEntry.author?.id == userId"
+              class="centerPost mainPost rounded-[20px] shadow-md card mt-4"
+            >
+              <div class="postHeader p-3 flex">
+                <div *ngIf="authService.display()">
+                  <div
+                    *ngIf="postEntry.author?.id == userPost.id"
+                    class="btn-group absolute right-0 pr-4 dropstart"
+                  >
+                    <a
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                      class="pr-4 text-xl absolute right-0"
+                      ><i class="bi bi-three-dots-vertical"></i
+                    ></a>
+                    <ul class="dropdown-menu p-2 text-gray-50">
+                      <li class="cursor-pointer">
+                        <a
+                          (click)="deletePost(postEntry.id)"
+                          class="dropdown-item text-[16px] font-['Roboto']"
+                          ><i class="bi bi-trash pr-1"></i>Delete</a
+                        >
+                      </li>
+                      <li class="cursor-pointer">
+                        <a
+                          routerLink="/update-post/{{ postEntry.id }}"
+                          class="dropdown-item text-[16px] font-['Roboto'] pt-2"
+                          ><i class="bi bi-pencil pr-1"></i>Edit
+                          <span class="badge bg-danger">Soon</span></a
+                        >
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <img
+                  routerLink="/user/{{ postEntry.author?.id }}"
+                  src="http://localhost:3000/api/user/profile-avatar/{{
+                    postEntry.author?.avatar
+                  }}"
+                  class="routerToProfile rounded-full w-16 h-16"
+                  alt="..."
+                />
+                <div class="nameH flex flex-col justify-center">
+                  <span class="ml-3 text-black username text-xl">{{
+                    postEntry.author?.name
+                  }}</span>
+                  <small
+                    routerLink="/user/{{ postEntry.author?.id }}"
+                    class="routerToProfile ml-3 font-medium text-muted"
+                    >@{{ postEntry.author?.username }}</small
+                  >
+                  <small class="ml-3 font-medium text-muted">{{
+                    postEntry.creationDate | date
+                  }}</small>
+                </div>
+              </div>
+              <div class="postBody pl-3 pb-3">
+                <p class="lead font-normal text-base">
+                  {{ postEntry.postBody }}
+                </p>
+              </div>
+              <img
+                *ngIf="postEntry.postImage !== null"
+                src="http://localhost:3000/api/post/image/{{
+                  postEntry.postImage
+                }}"
+                class="card-img-bottom bg-cover"
+                alt="..."
+              />
+
+              <div class="card-footer p-2 flex flex-row text-lg">
+                <li class="nav-link">
+                  <i class="bi bi-heart mr-2"></i>{{ postEntry.postLikes }}
+                </li>
+                <li class="nav-link ml-4">
+                  <i class="bi bi-chat mr-2"></i>Comment
+                </li>
+                <li class="nav-link share ml-4">
+                  <i class="bi bi-upload mr-2"></i>Share
+                </li>
+              </div>
+>>>>>>> Stashed changes
             </div>
           </div>
           <div class="postBody pl-3 pb-3">

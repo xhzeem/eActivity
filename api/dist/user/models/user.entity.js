@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserEntity = void 0;
 const blog_entry_entity_1 = require("../../blog/model/blog-entry.entity");
 const event_entry_entity_1 = require("../../events/model/event-entry.entity");
+const post_entry_entity_1 = require("../../userPost/model/post-entry.entity");
 const typeorm_1 = require("typeorm");
 const user_interface_1 = require("./user.interface");
 let UserEntity = class UserEntity {
@@ -59,6 +60,10 @@ __decorate([
     typeorm_1.OneToMany((type) => event_entry_entity_1.EventEntryEntity, (eventEntryEntity) => eventEntryEntity.author),
     __metadata("design:type", Array)
 ], UserEntity.prototype, "eventEntries", void 0);
+__decorate([
+    typeorm_1.OneToMany((type) => post_entry_entity_1.PostEntryEntity, (postEntryEntity) => postEntryEntity.author),
+    __metadata("design:type", Array)
+], UserEntity.prototype, "postEntries", void 0);
 __decorate([
     typeorm_1.BeforeInsert(),
     __metadata("design:type", Function),

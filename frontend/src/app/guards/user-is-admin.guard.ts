@@ -1,23 +1,31 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { JWT_NAME } from '../service/authentication.service';
-
-
+import {
+  ActivatedRouteSnapshot,
+  CanActivate,
+  Router,
+  RouterStateSnapshot,
+  UrlTree,
+} from '@angular/router';
+import { Observable } from 'rxjs';
+import {
+  AuthenticationService,
+  JWT_NAME,
+} from '../service/authentication.service';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserIsAdminGuard implements CanActivate {
-  constructor(private _router: Router){}
+  constructor(private _router: Router) {}
 
   canActivate(route: ActivatedRouteSnapshot) {
     const token: any = localStorage.getItem(JWT_NAME);
-    const role: string = this.parseJwt(token).user.role
-    if(role !== "admin"){
-      console.log("Forbidden")
+    const role: string = this.parseJwt(token).user.role;
+    if (role !== 'admin') {
+      window.alert('Forbidden');
       this._router.navigate(['/']);
       return false;
-    }else {
-      console.log("successful")
+    } else {
+      console.log('successful');
       return true;
     }
   }
@@ -36,3 +44,25 @@ export class UserIsAdminGuard implements CanActivate {
     return JSON.parse(jsonPayload);
   }
 }
+
+// export class UserIsAdminGuard implements CanActivate {
+//   constructor(private _router: Router, private auth: AuthenticationService) {}
+
+//   canActivate(
+//     route: ActivatedRouteSnapshot,
+//     state: RouterStateSnapshot
+//   ):
+//     | boolean
+//     | UrlTree
+//     | Observable<boolean | UrlTree>
+//     | Promise<boolean | UrlTree>  {
+//     const isAuthorized = this.auth.user.role?.includes(route.data.role);
+//     if (!isAuthorized) {
+//       // window.alert('Forbidden');
+//       // this._router.navigate(['/']);
+//       // return false;
+//       console.log(route.data.role);
+//     }
+//     return isAuthorized;
+//   }
+// }

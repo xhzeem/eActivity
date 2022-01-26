@@ -38,6 +38,10 @@ __decorate([
     __metadata("design:type", String)
 ], EventEntryEntity.prototype, "dueDate", void 0);
 __decorate([
+    typeorm_1.Column({ nullable: true, default: '[]' }),
+    __metadata("design:type", String)
+], EventEntryEntity.prototype, "eventEnrolles", void 0);
+__decorate([
     typeorm_1.Column('date', { default: () => 'CURRENT_DATE::text::date' }),
     __metadata("design:type", Date)
 ], EventEntryEntity.prototype, "creationDate", void 0);
@@ -55,6 +59,14 @@ __decorate([
     typeorm_1.Column({ default: 0 }),
     __metadata("design:type", Number)
 ], EventEntryEntity.prototype, "eventLikes", void 0);
+__decorate([
+    typeorm_1.Column({ nullable: true }),
+    __metadata("design:type", Number)
+], EventEntryEntity.prototype, "eventPrice", void 0);
+__decorate([
+    typeorm_1.Column({ nullable: true }),
+    __metadata("design:type", Number)
+], EventEntryEntity.prototype, "eventSeats", void 0);
 __decorate([
     typeorm_1.Column({ nullable: true, default: 'default.png' }),
     __metadata("design:type", String)

@@ -1,10 +1,28 @@
+<<<<<<< Updated upstream
 // .main {
 //   background-color: #d9afd9;
 //   background-image: linear-gradient(124deg, #d9afd9 10%, #97d9e1 68%);
 // }
 
+=======
+.main {
+  // background-image: linear-gradient( 109.6deg,  rgba(218,185,252,1) 11.2%, rgba(125,89,252,1) 91.1% );
+  background-image: #efefef;
+}
+.list-group ol {
+  counter-reset: item;
+  list-style-type: none;
+}
+.list-group li {
+  display: block;
+}
+.list-group li:before {
+  content: counter(item) "  ";
+  counter-increment: item;
+}
+>>>>>>> Stashed changes
 .navbar {
-  background-color: rgb(255 255 255/0.6);
+  background-color: rgba(247, 247, 247, 0.6);
 }
 .navbar-brand {
   font-family: "Montserrat";
@@ -46,10 +64,31 @@
 .Username:hover {
   cursor: pointer;
 }
+.bi-ticket-detailed:hover {
+  cursor: pointer;
+}
 img {
   border-radius: 10px;
 }
-.divider::before {
+.userDiv::after {
+  content: "";
+  display: block;
+  margin-left: 24px;
+  width: 1px;
+  height: 48px;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.582);
+}
+.seatsDiv::before {
+  content: "";
+  display: block;
+  margin-left: 24px;
+  width: 1px;
+  height: 48px;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.582);
+}
+.seatsDiv::after {
   content: "";
   display: block;
   margin-left: 24px;
@@ -69,4 +108,216 @@ img {
 .btn-info:hover {
   background-color: #18c3dd;
   border-color: #18c3dd;
+}
+
+// Modal
+$red: #e84c3d;
+$grey: #ecedef;
+$black: #343434;
+
+.cardWrap {
+  color: #fff;
+  font-family: sans-serif;
+}
+.ticketModal {
+  width: fit-content;
+}
+.card2 {
+  background: linear-gradient(
+    to bottom,
+    $red 0%,
+    $red 26%,
+    $grey 26%,
+    $grey 100%
+  );
+  height: 11em;
+  float: left;
+  position: relative;
+  padding: 1em;
+}
+
+.cardLeft {
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  width: 16em;
+}
+
+.cardRight {
+  width: 6.5em;
+  border-left: 0.18em dashed #fff;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  &:before,
+  &:after {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 0.9em;
+    height: 0.9em;
+    background: #fff;
+    border-radius: 50%;
+    left: -0.5em;
+  }
+  &:before {
+    top: -0.4em;
+  }
+  &:after {
+    bottom: -0.4em;
+  }
+}
+
+.cardWrap h1 {
+  font-size: 1.1em;
+  margin-top: 0;
+  span {
+    font-weight: normal;
+  }
+}
+
+.title2,
+.name2,
+.seat2,
+.time2 {
+  text-transform: uppercase;
+  font-weight: normal;
+  h2 {
+    font-size: 0.9em;
+    color: #525252;
+    margin: 0;
+  }
+  span {
+    font-size: 0.7em;
+    color: #a2aeae;
+  }
+}
+
+.title2 {
+  margin: 1em 0 0 0;
+}
+
+.name2,
+.seat2 {
+  margin: 0;
+}
+
+.time2 {
+  margin: 0em 0 0 1em;
+}
+
+.seat2,
+.time2 {
+  float: left;
+}
+
+.eye2 {
+  position: relative;
+  width: 2em;
+  height: 1.5em;
+  background: #fff;
+  margin: 0 auto;
+  border-radius: 1em/0.6em;
+  z-index: 1;
+  &:before,
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    border-radius: 50%;
+  }
+  &:before {
+    width: 1em;
+    height: 1em;
+    background: $red;
+    z-index: 2;
+    left: 8px;
+    top: 4px;
+  }
+  &:after {
+    width: 0.5em;
+    height: 0.5em;
+    background: #fff;
+    z-index: 3;
+    left: 12px;
+    top: 8px;
+  }
+}
+
+.number2 {
+  text-align: center;
+  text-transform: uppercase;
+  h3 {
+    color: $red;
+    margin: 1em 0 0 0;
+    font-size: 1.5em;
+  }
+  span {
+    display: block;
+    color: #a2aeae;
+  }
+}
+
+.barcode {
+  height: 2em;
+  width: 0;
+  margin: 5px 0 0 -5px;
+  box-shadow: 1px 0 0 1px $black, 5px 0 0 1px $black, 10px 0 0 1px $black,
+    11px 0 0 1px $black, 15px 0 0 1px $black, 18px 0 0 1px $black,
+    22px 0 0 1px $black, 23px 0 0 1px $black, 26px 0 0 1px $black,
+    30px 0 0 1px $black, 35px 0 0 1px $black, 37px 0 0 1px $black,
+    41px 0 0 1px $black, 44px 0 0 1px $black, 47px 0 0 1px $black,
+    51px 0 0 1px $black, 56px 0 0 1px $black, 59px 0 0 1px $black,
+    64px 0 0 1px $black, 68px 0 0 1px $black, 72px 0 0 1px $black,
+    74px 0 0 1px $black, 77px 0 0 1px $black, 81px 0 0 1px $black;
+}
+
+// MEDIA
+.display-6 {
+  font-size: 28px;
+}
+@media only screen and (max-width: 1196px) {
+  .layout {
+    display: flex;
+    flex-direction: column;
+  }
+  .enrolledList {
+    width: 100%;
+    margin: auto;
+  }
+}
+@media only screen and (min-width: 816px) {
+  .collaspsable {
+    display: none !important;
+  }
+}
+@media only screen and (max-width: 815px) {
+  .layout-middle {
+    padding-top: 2rem !important;
+  }
+
+  .event-layout {
+    flex-direction: column !important;
+    width: 380px !important;
+    max-width: none !important;
+    border-top-right-radius: 0 !important;
+    border-top-left-radius: 0 !important;
+  }
+  .userDiv::after {
+    display: none;
+  }
+  .seatsDiv::after {
+    display: none;
+  }
+  .seatsDiv::before {
+    display: none;
+  }
+  .dateDiv,
+  .seatPriceDiv,
+  .buttonDiv {
+    padding-top: 0.5rem;
+  }
+  .event-info,
+  .menu-content {
+    padding: 0 !important;
+    align-items: center;
+  }
 }

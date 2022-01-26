@@ -56,7 +56,7 @@ __decorate([
     __metadata("design:type", Boolean)
 ], PostEntryEntity.prototype, "isPublished", void 0);
 __decorate([
-    typeorm_1.ManyToOne(type => user_entity_1.UserEntity, user => user.blogEntries),
+    typeorm_1.ManyToOne(type => user_entity_1.UserEntity, user => user.postEntries),
     __metadata("design:type", user_entity_1.UserEntity)
 ], PostEntryEntity.prototype, "author", void 0);
 PostEntryEntity = __decorate([

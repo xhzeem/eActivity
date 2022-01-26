@@ -10,7 +10,10 @@ export class EventEntry {
   dueDate?: string;
   updatedDate?: Date;
   eventLikes?: number;
+  eventPrice?: number;
+  eventSeats?: number;
   eventImage?: string;
+  eventEnrolles?: string;
 }
 
 export interface Meta {

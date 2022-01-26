@@ -38,6 +38,9 @@ export class PostEntryEntity {
   @Column({ nullable: true })
   isPublished: boolean;
 
-  @ManyToOne(type => UserEntity, user => user.blogEntries)
+  @ManyToOne(type => UserEntity, user => user.postEntries)
   author: UserEntity;
+  
+  // @ManyToOne(type => UserEntity, user => user.blogEntries)
+  // author: UserEntity;
 }

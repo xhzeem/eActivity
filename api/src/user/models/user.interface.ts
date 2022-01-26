@@ -1,4 +1,5 @@
 import { BlogEntry } from 'src/blog/model/blog-entry.interface';
+import { PostEntry } from 'src/userPost/model/post-entry.interface';
 
 export interface User {
   id?: number;
@@ -10,6 +11,7 @@ export interface User {
   role?: UserRole;
   avatar?: string;
   blogEntries?: BlogEntry[];
+  postEntries?: PostEntry[];
 }
 export enum UserRole {
   ADMIN = 'admin',

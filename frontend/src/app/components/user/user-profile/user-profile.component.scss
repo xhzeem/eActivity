@@ -3,9 +3,10 @@ $secondry: #476072;
 $primaryFont: "Montserrat";
 $secondryFont: "Poppins";
 $thirdFont: "Raleway";
-.main {
-  background-image: linear-gradient( 109.6deg,  rgba(218,185,252,1) 11.2%, rgba(125,89,252,1) 91.1% );
+// .main {
+//   background-image: linear-gradient( 109.6deg,  rgba(218,185,252,1) 11.2%, rgba(125,89,252,1) 91.1% );
 
+<<<<<<< Updated upstream
 }
 
 .nav a {
@@ -27,6 +28,9 @@ $thirdFont: "Raleway";
   font-weight: 600;
 }
 
+=======
+// }
+>>>>>>> Stashed changes
 .right-top {
   height: 30%;
 }
@@ -41,12 +45,51 @@ $thirdFont: "Raleway";
 .userName {
   font-family: $primaryFont;
 }
+.userUserName,
+.username,
+.userRole,
+.user,
+.email {
+  font-family: "Inter";
+}
+.user,
+.email {
+  font-size: 18px;
+  font-weight: 500;
+  text-transform: lowercase;
+}
+.user {
+  text-transform: uppercase;
+}
 .topWallpaper {
   background: url("https://source.unsplash.com/random?Nature,Galaxy") no-repeat
     center;
   width: inherit;
   background-size: cover;
 }
+<<<<<<< Updated upstream
+=======
+
+.bio p {
+  font-family: $secondryFont;
+  text-align: start;
+}
+.bioW {
+  font-weight: 600;
+  font-family: "Inter";
+}
+.lead {
+  font-family: "Inter";
+  font-size: 16px;
+}
+.navbar {
+  background-color: rgb(255 255 255/0.6);
+}
+.navbar-brand {
+  font-family: "Montserrat";
+  font-weight: 600;
+}
+>>>>>>> Stashed changes
 .nav-link {
   font-weight: 400;
   color: #000;

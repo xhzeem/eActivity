@@ -9,7 +9,7 @@ export declare class UserPostController {
     private postService;
     constructor(postService: UserPostService);
     create(postEntry: PostEntry, req: any): Observable<PostEntry>;
-    findBlogEntries(): Observable<PostEntry[]>;
+    index(page?: number, limit?: number): Observable<import("nestjs-typeorm-paginate").Pagination<PostEntry, import("nestjs-typeorm-paginate").IPaginationMeta>>;
     findOne(id: number): Observable<PostEntry>;
     updateOne(id: number, postEntry: PostEntry): Observable<PostEntry>;
     deleteOne(id: number): Observable<any>;

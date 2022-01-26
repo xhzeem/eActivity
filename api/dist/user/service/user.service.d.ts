@@ -10,6 +10,7 @@ export declare class UserService {
     constructor(userRepository: Repository<UserEntity>, authService: AuthService);
     create(user: User): Observable<User>;
     findOne(id: number): Observable<User>;
+    findUser(email: string): Observable<User>;
     findAll(): Observable<User[]>;
     paginate(options: IPaginationOptions): Observable<Pagination<User>>;
     deleteOne(id: number): Observable<any>;

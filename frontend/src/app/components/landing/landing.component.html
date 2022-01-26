@@ -42,6 +42,13 @@
         >
           Login
         </button>
+        <button 
+          *ngIf="authService.display()"
+          routerLink="/profile"
+          class="btn btn-info text-white hover:bg-cyan-600 bg-cyan-800 border-cyan-800"
+        >
+          Profile
+        </button>
       </div>
       <div class="hero-img">
         <img

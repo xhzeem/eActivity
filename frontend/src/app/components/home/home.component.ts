@@ -37,7 +37,10 @@ export class HomeComponent implements OnInit {
   userId = this.parseJwt(this.token).user.id;
 
   // dataSource: Observable<PostEntriesPageable> = this.postService.indexAll(1, 10);
-  dataSource: Observable<PostEntry[]> = this.postService.findAll();
+  dataSource: Observable<PostEntriesPageable> = this.postService.indexAll(
+    1,
+    10
+  );
 
   private userId$: Observable<number> = this.activatedRoute.params.pipe(
     map((params: Params) => parseInt(params['id']))

@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { from, throwError } from 'rxjs';
 import { Observable } from 'rxjs';
@@ -48,6 +48,13 @@ export class UserService {
       }),
     );
   }
+  findUser(email: string): Observable<User> {
+    return from(this.userRepository.findOne({ email })).pipe(
+      map((user: User) => {
+        return user;
+      }),
+    );
+  }
   findAll(): Observable<User[]> {
     return from(this.userRepository.find()).pipe(
       map((users) => {
@@ -92,27 +99,56 @@ export class UserService {
             .generateJwt(user)
             .pipe(map((jwt: string) => jwt));
         } else {
-          return 'Wrong Credentials';
+          throw new HttpException(
+            {
+              status: HttpStatus.INTERNAL_SERVER_ERROR,
+              error: 'Email, Or Password is Wrong',
+            },
+            HttpStatus.INTERNAL_SERVER_ERROR,
+          );
         }
       }),
     );
   }
 
   validateUser(email: string, password: string): Observable<User> {
-    return from(this.userRepository.findOne({email}, {select: ['id', 'name', 'bio', 'username', 'email', 'password', 'role', 'avatar']})).pipe(
-        switchMap((user: User) => this.authService.comparePasswords(password, user.password).pipe(
-            map((match: boolean) => {
-                if(match) {
-                    const {password, ...result} = user;
-                    return result;
-                } else {
-                    throw Error;
-                }
-            })
-        ))
-    )
-
-}
+    return from(
+      this.userRepository.findOne(
+        { email },
+        {
+          select: [
+            'id',
+            'name',
+            'bio',
+            'username',
+            'email',
+            'password',
+            'role',
+            'avatar',
+          ],
+        },
+      ),
+    ).pipe(
+      switchMap((user: User) =>
+        this.authService.comparePasswords(password, user.password).pipe(
+          map((match: boolean) => {
+            if (match) {
+              const { password, ...result } = user;
+              return result;
+            } else {
+              throw new HttpException(
+                {
+                  status: HttpStatus.INTERNAL_SERVER_ERROR,
+                  error: 'Credentials incorrect',
+                },
+                HttpStatus.INTERNAL_SERVER_ERROR,
+              );
+            }
+          }),
+        ),
+      ),
+    );
+  }
 
   findByMail(email: string): Observable<User> {
     return from(this.userRepository.findOne({ email }));

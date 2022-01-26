@@ -1,4 +1,4 @@
-<div class="layout-container flex h-screen w-screen">
+<!-- <div class="layout-container flex h-screen w-screen">
   <div
     class="
       d-flex
@@ -68,7 +68,7 @@
       </li>
       <li>
         <a class="nav-link text-white">
-          <i class="bi bi-list-nested"></i>To-Dos<span
+          <i class="bi bi-list-nested"></i>Overall<span
             class="badge ml-1 bg-rose-600"
             >Soon</span
           ></a
@@ -236,7 +236,7 @@
                 Delete
               </button>
 
-              <!-- Modal -->
+              
               <div
                 class="modal fade"
                 id="exampleModal"
@@ -291,6 +291,309 @@
         aria-labelledby="nav-contact-tab"
       >
         <app-blog-create></app-blog-create>
+      </div>
+    </div>
+  </div>
+</div> 
+-->
+<div class="wrapper d-flex align-items-stretch">
+  <nav id="sidebar">
+    <div class="p-4">
+      <h1><a href="index.html" class="logo">Admin Dash</a></h1>
+      <ul
+        id="myTab"
+        role="tablist"
+        class="nav flex-col list-unstyled components mb-5"
+      >
+        <li class="active">
+          <a
+            id="dashboard-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#dashboard"
+            type="button"
+            role="tab"
+            aria-controls="dashboard"
+            aria-selected="true"
+            ><span class="fa fa-user-shield mr-3"></span> Dashboard</a
+          >
+        </li>
+        <li>
+          <a
+            id="users-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#users"
+            type="button"
+            role="tab"
+            aria-controls="users"
+            aria-selected="false"
+            ><span class="fa fa-users mr-3"></span> Users</a
+          >
+        </li>
+        <li>
+          <a
+            id="Blog-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#Blog"
+            type="button"
+            role="tab"
+            aria-controls="Blog"
+            aria-selected="false"
+            ><span class="fa fa-sticky-note mr-3"></span> Blog</a
+          >
+        </li>
+        <li>
+          <a
+            id="newBlog-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#newBlog"
+            type="button"
+            role="tab"
+            aria-controls="newBlog"
+            aria-selected="false"
+            ><span class="fa fa-pen-fancy mr-3"></span> New Article</a
+          >
+        </li>
+        <li>
+          <a
+            id="events-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#events"
+            type="button"
+            role="tab"
+            aria-controls="events"
+            aria-selected="false"
+            ><span class="fa fa-calendar-week mr-3"></span> Events</a
+          >
+        </li>
+      </ul>
+
+      <!-- <div class="mb-5">
+        <h3 class="h6 mb-3">Subscribe for newsletter</h3>
+        <form action="#" class="subscribe-form">
+          <div class="form-group d-flex">
+            <div class="icon"><span class="icon-paper-plane"></span></div>
+            <input type="text" class="form-control" placeholder="Enter Email Address">
+          </div>
+        </form>
+      </div> -->
+
+      <!-- <div class="footer">
+          Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib.com</a>
+      </div> -->
+    </div>
+  </nav>
+
+  <!-- Page Content  -->
+  <div id="content" class="pt-5 bg-[#F5F7FF]">
+    <div class="tab-content" id="myTabContent">
+      <div
+        class="tab-pane fade show active"
+        id="dashboard"
+        role="tabpanel"
+        aria-labelledby="dashboard-tab"
+      >
+        <h1>Dashboard</h1>
+        <div class="max-w-screen-xl m-auto">
+          <div class="row w-full text-white">
+            <div class="col-xl-3 col-md-6" *ngIf="dataSource">
+              <div
+                class="card bg-[#7DA0FA] p-4 shadow-sm rounded-full border-2"
+              >
+                <h5>Users: {{ dataSource.meta.totalItems }}</h5>
+              </div>
+            </div>
+            <div class="col-xl-3 col-md-6" *ngIf="dataSourcePosts">
+              <div
+                class="card bg-[#4747A1] p-4 shadow-sm rounded-full border-2"
+              >
+                <h5>Posts: {{ dataSourcePosts.meta.totalItems }}</h5>
+              </div>
+            </div>
+            <div class="col-xl-3 col-md-6" *ngIf="dataSourceEvents">
+              <div
+                class="card bg-[#7978E9] p-4 shadow-sm rounded-full border-2"
+              >
+                <h5>Events: {{ dataSourceEvents.meta.totalItems }}</h5>
+              </div>
+            </div>
+            <div class="col-xl-3 col-md-6" *ngIf="dataSourceBlogs">
+              <div
+                class="card bg-[#c378e9] p-4 shadow-sm rounded-full border-2"
+              >
+                <h5>Articles: {{ dataSourceBlogs.meta.totalItems }}</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="tab-pane fade"
+        id="users"
+        role="tabpanel"
+        aria-labelledby="users-tab"
+      >
+        <div *ngIf="dataSource" class="px-4">
+          <table
+            class="mat-elevation-z8 w-full"
+            mat-table
+            [dataSource]="dataSource.items"
+            matSort
+          >
+            <mat-header-row
+              *matHeaderRowDef="displayedColumns"
+            ></mat-header-row>
+            <mat-row
+              *matRowDef="let row; columns: displayedColumns"
+              (click)="navigateToProfile(row.id)"
+            ></mat-row>
+
+            <ng-container matColumnDef="id">
+              <mat-header-cell *matHeaderCellDef mat-sort-header
+                >Id</mat-header-cell
+              >
+              <mat-cell *matCellDef="let row">{{ row.id }}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="name">
+              <mat-header-cell *matHeaderCellDef mat-sort-header
+                >Name</mat-header-cell
+              >
+              <mat-cell *matCellDef="let row">{{ row.name }}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="username">
+              <mat-header-cell *matHeaderCellDef mat-sort-header
+                >Username</mat-header-cell
+              >
+              <mat-cell *matCellDef="let row">{{ row.username }}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="email">
+              <mat-header-cell *matHeaderCellDef mat-sort-header
+                >Email</mat-header-cell
+              >
+              <mat-cell *matCellDef="let row">{{ row.email }}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="role">
+              <mat-header-cell *matHeaderCellDef mat-sort-header
+                >Role</mat-header-cell
+              >
+              <mat-cell *matCellDef="let row">{{ row.role }}</mat-cell>
+            </ng-container>
+          </table>
+
+          <mat-paginator
+            class="mt-4"
+            [length]="dataSource.meta.totalItems"
+            [pageSize]="dataSource.meta.itemsPerPage"
+            [pageSizeOptions]="[5, 10, 25, 100]"
+            (page)="pageEvent = $event; onPaginateChange($event)"
+            showFirstLastButtons
+          >
+          </mat-paginator>
+        </div>
+      </div>
+      <div
+        class="tab-pane fade"
+        id="Blog"
+        role="tabpanel"
+        aria-labelledby="Blog-tab"
+      >
+        <article
+          *ngFor="let blogEntry of (dataSourceBlog | async)?.items"
+          class="container pt-4"
+        >
+          <mat-card>
+            <mat-card-title
+              ><strong class="pr-2">{{ blogEntry.id }}</strong
+              >{{ blogEntry.articleTitle }}</mat-card-title
+            >
+            <mat-card-subtitle>{{ blogEntry.author?.name }}</mat-card-subtitle>
+            <mat-card-content>
+              <p>{{ blogEntry.articleDescription }}</p>
+            </mat-card-content>
+            <mat-card-actions>
+              <button mat-flat-button class="mr-4 w-[10%]" color="primary">
+                Edit<span
+                  class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger fs-6"
+                >
+                  soon
+                </span>
+              </button>
+
+              <button
+                mat-flat-button
+                class="w-[10%]"
+                color="warn"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
+              >
+                Delete
+              </button>
+
+              <div
+                class="modal fade"
+                id="exampleModal"
+                tabindex="-1"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">
+                        Warning
+                      </h5>
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      ></button>
+                    </div>
+                    <div class="modal-body font-semibold">
+                      Are you sure you want to delete the article?
+                    </div>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                      >
+                        Close
+                      </button>
+                      <button
+                        (click)="deleteBlog(blogEntry.id)"
+                        mat-flat-button
+                        class="w-[10%]"
+                        color="warn"
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </mat-card-actions>
+          </mat-card>
+        </article>
+      </div>
+      <div
+        class="tab-pane fade"
+        id="newBlog"
+        role="tabpanel"
+        aria-labelledby="newBlog-tab"
+      >
+        <app-blog-create></app-blog-create>
+      </div>
+      <div
+        class="tab-pane fade"
+        id="events"
+        role="tabpanel"
+        aria-labelledby="events-tab"
+      >
+        <h1>events</h1>
       </div>
     </div>
   </div>

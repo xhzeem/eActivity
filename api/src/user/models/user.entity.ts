@@ -1,6 +1,10 @@
 import { BlogEntryEntity } from 'src/blog/model/blog-entry.entity';
 import { EventEntryEntity } from 'src/events/model/event-entry.entity';
+<<<<<<< Updated upstream
 import { UserRole } from './user.interface';
+=======
+import { PostEntryEntity } from 'src/userPost/model/post-entry.entity';
+>>>>>>> Stashed changes
 import {
   BeforeInsert,
   Column,
@@ -40,13 +44,20 @@ export class UserEntity {
     (blogEntryEntity) => blogEntryEntity.author,
   )
   blogEntries: BlogEntryEntity[];
-
+  
   @OneToMany(
     (type) => EventEntryEntity,
     (eventEntryEntity) => eventEntryEntity.author,
   )
   eventEntries: EventEntryEntity[];
 
+  @OneToMany(
+    (type) => PostEntryEntity,
+    (postEntryEntity) => postEntryEntity.author,
+  )
+  postEntries: PostEntryEntity[];
+
+  
   @BeforeInsert()
   emailToLowerCase() {
     this.email = this.email.toLowerCase();

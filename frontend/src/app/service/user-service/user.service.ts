@@ -6,19 +6,22 @@ import { User } from 'src/app/model/user.interface';
 
 export interface UserData {
   items: User[];
-  meta: {
-    totalItems: number;
-    itemCount: number;
-    itemsPerPage: number;
-    totalPages: number;
-    currentPage: number;
-  };
-  links: {
-    first: string;
-    previous: string;
-    next: string;
-    last: string;
-  };
+  meta: Meta;
+  links: Links;
+}
+export interface Meta {
+  totalItems: number;
+  itemCount: number;
+  itemsPerPage: number;
+  totalPages: number;
+  currentPage: number;
+}
+
+export interface Links {
+  first: string;
+  previous: string;
+  next: string;
+  last: string;
 }
 @Injectable({
   providedIn: 'root',
@@ -33,6 +36,9 @@ export class UserService {
   updateOne(user: any): Observable<User> {
     return this.http.put('api/user/' + user.id, user);
   }
+  // findAllNoParams(): Observable<User[]> {
+  //   return this.http.get<User[]>('/api/user');
+  // }
 
   findAll(page: number, size: number): Observable<UserData> {
     let params = new HttpParams();

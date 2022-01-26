@@ -1,18 +1,18 @@
 import {
-    Body,
-    Controller,
-    Delete,
-    Get,
-    Param,
-    Post,
-    Put,
-    Query,
-    Request,
-    UseGuards,
-    UseInterceptors,
-    UploadedFile,
-    Res,
-  } from '@nestjs/common';
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+  Query,
+  Request,
+  UseGuards,
+  UseInterceptors,
+  UploadedFile,
+  Res,
+} from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { Observable, of } from 'rxjs';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-guard';
@@ -24,7 +24,6 @@ import { join } from 'path';
 import path = require('path');
 import { v4 as uuidv4 } from 'uuid';
 import { Image } from '../model/post-image.interface';
-
 
 export const storage = {
   storage: diskStorage({
@@ -42,30 +41,27 @@ export const storage = {
 @Controller('post')
 export class UserPostController {
   constructor(private postService: UserPostService) {}
-  
+
   @UseGuards(JwtAuthGuard)
   @Post()
   create(@Body() postEntry: PostEntry, @Request() req): Observable<PostEntry> {
     const user = req.user;
     return this.postService.create(user, postEntry);
   }
-  @Get()
-  findBlogEntries(): Observable<PostEntry[]> {
-    return this.postService.findAll()
-  }
-  // @Get('')
-  // index(
-  //     @Query('page') page: number = 1,
-  //     @Query('limit') limit: number = 10
-  // ) {
-  //     limit = limit > 100 ? 100 : limit;
-
-  //     return this.postService.paginateAll({
-  //         limit: Number(limit),
-  //         page: Number(page),
-  //         route: 'http://localhost:3000/api/post'
-  //     })
+  // @Get()
+  // findBlogEntries(): Observable<PostEntry[]> {
+  //   return this.postService.findAll();
   // }
+  @Get('')
+  index(@Query('page') page: number = 1, @Query('limit') limit: number = 10) {
+    limit = limit > 100 ? 100 : limit;
+
+    return this.postService.paginateAll({
+      limit: Number(limit),
+      page: Number(page),
+      route: 'http://localhost:3000/api/post',
+    });
+  }
 
   @Get(':id')
   findOne(@Param('id') id: number): Observable<PostEntry> {
@@ -102,10 +98,9 @@ export class UserPostController {
     );
   }
 
-
   // @Put('impression/:id')
   // addlike(@Param('id') id: number){
   //   one =  this.postService.findOne(id)
-    
+
   // }
 }

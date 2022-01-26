@@ -1,0 +1,102 @@
+<div class="layout-top fixed-top nav w-full">
+  <nav class="navbar px-[10%] w-full navbar-light">
+    <div class="container-fluid">
+      <a class="navbar-brand text-2xl">UTM eActivity</a>
+      <form class="d-flex">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink="/landing"
+            >Home</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink="/blog"
+            >Blog</a
+          >
+        </li>
+        <li *ngIf="authService.display()" class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink="/profile"
+            >Profile</a
+          >
+        </li>
+      </form>
+    </div>
+  </nav>
+</div>
+
+<div class="layout h-screen w-full bg-gray-50">
+  <div class="layout-container max-w-screen-lg m-auto">
+    <div class="form-container pt-20">
+      <form
+        class="mt-10 flex flex-col"
+        [formGroup]="form"
+        (ngSubmit)="update()"
+      >
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Title</mat-label>
+          <input
+            matInput
+            formControlName="eventTitle"
+            placeholder="Edit Title"
+          />
+          <mat-error>Please Don't Leave the field empty</mat-error>
+        </mat-form-field>
+        <mat-label>Body</mat-label>
+        <quill-editor
+          [modules]="config"
+          formControlName="eventBody"
+          matInput
+          placeholder="Edit Body"
+        ></quill-editor>
+        <mat-form-field class="example-full-width pt-4" appearance="fill">
+          <mat-label>Description</mat-label>
+          <input
+            matInput
+            formControlName="eventDescription"
+            placeholder="Edit Description"
+          />
+          <mat-error>Please Don't Leave the field empty</mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width pt-4" appearance="fill">
+          <mat-label>Price</mat-label>
+          <input
+            matInput
+            formControlName="eventPrice"
+            placeholder="Edit Price"
+          />
+          <mat-error>Please Don't Leave the field empty</mat-error>
+        </mat-form-field>
+        <!-- <mat-form-field class="example-full-width pt-4" appearance="fill">
+          <mat-label>Seats</mat-label>
+          <input
+            matInput
+            formControlName="eventSeats"
+            placeholder="Edit Seats"
+          />
+          <mat-error>Please Don't Leave the field empty</mat-error>
+        </mat-form-field> -->
+
+        <mat-form-field>
+          <input
+            matInput
+            [matDatepicker]="picker"
+            placeholder="Choose a date"
+            formControlName="dueDate"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <button
+          mat-flat-button
+          color="primary"
+          [disabled]="!form.valid"
+          type="submit"
+        >
+          Update Event
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
