@@ -33,10 +33,7 @@ const routes: Routes = [
   {
     path: 'events',
     component: EventsComponent,
-<<<<<<< Updated upstream
-=======
     canActivate: [AuthGuard],
->>>>>>> Stashed changes
   },
   {
     path: 'events/:id',

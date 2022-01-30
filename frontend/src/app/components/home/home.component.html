@@ -72,7 +72,7 @@
         <div class="creatorUserAvatar absolute">
           <img
             routerLink="/user/{{ user.id }}"
-            src="http://localhost:3000/api/user/profile-avatar/{{
+            src="{{origin}}/api/user/profile-avatar/{{
               user.avatar
             }}"
             class="routerToProfile rounded-full w-16"
@@ -92,7 +92,7 @@
           <img
             class="m-auto"
             *ngIf="form.get('postImage')!.value"
-            src="http://localhost:3000/api/post/image/{{
+            src="{{origin}}/api/post/image/{{
               form.get('postImage')!.value
             }}"
           />
@@ -162,7 +162,7 @@
           </div>
           <img
             routerLink="/user/{{ postEntry.author?.id }}"
-            src="http://localhost:3000/api/user/profile-avatar/{{
+            src="{{origin}}/api/user/profile-avatar/{{
               postEntry.author?.avatar
             }}"
             class="routerToProfile rounded-full w-16 h-16"
@@ -187,7 +187,7 @@
         </div>
         <img
           *ngIf="postEntry.postImage !== null"
-          src="http://localhost:3000/api/post/image/{{ postEntry.postImage }}"
+          src="{{origin}}/api/post/image/{{ postEntry.postImage }}"
           class="card-img-bottom bg-cover"
           alt="..."
         />
@@ -244,40 +244,5 @@
       </nav>
     </div>
   </div>
-  <!-- Modal -->
-  <!-- <div *ngFor="let postEntry of dataSource | async">
-    <div
-      class="modal fade"
-      [id]="postEntry.postBody"
-      aria-labelledby="imgModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-body">
-            <strong>{{ postEntry.author?.name }}</strong>
-            <img
-              src="http://localhost:3000/api/post/image/{{
-                postEntry.postImage
-              }}"
-              class="card-img-bottom bg-cover"
-              alt="..."
-            />
-          </div>
-          <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-secondary"
-                  data-bs-dismiss="modal"
-                >
-                  Close
-                </button>
-                <button type="button" class="btn btn-primary">
-                  Save changes
-                </button>
-              </div>
-        </div>
-      </div>
-    </div>
-  </div> -->
+
 </div>

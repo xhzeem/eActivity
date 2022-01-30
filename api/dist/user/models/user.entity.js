@@ -45,6 +45,10 @@ __decorate([
     __metadata("design:type", String)
 ], UserEntity.prototype, "password", void 0);
 __decorate([
+    typeorm_1.Column('date', { nullable: true, default: () => 'CURRENT_DATE::text::date' }),
+    __metadata("design:type", Date)
+], UserEntity.prototype, "joinedDate", void 0);
+__decorate([
     typeorm_1.Column({ type: 'enum', enum: user_interface_1.UserRole }),
     __metadata("design:type", String)
 ], UserEntity.prototype, "role", void 0);

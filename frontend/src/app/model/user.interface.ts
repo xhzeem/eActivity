@@ -7,4 +7,5 @@ export interface User {
   password?: string;
   role?: string;
   avatar?: string;
+  joinedDate?: Date;
 }

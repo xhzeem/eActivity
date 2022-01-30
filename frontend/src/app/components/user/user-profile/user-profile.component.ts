@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { User } from 'src/app/model/user.interface';
@@ -14,6 +14,7 @@ import {
   PostEntry,
 } from 'src/app/model/post-entry.interface';
 import { PostService } from 'src/app/service/post/post.service';
+import { WINDOW } from 'src/app/window-token';
 
 @Component({
   selector: 'app-user-profile',
@@ -25,13 +26,16 @@ export class UserProfileComponent implements OnInit {
   date = new Date();
   profileId: any = location.href.split('user/')[1];
   userId: number = Number(this.profileId);
+  origin = this.window.location.origin;
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private userService: UserService,
     private userIsUserGuard: UserIsUserGuard,
     private postService: PostService,
     public authService: AuthenticationService,
-    private router: Router
+    private router: Router,
+    @Inject(WINDOW) private window: Window
   ) {}
 
   private userId$: Observable<number> = this.activatedRoute.params.pipe(

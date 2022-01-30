@@ -9,6 +9,7 @@ export declare class UserEntity {
     username: string;
     email: string;
     password: string;
+    joinedDate: Date;
     role: UserRole;
     avatar: string;
     blogEntries: BlogEntryEntity[];

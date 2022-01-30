@@ -16,7 +16,10 @@ a {
 .nav {
   font-family: $primaryFont;
 }
-
+.display-4,
+.navbar-brand {
+  font-family: $secondryFont;
+}
 // liner
 .line-separator::before,
 .line-separator::after {

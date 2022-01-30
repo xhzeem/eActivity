@@ -60,8 +60,21 @@ export class RegisterComponent implements OnInit {
     }
     this.authService
       .register(this.registerForm.value)
-      .pipe(map((user) => this.router.navigate(['login'])))
-      .subscribe();
+      .pipe(
+        map((user) =>
+          setTimeout(() => {
+            this.router.navigate(['login']);
+          }, 2000)
+        )
+      )
+      .subscribe(
+        (success) => {
+          this.error = this.sucess;
+        },
+        (error) => {
+          this.error = error.error.error;
+        }
+      );
   }
   get email(): FormControl {
     return this.registerForm.get('email') as FormControl;
@@ -75,8 +88,14 @@ export class RegisterComponent implements OnInit {
   get password(): FormControl {
     return this.registerForm.get('password') as FormControl;
   }
-  get role(): FormControl { 
+  get role(): FormControl {
     return this.registerForm.get('role') as FormControl;
+  }
+  isLoading = false;
+  public error: any;
+  public sucess = 'Welcome Abroad';
 
+  fetchingData() {
+    this.isLoading = true;
   }
 }

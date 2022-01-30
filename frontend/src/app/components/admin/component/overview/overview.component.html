@@ -1,359 +1,103 @@
-<!-- <div class="layout-container flex h-screen w-screen">
-  <div
-    class="
-      d-flex
-      flex-column flex-shrink-0
-      p-3
-      h-full
-      nav-layout
-      text-white
-      fixed-bottom
-      bg-[#212529]
-    "
-    style="width: 280px"
-  >
-    <a
-      class="
-        d-flex
-        align-items-center
-        mb-3 mb-md-0
-        me-md-auto
-        text-white text-decoration-none
-      "
-    >
-      <span class="fs-3"><i class="bi bi-speedometer"></i>Admin</span>
-    </a>
-    <hr />
-    <ul class="nav nav-pills flex-column mb-auto">
-      <li class="nav-item">
-        <button
-          id="nav-home-tab"
-          data-bs-toggle="tab"
-          data-bs-target="#nav-home"
-          type="button"
-          role="tab"
-          aria-controls="nav-home"
-          aria-selected="true"
-          class="nav-link active text-white"
-          aria-current="page"
-        >
-          <i class="bi bi-people"></i>Users
-        </button>
-      </li>
-      <li id="nav-profile-tab">
-        <button
-          data-bs-toggle="tab"
-          data-bs-target="#nav-profile"
-          type="button"
-          role="tab"
-          aria-controls="nav-profile"
-          aria-selected="false"
-          class="nav-link text-white"
-        >
-          <i class="bi bi-text-paragraph"></i>Blog
-        </button>
-      </li>
-      <li id="nav-contact-tab">
-        <button
-          data-bs-toggle="tab"
-          data-bs-target="#nav-contact"
-          type="button"
-          role="tab"
-          aria-controls="nav-contact"
-          aria-selected="false"
-          class="nav-link text-white"
-        >
-          <i class="bi bi-brush"></i>New Article
-        </button>
-      </li>
-      <li>
-        <a class="nav-link text-white">
-          <i class="bi bi-list-nested"></i>Overall<span
-            class="badge ml-1 bg-rose-600"
-            >Soon</span
-          ></a
-        >
-      </li>
-      <li>
-        <a class="nav-link text-white">
-          <i class="bi bi-sticky"></i>Notes<span class="badge ml-1 bg-rose-600"
-            >Soon</span
-          ></a
-        >
-      </li>
-    </ul>
-    <hr />
-    <div class="dropdown" *ngIf="user$ | async as user">
-      <a
-        class="
-          d-flex
-          align-items-center
-          text-white text-decoration-none
-          dropdown-toggle
-          cursor-pointer
-        "
-        id="dropdownUser1"
-        data-bs-toggle="dropdown"
-        aria-expanded="false"
-      >
-        <img
-          src="http://localhost:3000/api/user/profile-avatar/{{ user.avatar }}"
-          alt=""
-          width="32"
-          height="32"
-          class="rounded-circle me-2"
-        />
-        <strong>{{ user.username }}</strong>
-      </a>
-      <ul
-        class="dropdown-menu dropdown-menu-dark text-black text-small shadow"
-        aria-labelledby="dropdownUser1"
-      >
-        <li><a class="dropdown-item" href="#">New project...</a></li>
-        <li><a class="dropdown-item" href="#">Settings</a></li>
-        <li>
-          <a class="dropdown-item" routerLink="/user/{{ user.id }}">Profile</a>
-        </li>
-        <li><hr class="dropdown-divider" /></li>
-        <li><a class="dropdown-item" (click)="logout()">Sign out</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="layout-right h-full max-w-screen-xl m-auto w-full p-10">
-    <div class="tab-content" id="nav-tabContent">
-      <div
-        class="tab-pane fade show active UsersTable"
-        id="nav-home"
-        role="tabpanel"
-        aria-labelledby="nav-home-tab"
-      >
-        <div *ngIf="dataSource">
-          <table
-            class="mat-elevation-z8 w-full"
-            mat-table
-            [dataSource]="dataSource.items"
-            matSort
-          >
-            <mat-header-row
-              *matHeaderRowDef="displayedColumns"
-            ></mat-header-row>
-            <mat-row
-              *matRowDef="let row; columns: displayedColumns"
-              (click)="navigateToProfile(row.id)"
-            ></mat-row>
 
-            <ng-container matColumnDef="id">
-              <mat-header-cell *matHeaderCellDef mat-sort-header
-                >Id</mat-header-cell
-              >
-              <mat-cell *matCellDef="let row">{{ row.id }}</mat-cell>
-            </ng-container>
-
-            <ng-container matColumnDef="name">
-              <mat-header-cell *matHeaderCellDef mat-sort-header
-                >Name</mat-header-cell
-              >
-              <mat-cell *matCellDef="let row">{{ row.name }}</mat-cell>
-            </ng-container>
-
-            <ng-container matColumnDef="username">
-              <mat-header-cell *matHeaderCellDef mat-sort-header
-                >Username</mat-header-cell
-              >
-              <mat-cell *matCellDef="let row">{{ row.username }}</mat-cell>
-            </ng-container>
-
-            <ng-container matColumnDef="email">
-              <mat-header-cell *matHeaderCellDef mat-sort-header
-                >Email</mat-header-cell
-              >
-              <mat-cell *matCellDef="let row">{{ row.email }}</mat-cell>
-            </ng-container>
-
-            <ng-container matColumnDef="role">
-              <mat-header-cell *matHeaderCellDef mat-sort-header
-                >Role</mat-header-cell
-              >
-              <mat-cell *matCellDef="let row">{{ row.role }}</mat-cell>
-            </ng-container>
-          </table>
-
-          <mat-paginator
-            class="mt-4"
-            [length]="dataSource.meta.totalItems"
-            [pageSize]="dataSource.meta.itemsPerPage"
-            [pageSizeOptions]="[5, 10, 25, 100]"
-            (page)="pageEvent = $event; onPaginateChange($event)"
-            showFirstLastButtons
-          >
-          </mat-paginator>
-        </div>
-      </div>
-      <div
-        class="tab-pane BlogTable fade"
-        id="nav-profile"
-        role="tabpanel"
-        aria-labelledby="nav-profile-tab"
-      >
-        <article
-          *ngFor="let blogEntry of (dataSourceBlog | async)?.items"
-          class="container pt-4"
-        >
-          <mat-card>
-            <mat-card-title
-              ><strong class="pr-2">{{ blogEntry.id }}</strong
-              >{{ blogEntry.articleTitle }}</mat-card-title
+<div class="wrapper w-screen bg-[#F5F7FF] d-flex align-items-stretch">
+  <div class="layout-top fixed-top nav w-full">
+    <nav class="navbar px-[10%] w-full navbar-light">
+      <div class="container-fluid">
+        <a class="navbar-brand text-2xl">UTM eActivity</a>
+        <form class="d-flex">
+          <li class="nav-item">
+            <a
+              class="nav-link active"
+              aria-current="page"
+              routerLink="/landing"
+              >Home</a
             >
-            <mat-card-subtitle>{{ blogEntry.author?.name }}</mat-card-subtitle>
-            <mat-card-content>
-              <p>{{ blogEntry.articleDescription }}</p>
-            </mat-card-content>
-            <mat-card-actions>
-              <button mat-flat-button class="mr-4 w-[10%]" color="primary">
-                Edit<span
-                  class="
-                    position-absolute
-                    top-0
-                    start-100
-                    translate-middle
-                    badge
-                    rounded-pill
-                    bg-danger
-                    fs-6
-                  "
-                >
-                  soon
-                </span>
-              </button>
-
-              <button
-                mat-flat-button
-                class="w-[10%]"
-                color="warn"
-                data-bs-toggle="modal"
-                data-bs-target="#exampleModal"
-              >
-                Delete
-              </button>
-
-              
-              <div
-                class="modal fade"
-                id="exampleModal"
-                tabindex="-1"
-                aria-labelledby="exampleModalLabel"
-                aria-hidden="true"
-              >
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">
-                        Warning
-                      </h5>
-                      <button
-                        type="button"
-                        class="btn-close"
-                        data-bs-dismiss="modal"
-                        aria-label="Close"
-                      ></button>
-                    </div>
-                    <div class="modal-body font-semibold">
-                      Are you sure you want to delete the article?
-                    </div>
-                    <div class="modal-footer">
-                      <button
-                        type="button"
-                        class="btn btn-secondary"
-                        data-bs-dismiss="modal"
-                      >
-                        Close
-                      </button>
-                      <button
-                        (click)="deleteBlog(blogEntry.id)"
-                        mat-flat-button
-                        class="w-[10%]"
-                        color="warn"
-                      >
-                        Delete
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </mat-card-actions>
-          </mat-card>
-        </article>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/events"
+              >Events</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/blog"
+              >Blog</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/Info"
+              >About</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/contact"
+              >Contact</a
+            >
+          </li>
+          <li *ngIf="authService.display()" class="nav-item">
+            <a
+              class="nav-link active"
+              aria-current="page"
+              routerLink="/profile"
+              >Profile</a
+            >
+          </li>
+          <li *ngIf="authService.display()" class="nav-item">
+            <button (click)="logout()" class="btn w-full">
+              <i class="fas fa-power-off text-danger"></i>
+            </button>
+          </li>
+        </form>
       </div>
-      <div
-        class="tab-pane fade"
-        id="nav-contact"
-        role="tabpanel"
-        aria-labelledby="nav-contact-tab"
-      >
-        <app-blog-create></app-blog-create>
-      </div>
-    </div>
+    </nav>
   </div>
-</div> 
--->
-<div class="wrapper d-flex align-items-stretch">
-  <nav id="sidebar">
-    <div class="p-4">
-      <h1><a href="index.html" class="logo">Admin Dash</a></h1>
+  <!-- Page Content  -->
+  <div id="content" class=" m-auto max-w-screen-xl pt-24 ">
+    <div class="panelHandler px-[12px] ">
+      <div
+        class="card w-full border-[1px] shadow-sm rounded-2xl p-2 h-[50px] flex justify-center items-center flex-row navCard"
+      >
       <ul
         id="myTab"
         role="tablist"
-        class="nav flex-col list-unstyled components mb-5"
+        class="nav  flex flex-row list-unstyled items-center components gap-8"
       >
-        <li class="active">
-          <a
-            id="dashboard-tab"
-            data-bs-toggle="tab"
-            data-bs-target="#dashboard"
-            type="button"
-            role="tab"
-            aria-controls="dashboard"
-            aria-selected="true"
-            ><span class="fa fa-user-shield mr-3"></span> Dashboard</a
-          >
-        </li>
-        <li>
-          <a
-            id="users-tab"
-            data-bs-toggle="tab"
-            data-bs-target="#users"
-            type="button"
-            role="tab"
-            aria-controls="users"
-            aria-selected="false"
-            ><span class="fa fa-users mr-3"></span> Users</a
-          >
-        </li>
-        <li>
-          <a
-            id="Blog-tab"
-            data-bs-toggle="tab"
-            data-bs-target="#Blog"
-            type="button"
-            role="tab"
-            aria-controls="Blog"
-            aria-selected="false"
-            ><span class="fa fa-sticky-note mr-3"></span> Blog</a
-          >
-        </li>
-        <li>
-          <a
-            id="newBlog-tab"
-            data-bs-toggle="tab"
-            data-bs-target="#newBlog"
-            type="button"
-            role="tab"
-            aria-controls="newBlog"
-            aria-selected="false"
-            ><span class="fa fa-pen-fancy mr-3"></span> New Article</a
-          >
-        </li>
-        <li>
+      <li class="active cardTitle"  >
+        <a
+          id="dashboard-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#dashboard"
+          type="button"
+          role="tab"
+          aria-controls="dashboard"
+          aria-selected="true"
+          >Dashboard</a
+        >
+      </li>
+      <li class="cardTitle">
+        <a
+          id="users-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#users"
+          type="button"
+          role="tab"
+          aria-controls="users"
+          aria-selected="false"
+          >Users</a
+        >
+      </li>
+      <li class="cardTitle">
+        <a
+          id="newBlog-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#newBlog"
+          type="button"
+          role="tab"
+          aria-controls="newBlog"
+          aria-selected="false"
+          >New Article</a
+        >
+      </li>
+        <li class="cardTitle">
           <a
             id="events-tab"
             data-bs-toggle="tab"
@@ -362,29 +106,16 @@
             role="tab"
             aria-controls="events"
             aria-selected="false"
-            ><span class="fa fa-calendar-week mr-3"></span> Events</a
+            >Events</a
           >
         </li>
-      </ul>
-
-      <!-- <div class="mb-5">
-        <h3 class="h6 mb-3">Subscribe for newsletter</h3>
-        <form action="#" class="subscribe-form">
-          <div class="form-group d-flex">
-            <div class="icon"><span class="icon-paper-plane"></span></div>
-            <input type="text" class="form-control" placeholder="Enter Email Address">
-          </div>
-        </form>
-      </div> -->
-
-      <!-- <div class="footer">
-          Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib.com</a>
-      </div> -->
+        <button class="cardTitle bg-rose-500 p-2 w-28 text-white rounded-full">
+         <i class="bi bi-cloud-arrow-down-fill"></i> Export
+        </button>
+    </ul>
+      
+      </div>
     </div>
-  </nav>
-
-  <!-- Page Content  -->
-  <div id="content" class="pt-5 bg-[#F5F7FF]">
     <div class="tab-content" id="myTabContent">
       <div
         class="tab-pane fade show active"
@@ -392,39 +123,254 @@
         role="tabpanel"
         aria-labelledby="dashboard-tab"
       >
-        <h1>Dashboard</h1>
         <div class="max-w-screen-xl m-auto">
+          <div class="titleDiv pt-4 pb-2">
+            <span class="cardTitle  pl-[14px]">Dashboard</span>
+          </div>
           <div class="row w-full text-white">
             <div class="col-xl-3 col-md-6" *ngIf="dataSource">
               <div
-                class="card bg-[#7DA0FA] p-4 shadow-sm rounded-full border-2"
+                class="card cardBG p-4 shadow-sm rounded-2xl flex flex-row justify-between items-center border-none"
               >
-                <h5>Users: {{ dataSource.meta.totalItems }}</h5>
+                <div class="iconBg1">
+                  <i class="bi bi-people text-[30px] pr-0"></i>
+                </div>
+                <div class="infoDiv flex flex-col text-center pt-2">
+                  <span class="userInfo text-xl">Users</span>
+                  <h5
+                    [countUp]="dataSource.meta.totalItems"
+                    class="userInfo text-2xl font-bold"
+                  >
+                    0
+                  </h5>
+                </div>
               </div>
             </div>
             <div class="col-xl-3 col-md-6" *ngIf="dataSourcePosts">
               <div
-                class="card bg-[#4747A1] p-4 shadow-sm rounded-full border-2"
+                class="card cardBG2 p-4 shadow-sm rounded-2xl flex flex-row justify-between items-center border-none"
               >
-                <h5>Posts: {{ dataSourcePosts.meta.totalItems }}</h5>
+                <div class="iconBg2">
+                  <i class="bi bi-chat-square-text text-[30px] pr-0"></i>
+                </div>
+
+                <div class="infoDiv flex flex-col text-center pt-2">
+                  <span class="userInfo text-xl">Posts</span>
+                  <h5
+                    [countUp]="dataSourcePosts.meta.totalItems"
+                    class="userInfo text-2xl font-bold"
+                  >
+                    0
+                  </h5>
+                </div>
               </div>
             </div>
             <div class="col-xl-3 col-md-6" *ngIf="dataSourceEvents">
               <div
-                class="card bg-[#7978E9] p-4 shadow-sm rounded-full border-2"
+                class="card cardBG3 p-4 shadow-sm rounded-2xl flex flex-row justify-between items-center border-none"
               >
-                <h5>Events: {{ dataSourceEvents.meta.totalItems }}</h5>
+                <div class="iconBg3">
+                  <i class="bi bi-file-earmark-post text-[30px] pr-0"></i>
+                </div>
+
+                <div class="infoDiv flex flex-col text-center pt-2">
+                  <span class="userInfo text-xl">Events</span>
+                  <h5
+                    [countUp]="dataSourceEvents.meta.totalItems"
+                    class="userInfo text-2xl font-bold"
+                  >
+                    0
+                  </h5>
+                </div>
               </div>
             </div>
             <div class="col-xl-3 col-md-6" *ngIf="dataSourceBlogs">
               <div
-                class="card bg-[#c378e9] p-4 shadow-sm rounded-full border-2"
+                class="card cardBG4 p-4 shadow-sm rounded-2xl flex flex-row justify-between items-center border-none"
               >
-                <h5>Articles: {{ dataSourceBlogs.meta.totalItems }}</h5>
+                <div class="iconBg4">
+                  <i class="bi bi-newspaper text-[30px] pr-0"></i>
+                </div>
+                <div class="infoDiv flex flex-col text-center pt-2">
+                  <span class="userInfo text-xl">Blogs</span>
+                  <h5
+                    [countUp]="dataSourceBlogs.meta.totalItems"
+                    class="userInfo text-2xl font-bold"
+                  >
+                    0
+                  </h5>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row w-full mt-0">
+            <div class="col-xl-8 col-lg-12 col-md-12 col-sm-12">
+              <div class="card border-[1px] shadow-sm rounded-2xl px-[15px]">
+                <div class="chart-wrapper relative">
+                <h5 class="cardTitle py-2 absolute ">Chart</h5>
+                  <canvas
+                    baseChart
+                    [data]="doughnutChartData"
+                    [labels]="doughnutChartLabels"
+                    [chartType]="doughnutChartType"
+                    class="h-[350px] w-full"
+                  >
+                  </canvas>
+                </div>
+                <input
+                  #adminNum
+                  type="text"
+                  [value]="adminNum"
+                  class="hidden"
+                />
+                <input #userNum type="text" [value]="userNum" class="hidden" />
+                <input #clubNum type="text" [value]="clubNum" class="hidden" />
+              </div>
+            </div>
+            <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12">
+              <div
+                class="card p-3 border-[1px] shadow-sm rounded-2xl px-[15px] h-[350px]"
+              >
+                <h5 class="cardTitle pb-2">New Members</h5>
+                <div class="newUsers overflow-auto">
+                  <table class="table table-borderless table-fixed">
+                    <thead class="bg-[#333] border-none">
+                      <tr>
+                        <th scope="col " class="thT w-[10%]">#</th>
+                        <th scope="col" class="thT w-[30%]">Name</th>
+                        <th scope="col" class="thT w-[20%]">Role</th>
+                        <th scope="col" class="thT w-[20%]">Joined</th>
+                      </tr>
+                    </thead>
+                    <tbody
+                      *ngFor="let userEntry of (dataSourceTwo | async)?.items"
+                    >
+                      <tr
+                        *ngIf="
+                          (userEntry.joinedDate | date) === (myDate | date)
+                        "
+                      >
+                        <th class="thD">{{ userEntry.id }}</th>
+                        <td class="thD">{{ userEntry.name }}</td>
+                        <td class="thD">{{ userEntry.role }}</td>
+                        <td class="thD">Today</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row w-full mt-0">
+            <div class="col-xl-12 col-lg-12 col-md-12">
+              <div
+                class="card p-3 border-[1px] shadow-sm rounded-2xl px-[15px] h-[400px]"
+              >
+                <h5 class="cardTitle pb-2">Users</h5>
+                <div id="userTable" class="overflow-auto">
+                  <table class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th class="colUser" scope="col">ID</th>
+                        <th class="colUser" scope="col">NAME</th>
+                        <th class="colUser" scope="col">ROLE</th>
+                        <th class="colUser" scope="col">JOINED</th>
+                        <th class="colUser" scope="col">No. POSTS</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr
+                        *ngFor="let userEntry of (dataSourceTwo | async)?.items"
+                      >
+                        <th class="colUserInfo" scope="row">
+                          {{ userEntry.id }}
+                        </th>
+                        <td>
+                          <div class="userStuff flex flex-row">
+                            <img
+                              class="w-[40px] rounded-full h-[40px]"
+                              src="{{origin}}/api/user/profile-avatar/{{
+                                userEntry.avatar
+                              }}"
+                              alt="..."
+                            />
+                            <div class="flex pl-2 flex-col">
+                              <span
+                                class="userName text-black text-[14px] colUserInfo"
+                                >{{ userEntry.name }}</span
+                              >
+                              <span class="userEmail text-[14px] colUserInfo">{{
+                                userEntry.email
+                              }}</span>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="colUserInfo">{{ userEntry.role }}</td>
+                        <td class="colUserInfo">
+                          {{ userEntry.joinedDate | date }}
+                        </td>
+                        <td class="colUserInfo">--</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row w-full mt-0">
+            <div class="col-xl-12 col-lg-12 col-md-12">
+              <div
+                class="card p-3 border-[1px] shadow-sm rounded-2xl px-[15px]"
+              >
+                <h5 class="cardTitle pb-2">Articles</h5>
+                <div class="articleDiv flex flex-row overflow-auto">
+                  <div
+                    *ngFor="let blogEntry of (dataSourceBlog | async)?.items"
+                    class="card border-[1px] shadow-sm ml-2 w-[40%]"
+                  >
+                    <img
+                      *ngIf="blogEntry.headerImage !== null"
+                      src="{{origin}}/api/blog/image/{{
+                        blogEntry.headerImage
+                      }}"
+                      class="h-[200px] w-max"
+                      alt=""
+                    />
+                    <img
+                      *ngIf="blogEntry.headerImage == null"
+                      src="https://sourceoneinsurance.com/wp-content/uploads/blog-placeholder.jpg"
+                      class=""
+                      alt=""
+                    />
+                    <div
+                      class="blogCardInfo h-full flex flex-col justify-between p-2"
+                    >
+                      <div class="authorTitle">
+                        <small
+                          class="text-[14px] font-normal text-muted cardTitle"
+                          >{{ blogEntry.author?.name }}</small
+                        >
+                        <h5 class="cardTitle">{{ blogEntry.articleTitle }}</h5>
+                        <p
+                          class="font-normal text-slate-700 cardTitle text-[14px]"
+                        >
+                          {{ blogEntry.articleDescription }}
+                        </p>
+                      </div>
+                      <button
+                        routerLink="/article/{{ blogEntry.slug }}"
+                        class="btn btn-info"
+                      >
+                        More!
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
+        <footer class="mt-20"></footer>
       </div>
       <div
         class="tab-pane fade"

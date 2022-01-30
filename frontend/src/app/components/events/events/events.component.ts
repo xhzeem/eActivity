@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -17,6 +17,7 @@ import { catchError, map, switchMap } from 'rxjs/operators';
 import { HttpErrorResponse, HttpEventType } from '@angular/common/http';
 import { UserService } from 'src/app/service/user-service/user.service';
 import { User } from 'src/app/model/user.interface';
+import { WINDOW } from 'src/app/window-token';
 export interface File {
   data: any;
   progress: number;
@@ -29,8 +30,6 @@ export interface File {
   styleUrls: ['./events.component.scss'],
 })
 export class EventsComponent implements OnInit {
-  img = 'http://localhost:3000/api/event/image/';
-  doggie = '../../../assets/img/dog.jfif';
   dataSourceTwo!: EventEntriesPageable;
   dataSource: Observable<EventEntriesPageable> = this.eventService.indexAll(
     1,
@@ -51,13 +50,17 @@ export class EventsComponent implements OnInit {
       )
       .subscribe();
   }
+  origin = this.window.location.origin;
+
   constructor(
     private eventService: EventService,
     public authService: AuthenticationService,
     private formBuilder: FormBuilder,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private userService: UserService
+    private userService: UserService,
+    @Inject(WINDOW) private window: Window
+
   ) {}
   private userId$: Observable<number> = this.activatedRoute.params.pipe(
     map((params: Params) => parseInt(params['id']))
@@ -163,5 +166,13 @@ export class EventsComponent implements OnInit {
           this.form.patchValue({ eventImage: event.body.filename });
         }
       });
+  }
+  deletePost(id: number | undefined) {
+    this.eventService.deleteOne(id).subscribe();
+    window.location.reload();
+  }
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/']);
   }
 }

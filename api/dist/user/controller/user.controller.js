@@ -32,7 +32,7 @@ const path_1 = require("path");
 const userIsUser_guard_1 = require("../../auth/guards/userIsUser.guard");
 exports.storage = {
     storage: multer_1.diskStorage({
-        destination: './uploads/Avatars',
+        destination: './uploads/avatars',
         filename: (req, file, cb) => {
             const filename = path.parse(file.originalname).name.replace(/[a-zA-Z0-9_\s]/g, '') +
                 uuid_1.v4();

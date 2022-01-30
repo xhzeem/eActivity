@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import { map, switchMap, tap } from 'rxjs/operators';
 import { PageEvent } from '@angular/material/paginator';
 import {
@@ -23,6 +23,10 @@ import {
 import { PostService } from 'src/app/service/post/post.service';
 import { EventService } from 'src/app/service/event/event.service';
 import { EventEntriesPageable } from 'src/app/model/event-entry.interface';
+import { ChartType } from 'chart.js';
+import { MultiDataSet, Label } from 'ng2-charts';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { WINDOW } from 'src/app/window-token';
 
 @Component({
   selector: 'app-overview',
@@ -41,8 +45,14 @@ export class OverviewComponent implements OnInit {
     1,
     10
   );
+  dataSourceTwo: Observable<UserData> = this.userService.findAll(1, 99);
   token: any = localStorage.getItem(JWT_NAME);
   userId = this.userIsUserGuard.parseJwt(this.token).user.id;
+  adminNum: any;
+  userNum: any;
+  clubNum: any;
+  myDate = new Date();
+  origin = this.window.location.origin;
   constructor(
     private userService: UserService,
     private router: Router,
@@ -50,9 +60,23 @@ export class OverviewComponent implements OnInit {
     private blogService: BlogService,
     private postService: PostService,
     private eventService: EventService,
-    private authService: AuthenticationService,
-    private userIsUserGuard: UserIsUserGuard
-  ) {}
+    public authService: AuthenticationService,
+    private userIsUserGuard: UserIsUserGuard,
+    private httpService: HttpClient,
+    @Inject(WINDOW) private window: Window
+    
+  ) {
+    const xhttp = new XMLHttpRequest();
+    xhttp.open('GET', 'api/user?page=1&limit=1000', true);
+    const self = this;
+    xhttp.onreadystatechange = function () {
+      const users = JSON.parse(xhttp.response);
+      self.adminNum = users.items.filter((obj) => obj.role === 'admin').length;
+      self.userNum = users.items.filter((obj) => obj.role === 'user').length;
+      self.clubNum = users.items.filter((obj) => obj.role === 'club').length;
+    };
+    xhttp.send();
+  }
 
   private userId$: Observable<number> = this.activatedRoute.params.pipe(
     map((params: Params) => parseInt(params['id']))
@@ -61,19 +85,37 @@ export class OverviewComponent implements OnInit {
   user$: Observable<User> = this.userId$.pipe(
     switchMap((userId: number) => this.userService.findOne(this.userId))
   );
-
+  @ViewChild('adminNum', { static: false })
+  countAdmin!: ElementRef;
+  userdw: any;
   ngOnInit(): void {
     this.initDataSource();
     this.initDataSourcePost();
     this.initDataSourceEvents();
     this.initDataSourceBlogs();
+
+    // console.log(
+    //   (document.getElementById('adminNum') as HTMLInputElement).value
+    // );
+    // temp1.items.filter((obj) => obj.role === "admin").length
   }
   initDataSource() {
     this.userService
-      .findAll(1, 10)
+      .findAll(1, 99)
       .pipe(map((userData: UserData) => (this.dataSource = userData)))
       .subscribe();
   }
+  // (res) => {
+  //     return this.dataSource.items.filter((obj) => obj.role === 'admin')
+  //     .length;
+  // }
+  // Doughnut starts
+
+  doughnutChartLabels: Label[] = ['Admins', 'Users', 'Clubs'];
+  doughnutChartData: MultiDataSet = [[2, 11, 4]];
+  doughnutChartType: ChartType = 'doughnut';
+
+  // Doughnut ends
   initDataSourceBlogs() {
     this.blogService
       .indexAll(1, 10)
@@ -131,7 +173,6 @@ export class OverviewComponent implements OnInit {
       .pipe(map((userData: UserData) => (this.dataSource = userData)))
       .subscribe();
   }
-
   navigateToProfile(id: string) {
     this.router.navigate(['/user/' + id], { relativeTo: this.activatedRoute });
   }
@@ -139,7 +180,6 @@ export class OverviewComponent implements OnInit {
     this.blogService.deleteOne(id).subscribe();
     window.location.reload();
   }
-
   logout() {
     this.authService.logout();
     this.router.navigate(['/']);

@@ -1,10 +1,11 @@
 import { HttpErrorResponse, HttpEventType } from '@angular/common/http';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { BlogService } from 'src/app/service/blog/blog.service';
+import { WINDOW } from 'src/app/window-token';
 
 export interface File {
   data: any;
@@ -40,10 +41,14 @@ export class BlogCreateComponent implements OnInit {
     [{ 'align': [] }],
     ]
   };
+  origin = this.window.location.origin;
+
   constructor(
     private formBuilder: FormBuilder,
     private blogService: BlogService,
-    private router: Router
+    private router: Router,
+    @Inject(WINDOW) private window: Window
+
   ) {}
 
   ngOnInit(): void {

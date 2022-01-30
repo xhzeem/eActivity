@@ -3,7 +3,7 @@
     <img
       class="m-auto"
       *ngIf="form.get('headerImage')!.value"
-      src="http://localhost:3000/api/blog/image/{{
+      src="{{origin}}/api/blog/image/{{
         form.get('headerImage')!.value
       }}"
     />
@@ -11,7 +11,7 @@
       class="btn btn-dark flex justify-center items-center font-semibold w-full"
       (click)="onClick()"
     >
-      <mat-icon>cloud_upload</mat-icon>
+    <i class="bi bi-cloud-arrow-up-fill"></i>
       <small class="pl-2 font-semibold"> Upload Image</small>
     </button>
     <ul class="mb-0">

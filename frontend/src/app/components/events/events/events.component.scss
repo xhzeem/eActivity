@@ -1,6 +1,18 @@
-
+// .row {
+//   display: grid;
+//   padding: 1rem;
+//   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+//   grid-gap: 1rem;
+//   align-items: stretch;
+// }
+// .eventCard {
+//    height: 100%;
+// }
 .main {
-  background-image: linear-gradient( 109.6deg,  rgba(218,185,252,1) 11.2%, rgba(125,89,252,1) 91.1% );
+  background: #076585;  /* fallback for old browsers */
+background: -webkit-linear-gradient(19deg, #fff, #076585);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(19deg, #fff, #076585); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 }
 .navbar {
   background-color: rgba(255, 255, 255, 0.856);

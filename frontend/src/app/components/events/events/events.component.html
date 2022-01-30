@@ -42,7 +42,7 @@
         >
           <img
             routerLink="/user/{{ user.id }}"
-            src="http://localhost:3000/api/user/profile-avatar/{{
+            src="{{origin}}/api/user/profile-avatar/{{
               user.avatar
             }}"
             class="w-20 rounded-full userImage h-20"
@@ -84,7 +84,7 @@
                 <img
                   class="m-auto"
                   *ngIf="form.get('eventImage')!.value"
-                  src="http://localhost:3000/api/event/image/{{
+                  src="{{origin}}/api/event/image/{{
                     form.get('eventImage')!.value
                   }}"
                 />
@@ -92,7 +92,7 @@
                   class="btn btn-dark flex justify-center items-center font-semibold w-full"
                   (click)="onClick()"
                 >
-                  <mat-icon>cloud_upload</mat-icon>
+                <i class="bi bi-cloud-arrow-up-fill"></i>
                   <small class="pl-2 font-semibold"> Upload Image</small>
                 </button>
                 <ul class="mb-0">
@@ -206,8 +206,8 @@
           class="wrapper"
           [ngStyle]="{
             background:
-              'url(' +
-              'http://localhost:3000/api/event/image/' +
+              'url(' + 
+              origin+'/api/event/image/' +
               eventEntry.eventImage +
               ')center / cover no-repeat'
           }"
@@ -258,8 +258,3 @@
     </div>
   </div>
 </div>
-
-
-
-
-

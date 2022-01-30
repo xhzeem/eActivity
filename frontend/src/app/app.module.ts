@@ -23,11 +23,20 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { QuillModule } from 'ngx-quill';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { DisqusModule } from 'ngx-disqus';
-import {MatSelectModule} from '@angular/material/select';
+import { MatSelectModule } from '@angular/material/select';
+import {
+  SocialLoginModule,
+  SocialAuthServiceConfig,
+  FacebookLoginProvider,
+} from 'angularx-social-login';
+import { GoogleLoginProvider } from 'angularx-social-login';
+import { CountUpModule } from 'ngx-countup';
+import { MatTabsModule } from '@angular/material/tabs';
+import { ChartsModule } from 'ng2-charts';
 
 // components
 import { AppComponent } from './app.component';
@@ -53,6 +62,7 @@ import { EventsComponent } from './components/events/events/events.component';
 import { EventPageComponent } from './components/events/event-page/event-page.component';
 import { EditPostComponent } from './components/home/edit-post/edit-post.component';
 import { EditEventComponent } from './components/events/edit-event/edit-event.component';
+import { WINDOW_PROVIDERS } from './window-token';
 
 export function playerFactory() {
   return player;
@@ -110,13 +120,36 @@ export function playerFactory() {
     MatNativeDateModule,
     DisqusModule.forRoot('utmeactivity'),
     MatSelectModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    SocialLoginModule,
+    CountUpModule,
+    MatTabsModule,
+    ChartsModule,
   ],
   providers: [
+    WINDOW_PROVIDERS,
     AuthenticationService,
     JwtHelperService,
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              '990681280542-da8oi9478hhl8jnjobpumil5pf9844av.apps.googleusercontent.com'
+            ),
+          },
+          {
+            id: FacebookLoginProvider.PROVIDER_ID,
+            provider: new FacebookLoginProvider('645816083503894'),
+          },
+        ],
+      } as SocialAuthServiceConfig,
+    },
   ],
   bootstrap: [AppComponent],
 })

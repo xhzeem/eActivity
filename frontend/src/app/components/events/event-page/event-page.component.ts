@@ -1,23 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map, switchMap, tap } from 'rxjs/operators';
 import { EventEntry } from 'src/app/model/event-entry.interface';
 import { User } from 'src/app/model/user.interface';
-<<<<<<< Updated upstream
-import { JWT_NAME } from 'src/app/service/authentication.service';
-=======
 import {
   AuthenticationService,
   JWT_NAME,
 } from 'src/app/service/authentication.service';
->>>>>>> Stashed changes
 import { EventService } from 'src/app/service/event/event.service';
 import {
   UserData,
   UserService,
 } from 'src/app/service/user-service/user.service';
+import { WINDOW } from 'src/app/window-token';
 
 @Component({
   selector: 'app-event-page',
@@ -38,18 +35,17 @@ export class EventPageComponent implements OnInit {
   falser(): boolean {
     return false;
   }
+  origin = this.window.location.origin;
 
   constructor(
     private eventService: EventService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-<<<<<<< Updated upstream
-    private userService: UserService
-=======
     private formbuilder: FormBuilder,
     private userService: UserService,
-    public authService: AuthenticationService
->>>>>>> Stashed changes
+    public authService: AuthenticationService,
+    @Inject(WINDOW) private window: Window
+
   ) {}
   token: any = localStorage.getItem(JWT_NAME);
   userId = this.parseJwt(this.token).user.id;
@@ -86,20 +82,14 @@ export class EventPageComponent implements OnInit {
         .pipe(map((eventEntry: EventEntry) => eventEntry));
     })
   );
-<<<<<<< Updated upstream
-  ngOnInit(): void {}
-  
-  like(likesNum: any) {
-    likesNum = +1;
-=======
 
   deletePost(id: number | undefined) {
     this.eventService.deleteOne(id).subscribe();
     this.router.navigate(['/events']);
->>>>>>> Stashed changes
   }
-  unlike(likesNum: number) {
-    likesNum = -1;
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/']);
   }
 
   isEnrolled(enrollStr: any, userId: any): boolean {
@@ -173,12 +163,12 @@ export class EventPageComponent implements OnInit {
   update() {
     this.eventService.updateOne(this.form.getRawValue()).subscribe();
   }
-  exp = 'expand_more';
+  exp = 'chevron-down';
   expand() {
-    if (this.exp === 'expand_more') {
-      this.exp = 'expand_less';
+    if (this.exp === 'chevron-down') {
+      this.exp = 'chevron-up';
     } else {
-      this.exp = 'expand_more';
+      this.exp = 'chevron-down';
     }
   }
 }

@@ -17,11 +17,16 @@ const auth_module_1 = require("./auth/auth.module");
 const blog_module_1 = require("./blog/blog.module");
 const post_module_1 = require("./userPost/post.module");
 const event_module_1 = require("./events/event.module");
+const serve_static_1 = require("@nestjs/serve-static");
+const path_1 = require("path");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     common_1.Module({
         imports: [
+            serve_static_1.ServeStaticModule.forRoot({
+                rootPath: path_1.join(__dirname, './', 'frontend'),
+            }),
             config_1.ConfigModule.forRoot({ isGlobal: true }),
             typeorm_1.TypeOrmModule.forRoot({
                 type: 'postgres',

@@ -9,6 +9,12 @@ import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/service/authentication.service';
 import { map } from 'rxjs/operators';
 import { Location } from '@angular/common';
+import {
+  SocialAuthService,
+  SocialUser,
+  FacebookLoginProvider,
+  GoogleLoginProvider,
+} from 'angularx-social-login';
 
 @Component({
   selector: 'app-login',
@@ -17,12 +23,14 @@ import { Location } from '@angular/common';
 })
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
-
+  socialUser!: SocialUser;
+  isLoggedin!: boolean;
   constructor(
     private authService: AuthenticationService,
     private router: Router,
     private formBuilder: FormBuilder,
-    private _location: Location
+    private _location: Location,
+    private socialAuthService: SocialAuthService
   ) {}
 
   ngOnInit(): void {
@@ -37,7 +45,20 @@ export class LoginComponent implements OnInit {
         Validators.minLength(8),
       ]),
     });
+    this.socialAuthService.authState.subscribe((user) => {
+      this.socialUser = user;
+      this.isLoggedin = user != null;
+      console.log(this.socialUser);
+    });
   }
+
+  loginWithGoogle(): void {
+    this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
+  }
+  loginWithFacebook(): void {
+    this.socialAuthService.signIn(FacebookLoginProvider.PROVIDER_ID);
+  }
+
   hide = true;
   public error: any;
   public sucess = 'Logged in successfully';
@@ -46,6 +67,7 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.invalid) {
       return;
     }
+    this.loginForm.value.email = this.loginForm.value.email.toLowerCase();
     this.authService
       .login(this.loginForm.value)
       .pipe(

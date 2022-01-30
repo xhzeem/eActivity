@@ -9,6 +9,7 @@ export interface User {
     password?: string;
     role?: UserRole;
     avatar?: string;
+    joinedDate?: Date;
     blogEntries?: BlogEntry[];
     postEntries?: PostEntry[];
 }

@@ -1,10 +1,6 @@
 import { BlogEntryEntity } from 'src/blog/model/blog-entry.entity';
 import { EventEntryEntity } from 'src/events/model/event-entry.entity';
-<<<<<<< Updated upstream
-import { UserRole } from './user.interface';
-=======
 import { PostEntryEntity } from 'src/userPost/model/post-entry.entity';
->>>>>>> Stashed changes
 import {
   BeforeInsert,
   Column,
@@ -12,6 +8,7 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+import { UserRole } from './user.interface';
 
 @Entity()
 export class UserEntity {
@@ -33,7 +30,10 @@ export class UserEntity {
   @Column({ select: false })
   password: string;
 
-  @Column({ type: 'enum', enum: UserRole})
+  @Column('date', { nullable: true, default: () => 'CURRENT_DATE::text::date' })
+  joinedDate: Date;
+
+  @Column({ type: 'enum', enum: UserRole })
   role: UserRole;
 
   @Column({ nullable: true, default: 'default.png' })
@@ -44,7 +44,7 @@ export class UserEntity {
     (blogEntryEntity) => blogEntryEntity.author,
   )
   blogEntries: BlogEntryEntity[];
-  
+
   @OneToMany(
     (type) => EventEntryEntity,
     (eventEntryEntity) => eventEntryEntity.author,
@@ -57,7 +57,6 @@ export class UserEntity {
   )
   postEntries: PostEntryEntity[];
 
-  
   @BeforeInsert()
   emailToLowerCase() {
     this.email = this.email.toLowerCase();

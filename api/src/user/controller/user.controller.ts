@@ -37,7 +37,7 @@ import { UserIsUserGuard } from 'src/auth/guards/userIsUser.guard';
 
 export const storage = {
   storage: diskStorage({
-    destination: './uploads/Avatars',
+    destination: './uploads/avatars',
     filename: (req, file, cb) => {
       const filename: string =
         path.parse(file.originalname).name.replace(/[a-zA-Z0-9_\s]/g, '') +
@@ -52,7 +52,7 @@ export const storage = {
 @Controller('user')
 export class UserController {
   constructor(private userService: UserService) {}
-
+  // REG - LOG
   @Post()
   create(@Body() user: User): Observable<User | object> {
     return this.userService.create(user).pipe(
@@ -60,7 +60,6 @@ export class UserController {
       catchError((err) => of({ error: err.message })),
     );
   }
-  
   @Post('login')
   login(@Body() user: User): Observable<Object> {
     return this.userService.login(user).pipe(
@@ -105,6 +104,7 @@ export class UserController {
   }
 
   // UPDATE USER
+  //TODO ADD "UserIsUserGuard" TO UseGuards
 
   @UseGuards(JwtAuthGuard, UserIsUserGuard)
   @Put(':id')
@@ -131,7 +131,8 @@ export class UserController {
     const user: User = req.user;
 
     return this.userService
-      .updateOne(user.id, { avatar: file.filename }).pipe(map((user: User) => ({ Avatar: user.avatar })));
+      .updateOne(user.id, { avatar: file.filename })
+      .pipe(map((user: User) => ({ Avatar: user.avatar })));
   }
 
   // REQUEST PROFILE IMAGE

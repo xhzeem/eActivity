@@ -1,5 +1,5 @@
 <section class="w-screen h-screen fixed">
-  <div class="container-layout overflow-scroll w-screen h-screen">
+  <div class="container-layout overflow-y-scroll w-screen h-screen">
     <div class="layout max-w-screen-xl h-full m-auto">
       <div class="layout-top fixed-top nav w-full">
         <nav class="navbar px-[10%] w-full navbar-secondary">
@@ -42,13 +42,13 @@
           <h1 class="display-6 font-medium text-center">
             {{ blogEntry.articleTitle }}
           </h1>
-          <span class="articleDate mt-3 text-muted">{{
+          <span class="articleDate mt-3 text-light">{{
             blogEntry.creationDate | date
           }}</span>
           <div class="author mt-3 flex items-center">
             <img
               routerLink="/user/{{ blogEntry.author?.id }}"
-              src="http://localhost:3000/api/user/profile-avatar/{{
+              src="{{origin}}/api/user/profile-avatar/{{
                 blogEntry.author?.avatar
               }}"
               class="w-10 h-10 rounded-full cursor-pointer"
@@ -70,7 +70,7 @@
         <div class="layout-middle w-[70%] pt-5 px-2 m-auto">
           <img
             *ngIf="blogEntry.headerImage !== null"
-            src="http://localhost:3000/api/blog/image/{{
+            src="{{origin}}/api/blog/image/{{
               blogEntry.headerImage
             }}"
             alt=""
@@ -79,7 +79,7 @@
         </div>
         <div class="layout-bottom pt-10 px-2 w-[70%] m-auto">
           <p
-            class="lead text-justify"
+            class="lead text-justify text-black"
             [innerHTML]="blogEntry.articleBody | purify"
           ></p>
         </div>

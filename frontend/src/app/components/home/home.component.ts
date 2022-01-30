@@ -1,5 +1,5 @@
 import { HttpErrorResponse, HttpEventType } from '@angular/common/http';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import * as AOS from 'aos';
@@ -13,6 +13,7 @@ import { User } from 'src/app/model/user.interface';
 import { PostService } from 'src/app/service/post/post.service';
 import { UserService } from 'src/app/service/user-service/user.service';
 import { JWT_NAME } from 'src/app/service/authentication.service';
+import { WINDOW } from 'src/app/window-token';
 
 export interface File {
   data: any;
@@ -64,12 +65,16 @@ export class HomeComponent implements OnInit {
       return JSON.parse(jsonPayload);
     }
   }
+  origin = this.window.location.origin;
+
   constructor(
     private formBuilder: FormBuilder,
     private postService: PostService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private userService: UserService
+    private userService: UserService,
+    @Inject(WINDOW) private window: Window
+
   ) {}
 
   ngOnInit() {

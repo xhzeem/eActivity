@@ -1,104 +1,59 @@
-<!-- <div class="page-outline"></div>
-<div class="page-content">
-  <div>
-    <mat-toolbar color="primary">
-      <mat-toolbar-row>
-        <mat-icon>login</mat-icon>
-        <span class="admin">Login</span>
-        <span class="example-spacer"></span>
-        <button mat-icon-button class="example-icon">
-          <mat-icon>menu</mat-icon>
-        </button>
-      </mat-toolbar-row>
-    </mat-toolbar>
 
-    <div class="middle-container">
-      <div class="sides-container">
-        <h2>Login</h2>
-        <div class="Uppper-side">
-          <div class="container-form">
-            <form
-              autocomplete="off"
-              [formGroup]="loginForm"
-              (ngSubmit)="onSubmit()"
-            >
-              <mat-form-field>
-                <input
-                  autocomplete="email"
-                  matInput
-                  placeholder="Email"
-                  formControlName="email"
-                />
-
-                <mat-error *ngIf="loginForm.controls.email.errors"
-                  >Email is required</mat-error
-                >
-              </mat-form-field>
-              <br />
-              <mat-form-field>
-                <input
-                  matInput
-                  type="password"
-                  placeholder="Password"
-                  formControlName="password"
-                  [type]="hide ? 'password' : 'text'"
-                />
-                <mat-icon
-                  class="visib"
-                  color="white"
-                  matSuffix
-                  (click)="hide = !hide"
-                  >{{ hide ? "visibility_off" : "visibility" }}</mat-icon
-                >
-                <mat-error *ngIf="loginForm.controls.password.errors"
-                  >Password is required</mat-error
-                >
-              </mat-form-field>
-              <br />
-              <a (click)="fetchingData()">
-                <button
-                  mat-flat-button
-                  color="primary"
-                  [disabled]="!loginForm.valid"
-                  type="submit"
-                  class="{{
-                    isLoading && error == null
-                      ? 'bg-gray-200 text-dark'
-                      : 'primary'
-                  }}"
-                >
-                  {{ isLoading && error == null ? "Logging..." : "Login" }}
-                </button>
-              </a>
-            </form>
-          </div>
-        </div>
-        <div
-          class="error pt-2 {{
-            error == sucess ? 'text-green-600' : 'text-red-800'
-          }}"
-        >
-          <span>{{ error }}</span>
-        </div>
-        <div class="lower-side">
-          <small class="text-muted">OR</small>
-          <button
-            routerLink="/register"
-            mat-flat-button
-            class="btnlog"
-            color="warn"
-          >
-            <a>Register New Account</a>
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div> -->
+<head>
+  <link rel="stylesheet" type="text/css" href="/assets/css/main.css" />
+  <link rel="stylesheet" type="text/css" href="/assets/css/util.css" />
+</head>
 <div class="limiter">
+  <div class="layout-top fixed-top nav w-full">
+    <nav class="navbar px-[10%] w-full navbar-light">
+      <div class="container-fluid">
+        <a class="navbar-brand text-2xl">UTM eActivity</a>
+        <form class="d-flex">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/landing"
+              >Home</a
+            >
+          </li>
+          <li class="nav-item m-0 capitalize">
+            <a class="nav-link active" aria-current="page" routerLink="/info"
+              >About</a
+            >
+          </li>
+          <li class="nav-item m-0 capitalize">
+            <a class="nav-link active" aria-current="page" routerLink="/blog"
+              >Blog</a
+            >
+          </li>
+        </form>
+      </div>
+    </nav>
+  </div>
   <div class="container-login100">
     <div class="wrap-login100">
-      <form class="login100-form validate-form">
+      <div class="signWithWrap text-center">
+        <div class="infoSign"><small class="small">Sign in with</small></div>
+        <div class="buttonSign mt-3">
+          <a
+            (click)="loginWithFacebook()"
+            class="btn-neutral btn-icon btn btn-default mr-[8px]"
+            ><i
+              class="bi bi-facebook text-[14px] btn-inner--icon text-[#5e72e4]"
+            ></i
+            ><span class="btn-inner--text text-[14px]">Facebook</span></a
+          >
+          <a
+            (click)="loginWithGoogle()"
+            class="btn-neutral btn-icon btn btn-default ml-[4px]"
+            ><span class="btn-inner--icon"
+              ><img
+                alt="..."
+                src="../../../assets/img/google.svg"
+                class="w-[14px]" /></span
+            ><span class="btn-inner--text">Google</span></a
+          >
+        </div>
+      </div>
+      <form class="login100-form mt-[38px] validate-form">
         <span class="login100-form-title p-b-26"> Welcome </span>
         <span class="login100-form-title p-b-48">
           <i class="bi bi-stars"></i>
@@ -140,35 +95,57 @@
               name="pass"
             />
             <span class="focus-input100" data-placeholder="Password"></span>
-            <mat-error
-              class="mb-[25px]"
-              *ngIf="loginForm.controls.password.errors"
-              >Password is required</mat-error
-            >
           </div>
-
+          <div>
+            <mat-error
+              *ngIf="
+                loginForm.controls.email.errors &&
+                loginForm.controls.password.touched
+              "
+              class="block"
+            >
+              Please Enter a Valid Email
+            </mat-error>
+            <mat-error
+              *ngIf="
+                loginForm.controls.password.errors &&
+                loginForm.controls.password.touched
+              "
+              class="block"
+            >
+              Please Enter a Valid Password
+            </mat-error>
+          </div>
           <div class="container-login100-form-btn">
             <div class="wrap-login100-form-btn">
               <div class="login100-form-bgbtn"></div>
-              <button type="submit" class="login100-form-btn">Login</button>
+              <a (click)="fetchingData()">
+                <button
+                  [disabled]="!loginForm.valid && loginForm.touched"
+                  type="submit"
+                  class="login100-form-btn"
+                  class="{{
+                    isLoading && error == null ? 'bg-gray-200 text-dark' : ''
+                  }}"
+                >
+                  {{ isLoading && error == null ? "Logging..." : "Login" }}
+                </button>
+              </a>
             </div>
           </div>
         </form>
-        <mat-error class="mb-[25px]" *ngIf="loginForm.controls.email.errors"
-          >Email is required</mat-error
-        >
 
         <div
-          class="error pt-2 {{
+          class="error pt-2 text-center {{
             error == sucess ? 'text-green-600' : 'text-rose-800'
           }}"
         >
           <span>{{ error }}</span>
         </div>
-        <div class="text-center p-t-115">
+        <div class="text-center p-t-38">
           <span class="txt1"> Don’t have an account? </span>
 
-          <a class="txt2" href="#"> Sign Up </a>
+          <a class="txt2" routerLink="/register"> Register </a>
         </div>
       </form>
     </div>

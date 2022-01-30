@@ -1,28 +1,11 @@
-<<<<<<< Updated upstream
-<div class="container-fluid main h-full">
-  <div class="layout max-w-screen-xl h-full m-auto ">
-=======
 <div class="px-0 container-fluid main min-h-full">
   <div class="layout max-w-screen-2xl h-full m-auto flex">
->>>>>>> Stashed changes
     <div class="layout-top fixed-top nav w-full">
       <nav class="navbar px-[10%] w-full navbar-light">
         <div class="container-fluid">
           <a class="navbar-brand text-2xl">UTM eActivity</a>
           <form class="d-flex">
             <li class="nav-item">
-<<<<<<< Updated upstream
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Feed</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#"
-                >Contact us</a
-              >
-            </li>
-=======
               <a
                 class="nav-link active"
                 aria-current="page"
@@ -48,7 +31,6 @@
                 <i class="fas fa-power-off text-danger"></i>
               </button>
             </li>
->>>>>>> Stashed changes
           </form>
         </div>
       </nav>
@@ -65,7 +47,7 @@
         class="d-flex align-items-center w-full justify-between flex-shrink-0 p-3 rounded-md rounded-b-none bg-black link-light text-decoration-none border-bottom"
       >
         <span class="fs-5 fw-semibold">Enrolled Users</span>
-        <mat-icon class="float-right">{{ exp }}</mat-icon>
+        <i class="float-right bi bi-{{exp}}"></i>
       </a>
 
       <div
@@ -118,7 +100,7 @@
         <div class="userDiv flex flex-row items-center">
           <img
             routerLink="/user/{{ eventEntry.author?.id }}"
-            src="http://localhost:3000/api/user/profile-avatar/{{
+            src="{{origin}}/api/user/profile-avatar/{{
               eventEntry.author?.avatar
             }}"
             class="w-20 h-20 rounded-full cursor-pointer"
@@ -184,26 +166,6 @@
             Free
           </div>
         </div>
-<<<<<<< Updated upstream
-        <div class="divider"></div>
-        <ul class="menu-content flex flex-row items-center pl-4 mb-0">
-          <li>
-            <a (click)="like(eventEntry.eventLikes)" class="bi bi-heart text-white hover:text-rose-800"
-              ><span class="pl-2">{{ eventEntry.eventLikes }}</span></a
-            >
-          </li>
-          <li class="pl-2">
-            <a href="#" class="bi bi-chat-dots text-white no-underline"
-              ><span class="pl-2">3</span></a
-            >
-          </li>
-        </ul>
-        <div class="divider"></div>
-        <div class="" *ngIf="user$ | async as user">
-          <div  *ngIf="eventEntry.author?.id == user.id" class="buttons pl-4">
-            <button class="btn btn-info h-[10%]">Edit</button>
-            <button class="btn btn-danger h-[10%] ml-2">Delete</button>
-=======
         <div
           class="buttonDiv flex flex-row h-full"
           id="edittingSection"
@@ -295,7 +257,6 @@
             >
               <i class="far fa-bookmark"></i> Enrolled
             </button>
->>>>>>> Stashed changes
           </div>
         </div>
       </div>
@@ -319,7 +280,7 @@
       <article class="article-layout m-auto w-[70%]">
         <div class="layout-middle px-4">
           <img
-            src="http://localhost:3000/api/event/image/{{
+            src="{{origin}}/api/event/image/{{
               eventEntry.eventImage
             }}"
             alt=""
@@ -339,7 +300,7 @@
             <div class="modal-content rounded-2xl">
               <div class="modal-body p-0">
                 <img
-                  src="http://localhost:3000/api/event/image/{{
+                  src="{{origin}}/api/event/image/{{
                     eventEntry.eventImage
                   }}"
                   alt=""

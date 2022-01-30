@@ -1,12 +1,8 @@
 section {
-  background: rgb(212, 222, 254);
-  background: linear-gradient(
-    128deg,
-    rgba(212, 222, 254, 1) 14%,
-    rgba(244, 246, 251, 1) 52%,
-    rgba(230, 245, 255, 1) 100%
-  );
-}
+  background: #076585;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(19deg, #fff, #076585);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(19deg, #fff, #076585); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+} 
 .navbar {
   background-color: rgb(255 255 255/0.6);
 }

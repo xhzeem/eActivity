@@ -28,12 +28,12 @@
     <img
       class="rounded-full h-28 w-28 m-auto"
       *ngIf="form.get('avatar')!.value"
-      src="http://localhost:3000/api/user/profile-avatar/{{
+      src="{{origin}}/api/user/profile-avatar/{{
         form.get('avatar')!.value
       }}"
     />
     <button mat-button color="warn" (click)="onClick()">
-      <mat-icon>cloud_upload</mat-icon>
+      <i class="bi bi-cloud-arrow-up-fill"></i>
     </button>
     <ul class="mb-0">
       <li>

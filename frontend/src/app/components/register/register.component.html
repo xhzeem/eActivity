@@ -1,129 +1,168 @@
-<div class="page-outline"></div>
-<div class="page-content">
-  <div class="nav">
-    <mat-toolbar color="primary">
-      <mat-toolbar-row>
-        <mat-icon>how_to_reg</mat-icon>
-        <span class="admin">Registeration</span>
-        <span class="example-spacer"></span>
-        <button mat-icon-button class="example-icon">
-          <mat-icon>menu</mat-icon>
-        </button>
-      </mat-toolbar-row>
-    </mat-toolbar>
 
-    <div class="sides-container">
-      <div class="left-side">
-        <div class="left-content">
-          <span>welcome to our website</span>
-          <p>Already Registered?</p>
-          <button
-            routerLink="/login"
-            mat-flat-button
-            class="btnlog"
-            color="accent"
-          >
-            <a>Login</a>
-          </button>
-        </div>
-      </div>
-      <div class="right-side">
-        <form
-          autocomplete="off"
-          [formGroup]="registerForm"
-          (ngSubmit)="onSubmit()"
-        >
-          <div class="right-container">
-            <h2>Registeration</h2>
-            <mat-form-field>
-              <input matInput placeholder="Full Name" formControlName="name" />
-              <mat-error *ngIf="name.errors && name.touched"
-                >Please enter a valid name</mat-error
-              >
-            </mat-form-field>
-            <br />
-            <mat-form-field>
-              <input
-                matInput
-                placeholder="Username"
-                formControlName="username"
-              />
-              <mat-error *ngIf="username.errors && username.touched"
-                >Please enter a valid username</mat-error
-              >
-            </mat-form-field>
-            <br />
-            <mat-form-field>
-              <input
-                autocomplete="email"
-                matInput
-                placeholder="Email"
-                formControlName="email"
-              />
-              <mat-error *ngIf="email.errors && email.touched"
-                >Please enter a valid email</mat-error
-              >
-            </mat-form-field>
-            <br>
-            <mat-form-field appearance="fill">
-              <mat-label>Account Role</mat-label>
-              <mat-select formControlName="role" matNativeControl required>
-                <mat-option value="user" >User</mat-option>
-                <mat-option value="club" >Club</mat-option>
-
-              </mat-select>
-            </mat-form-field>
-            <br />
-            <mat-form-field>
-              <input
-                matInput
-                type="password"
-                placeholder="Password"
-                formControlName="password"
-                [type]="hide ? 'password' : 'text'"
-              />
-              <mat-icon
-                class="visib"
-                color="white"
-                matSuffix
-                (click)="hide = !hide"
-                >{{ hide ? "visibility_off" : "visibility" }}</mat-icon
-              >
-              <mat-error *ngIf="password.errors && password.touched">
-                Please enter a valid password
-              </mat-error>
-            </mat-form-field>
-            <br />
-            <mat-hint class="text-muted" *ngIf="password.errors"
-              >Password must contain:
-              <li>
-                <i class="fas fa-exclamation-circle"></i>At lest 1 lower
-                character
-              </li>
-              <li>
-                <i class="fas fa-exclamation-circle"></i>At lest 1 upper
-                character
-              </li>
-              <li>
-                <i class="fas fa-exclamation-circle"></i>At lest 1 digit
-                character
-              </li>
-              <li>
-                <i class="fas fa-exclamation-circle"></i>At lest 8 characters
-              </li></mat-hint
+<head>
+  <link rel="stylesheet" type="text/css" href="/assets/css/main.css" />
+  <link rel="stylesheet" type="text/css" href="/assets/css/util.css" />
+</head>
+<div class="limiter">
+  <div class="layout-top fixed-top nav w-full">
+    <nav class="navbar px-[10%] w-full navbar-light">
+      <div class="container-fluid">
+        <a class="navbar-brand text-2xl">UTM eActivity</a>
+        <form class="d-flex">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/landing"
+              >Home</a
             >
-            <button
-              mat-flat-button
-              color="primary"
-              [disabled]="!registerForm.valid"
-              type="submit"
-              class="btn"
+          </li>
+          <li class="nav-item m-0 capitalize">
+            <a class="nav-link active" aria-current="page" routerLink="/info"
+              >About</a
             >
-              Register
-            </button>
-          </div>
+          </li>
+          <li class="nav-item m-0 capitalize">
+            <a class="nav-link active" aria-current="page" routerLink="/blog"
+              >Blog</a
+            >
+          </li>
         </form>
       </div>
+    </nav>
+  </div>
+  <div class="container-login100">
+    <div class="wrap-login100 w-[800px]">
+      <div class="signWithWrap text-center">
+        <div class="infoSign"><small class="small">Sign in with</small></div>
+        <div class="buttonSign mt-3">
+          <a class="btn-neutral btn-icon btn btn-default mr-[8px]"
+            ><i
+              class="bi bi-github text-[14px] btn-inner--icon text-[#5e72e4]"
+            ></i
+            ><span class="btn-inner--text text-[14px]">Github</span></a
+          >
+          <a class="btn-neutral btn-icon btn btn-default ml-[4px]"
+            ><span class="btn-inner--icon"
+              ><img
+                alt="..."
+                src="../../../assets/img/google.svg"
+                class="w-[14px]" /></span
+            ><span class="btn-inner--text">Google</span></a
+          >
+        </div>
+      </div>
+      <div class="welcome mt-[38px]">
+        <span class="login100-form-title p-b-26"> Welcome </span>
+        <span class="login100-form-title p-b-35">
+          <i class="bi bi-stars"></i>
+        </span>
+      </div>
+      <form
+        autocomplete="off"
+        [formGroup]="registerForm"
+        (ngSubmit)="onSubmit()"
+        class="registeration"
+      >
+        <div class="inputWrap">
+          <mat-form-field class="w-[48%]">
+            <input matInput placeholder="Full Name" formControlName="name" />
+            <mat-error *ngIf="name.errors && name.touched"
+              >Please enter a valid name</mat-error
+            >
+          </mat-form-field>
+          <mat-form-field class="w-[50%] ml-[2%]">
+            <input matInput placeholder="Email" formControlName="email" />
+            <mat-error *ngIf="email.errors && email.touched"
+              >Please enter a valid email</mat-error
+            >
+          </mat-form-field>
+          <mat-form-field class="w-[48%]">
+            <input
+              readonly=""
+              onfocus="this.removeAttribute('readonly');"
+              matInput
+              placeholder="Username"
+              formControlName="username"
+            />
+            <mat-error *ngIf="username.errors && username.touched"
+              >Please enter a valid username</mat-error
+            >
+          </mat-form-field>
+
+          <mat-form-field class="w-[50%] ml-[2%]" appearance="fill">
+            <mat-label>Account Role</mat-label>
+            <mat-select formControlName="role" matNativeControl required>
+              <mat-option value="user">User</mat-option>
+              <mat-option value="club">Club</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="w-full">
+            <input
+              matInput
+              type="password"
+              placeholder="Password"
+              autocomplete="new-password"
+              formControlName="password"
+              [type]="hide ? 'password' : 'text'"
+            />
+            <i
+              class="float-right bi bi-{{ hide ? 'eye-slash-fill' : 'eye-fill' }}"
+              (click)="hide = !hide"
+              ></i>
+            <mat-error *ngIf="password.errors && password.touched">
+              Please enter a valid password
+            </mat-error>
+          </mat-form-field>
+          <mat-hint
+            class="text-muted small flex flex-col"
+            *ngIf="password.errors"
+            >Password must contain:
+            <small class="small">
+              <i class="fas fa-exclamation-circle"></i>At lest 1 lower character
+            </small>
+            <small class="small">
+              <i class="fas fa-exclamation-circle"></i>At lest 1 upper character
+            </small>
+            <small class="small">
+              <i class="fas fa-exclamation-circle"></i>At lest 1 digit character
+            </small>
+            <small class="small">
+              <i class="fas fa-exclamation-circle"></i>At lest 8 characters
+            </small></mat-hint
+          >
+        </div>
+        <div class="container-login100-form-btn">
+          <div class="wrap-login100-form-btn">
+            <div class="login100-form-bgbtn"></div>
+            <a (click)="fetchingData()">
+              <button
+                [disabled]="!registerForm.valid"
+                type="submit"
+                class="login100-form-btn"
+                class="{{
+                  isLoading && error == null ? 'bg-gray-200 text-dark' : ''
+                }}"
+              >
+                {{
+                  isLoading && error == null
+                    ? "Creating New Account..."
+                    : "Register"
+                }}
+              </button>
+            </a>
+          </div>
+        </div>
+        <div
+          class="error pt-2 text-center {{
+            error == sucess ? 'text-green-600' : 'text-rose-800'
+          }}"
+        >
+          <span>{{ error }}</span>
+        </div>
+        <div class="text-center p-t-38">
+          <span class="txt1"> Already Have an Account? </span>
+
+          <a class="txt2" routerLink="/login"> Sign Up </a>
+        </div>
+      </form>
     </div>
   </div>
 </div>
